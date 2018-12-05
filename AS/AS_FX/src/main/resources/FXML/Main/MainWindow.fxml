@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="MainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Main.MainController">
+   <top>
+      <HBox prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#OnActionGrup" prefHeight="100.0" prefWidth="100.0" text="Grupy">
+               <HBox.margin>
+                  <Insets bottom="30.0" left="30.0" top="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#OnActionTreatment" prefHeight="100.0" prefWidth="100.0" text="Leczenie">
+               <HBox.margin>
+                  <Insets bottom="30.0" left="30.0" top="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#OnActionList" prefHeight="100.0" prefWidth="100.0" text="Listy">
+               <HBox.margin>
+                  <Insets bottom="30.0" left="30.0" top="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#OnActionAdd" prefHeight="100.0" prefWidth="100.0" text="Dodaj">
+               <HBox.margin>
+                  <Insets bottom="30.0" left="30.0" top="30.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
