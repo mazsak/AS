@@ -10,6 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>AS_SWING</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>MazakTeam</groupId>
+            <artifactId>AS_CORE</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 
 </project>

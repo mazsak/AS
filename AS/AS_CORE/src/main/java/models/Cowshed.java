@@ -7,6 +7,7 @@ package models;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,10 +32,12 @@ public class Cowshed {
     private List<Team> teamList;
 
     public Cowshed() {
+        this.teamList = new ArrayList<>();
     }
 
     public Cowshed(Integer idCowshed) {
         this.idCowshed = idCowshed;
+        this.teamList = new ArrayList<>();
     }
 
     public Integer getIdCowshed() {
@@ -76,6 +79,10 @@ public class Cowshed {
 
     public void setTeamList(List<Team> teamList) {
         this.teamList = teamList;
+    }
+
+    public void addTeam(Team team){
+        this.teamList.add(team);
     }
 
     @Override
