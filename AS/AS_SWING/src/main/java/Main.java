@@ -6,7 +6,8 @@ public class Main {
 
     private static EntityManager em;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        System.out.println("Runnn");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("farm");
         em = emf.createEntityManager();
     }
