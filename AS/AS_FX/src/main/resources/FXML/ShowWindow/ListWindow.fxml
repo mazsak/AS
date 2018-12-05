@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
-
 
 <BorderPane fx:id="rootListWindow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowWindow.ListWindowController">
    <left>
@@ -37,7 +37,11 @@
                   <ListView fx:id="listCattles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#listCattlesActionListener" />
                </content>
             </Tab>
-          <Tab text="Szczegóły zwierzęcia" />
+          <Tab text="Szczegóły zwierzęcia">
+               <content>
+                  <ScrollPane fx:id="informationCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+               </content>
+            </Tab>
         </tabs>
          <BorderPane.margin>
             <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
