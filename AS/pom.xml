@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>AS_CORE</module>
-        <module>AS_SWING</module>
+        <module>AS_FX</module>
     </modules>
 
     <dependencies>

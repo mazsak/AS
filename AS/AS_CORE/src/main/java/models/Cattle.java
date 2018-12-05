@@ -39,8 +39,8 @@ public class Cattle {
     @Column(name = "LEAVE_DATE")
     @Temporal(TemporalType.DATE)
     private Date leaveDate;
-    @Column(name = "LEVA_REASON")
-    private String levaReason;
+    @Column(name = "LEAVE_REASON")
+    private String leaveReason;
     @Column(name = "NOTES")
     private String notes;
     @ManyToMany(mappedBy = "cattleList")
@@ -130,11 +130,11 @@ public class Cattle {
     }
 
     public String getLevaReason() {
-        return levaReason;
+        return leaveReason;
     }
 
     public void setLevaReason(String levaReason) {
-        this.levaReason = levaReason;
+        this.leaveReason = levaReason;
     }
 
     public String getNotes() {

@@ -1,16 +1,42 @@
 package Main;
 
+import hibernate.FactoryHibernate;
+import hibernate.HBull;
+import hibernate.HCowshed;
+import hibernate.HTeam;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import models.Cowshed;
 
+import javax.persistence.EntityManager;
 import java.awt.*;
 
 public class Main extends Application {
 
     public void start(Stage primaryStage) throws Exception {
+
+        //FactoryHibernate fh = new FactoryHibernate();
+        //EntityManager em = FactoryHibernate.getEm();
+
+        //obory
+        //HCowshed.save(em,"Polska", "OK", "Dobra obora");
+        //HCowshed.read(em);
+
+        //byki
+        //HBull.save(em, "Jozef");
+        //HBull.read(em);
+
+        //grupy
+        //HTeam.save(em, "Cieleta", "Bydlaki", new Cowshed(2));
+        //HTeam.read(em);
+
+        //em.close();
+
+
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("/FXML/Main/MainWindow.fxml"));
 

@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HCowshed {
-    public static void read(EntityManager em){
+    public static List<Cowshed> read(EntityManager em){
         em.getTransaction().begin();
         List<Cowshed> result = em.createQuery("from Cowshed", Cowshed.class).getResultList();
         for(Cowshed cowshed : result){
             System.out.println("Obora " + cowshed.getName());
         }
         em.getTransaction().commit();
+        return result;
     }
 
     public static void save(EntityManager em, String address, String info, String name){
