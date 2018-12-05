@@ -18,24 +18,32 @@ public class ListWindowController implements Initializable {
     private BorderPane rootListWindow;
 
     @FXML
+    private ListView<?> listCattles;
+
+    @FXML
     private ListView<?> listCowshed;
 
     @FXML
     private ListView<?> listTeam;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //TODO zaladownaie obor
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    @FXML
+    void listCattlesActionListener(ActionEvent event) {
+
     }
 
     @FXML
     void cowshedActionListener(ActionEvent event) {
-        //TODO akcja nacisniecia obory
+
     }
 
     @FXML
     void teamActionListener(ActionEvent event) {
-        //TODO akcja nacisniecia grupy
+
     }
 
     public void setMc(MainController mc) {

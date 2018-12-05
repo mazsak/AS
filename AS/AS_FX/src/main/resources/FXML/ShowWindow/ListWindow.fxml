@@ -32,8 +32,12 @@
    <center>
       <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Untitled Tab 1" />
-          <Tab text="Untitled Tab 2" />
+          <Tab fx:id="listAnimals" text="Lista zwierząt">
+               <content>
+                  <ListView fx:id="listCattles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#listCattlesActionListener" />
+               </content>
+            </Tab>
+          <Tab text="Szczegóły zwierzęcia" />
         </tabs>
          <BorderPane.margin>
             <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
