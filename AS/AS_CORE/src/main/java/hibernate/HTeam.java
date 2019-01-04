@@ -20,19 +20,9 @@ public class HTeam {
 
     public static List<Team> getByCowshedName(EntityManager em, String nameCowshed){
         em.getTransaction().begin();
-        List<Team> result = em.createQuery("from Team t where t.idCowshed.name = :n", Team.class).setParameter("n", nameCowshed).getResultList();
+        List<Team> result = em.createQuery("from Team t where t.idCowshed.name = :n and type='EAT'", Team.class).setParameter("n", nameCowshed).getResultList();
         for(Team team : result){
             System.out.println("Grupa " + team.getName());
-        }
-        em.getTransaction().commit();
-        return result;
-    }
-
-    public static List<Cattle> getCattlesFromTeam(EntityManager em, String nameGroup){
-        em.getTransaction().begin();
-        List<Cattle> result = em.createQuery("from Cattle c where c.teamList.name = :n", Cattle.class).setParameter("n", nameGroup).getResultList();
-        for(Cattle cattle : result){
-            System.out.println("Cattle " + cattle.getName());
         }
         em.getTransaction().commit();
         return result;

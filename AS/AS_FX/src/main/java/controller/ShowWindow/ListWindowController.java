@@ -34,6 +34,7 @@ public class ListWindowController implements Initializable {
     private MainController mc;
     private EntityManager em;
     private InformationController infocon;
+    private List<Team> groups;
 
     @FXML
     private TableColumn<Cattle, Integer> number;
@@ -129,11 +130,11 @@ public class ListWindowController implements Initializable {
 
     @FXML
     public void cowshedActionListener(MouseEvent arg0) {
-        List<Team> tms = HTeam.getByCowshedName(em, listCowshed.getSelectionModel().getSelectedItem());
+        groups = HTeam.getByCowshedName(em, listCowshed.getSelectionModel().getSelectedItem());
         ObservableList<String> teams = FXCollections.observableArrayList();
 
-        for (int i = 0; i < tms.size(); i++) {
-            teams.add(tms.get(i).getName());
+        for (int i = 0; i < groups.size(); i++) {
+            teams.add(groups.get(i).getName());
         }
 
         listTeam.setItems(teams);
@@ -141,10 +142,9 @@ public class ListWindowController implements Initializable {
 
     @FXML
     public void teamActionListener(MouseEvent arg0) {
-        List<Cattle> ctl = HTeam.getCattlesFromTeam(em, listTeam.getSelectionModel().getSelectedItem());
         ObservableList<Cattle> cattles = FXCollections.observableArrayList();
 
-        cattles.addAll(ctl);
+        cattles.addAll(groups.get(listTeam.getSelectionModel().getSelectedIndex()).getCattleList());
 
         number.setCellValueFactory(new PropertyValueFactory<Cattle,Integer>("idCattle"));
         earring.setCellValueFactory(new PropertyValueFactory<Cattle,String>("earring"));

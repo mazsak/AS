@@ -6,6 +6,7 @@ import models.Team;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HCattle {
@@ -24,5 +25,23 @@ public class HCattle {
         Cattle result = em.createQuery("from Cattle where earring = :n", Cattle.class).setParameter("n", earring).getSingleResult();
         em.getTransaction().commit();
         return result;
+    }
+
+    public static void save(EntityManager em, String name, String earring, String sex, Integer cowshedNumber,
+                            Date birthDate, Date joinDate, Date leaveDate, Date leaveReason, String notes){
+        em.getTransaction().begin();
+        Cattle cattle = new Cattle();
+        cattle.setName(name);
+        cattle.setEarring(earring);
+        cattle.setSex(sex);
+        cattle.setBirthDate(birthDate);
+        cattle.setJoinDate(joinDate);
+        cattle.setLeaveDate(leaveDate);
+        cattle.setLeaveDate(leaveReason);
+        cattle.setCowshedNumber(cowshedNumber);
+        cattle.setNotes(notes);
+        //cowshed.setTeamList(new ArrayList<Team>());
+        em.persist(cattle);
+        em.getTransaction().commit();
     }
 }
