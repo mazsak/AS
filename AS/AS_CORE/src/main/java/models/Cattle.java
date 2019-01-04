@@ -184,6 +184,10 @@ public class Cattle {
         this.inseminationList = inseminationList;
     }
 
+    public void addToInseminationList(Insemination insemination){
+        inseminationList.add(insemination);
+    }
+
     @XmlTransient
     public List<Calving> getCalvingList() {
         return calvingList;

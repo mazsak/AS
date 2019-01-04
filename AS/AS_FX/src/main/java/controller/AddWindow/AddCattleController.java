@@ -79,12 +79,13 @@ public class AddCattleController implements Initializable {
             HCattle.save(em, cattle);
             groups.get(group.getSelectionModel().getSelectedIndex()).addCattleToList(cattle);
             HTeam.update(em, groups.get(group.getSelectionModel().getSelectedIndex()));
+
+            name.clear();
+            earring.clear();
+            numberCowshed.clear();
+            leaveReason.clear();
+            note.clear();
         }
-        name.clear();
-        earring.clear();
-        numberCowshed.clear();
-        leaveReason.clear();
-        note.clear();
     }
 
     @Override

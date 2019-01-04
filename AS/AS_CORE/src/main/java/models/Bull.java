@@ -7,6 +7,7 @@ package models;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class Bull {
     @Column(name = "NAME_")
     private String name;
     @OneToMany(mappedBy = "idBull")
-    private List<Insemination> inseminationList;
+    private List<Insemination> inseminationList = new ArrayList<>();
 
     public Bull() {
     }
@@ -56,6 +57,10 @@ public class Bull {
 
     public void setInseminationList(List<Insemination> inseminationList) {
         this.inseminationList = inseminationList;
+    }
+
+    public void addToInseminationList(Insemination insemination){
+        inseminationList.add(insemination);
     }
 
     @Override

@@ -33,4 +33,10 @@ public class HCattle {
         em.persist(cattle);
         em.getTransaction().commit();
     }
+
+    public static void update(EntityManager em, Cattle cattle){
+        em.getTransaction().begin();
+        em.merge(cattle);
+        em.getTransaction().commit();
+    }
 }

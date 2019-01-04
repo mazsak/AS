@@ -17,11 +17,9 @@ public class HInsemination {
         return result;
     }
 
-    public static void save(EntityManager em, String name){
+    public static void save(EntityManager em, Insemination insemination){
         em.getTransaction().begin();
-        Bull bull = new Bull();
-        bull.setName(name);
-        em.persist(bull);
+        em.persist(insemination);
         em.getTransaction().commit();
     }
 }

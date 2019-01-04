@@ -63,7 +63,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ComboBox fx:id="cowshed" prefWidth="200.0" />
+            <ComboBox fx:id="cowshed" onAction="#cowshedCheckedActionListener" prefWidth="200.0" />
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Grupa" GridPane.columnIndex="2">
                <font>
                   <Font size="18.0" />
@@ -72,7 +72,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <ComboBox fx:id="group" prefWidth="200.0" GridPane.columnIndex="3" />
+            <ComboBox fx:id="group" onAction="#groupCheckedActionListener" prefWidth="200.0" GridPane.columnIndex="3" />
             <ComboBox fx:id="cattle" prefWidth="200.0" GridPane.rowIndex="2" />
             <ComboBox fx:id="bull" editable="true" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Byk" GridPane.columnIndex="2" GridPane.rowIndex="2">
