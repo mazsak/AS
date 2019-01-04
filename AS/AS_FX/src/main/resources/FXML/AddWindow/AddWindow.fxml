@@ -22,17 +22,17 @@
                   <Insets left="10.0" />
                </VBox.margin>
             </Label>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addCowshedActionListener" prefHeight="50.0" text="Obore">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addCowshedActionListener" prefHeight="50.0" text="Oborę">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addGroupActionListener" prefHeight="50.0" text="Grupe">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addGroupActionListener" prefHeight="50.0" text="Grupę">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addCattleActionListener" prefHeight="50.0" text="Zwierze">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addCattleActionListener" prefHeight="50.0" text="Zwierzę">
                <font>
                   <Font size="18.0" />
                </font>

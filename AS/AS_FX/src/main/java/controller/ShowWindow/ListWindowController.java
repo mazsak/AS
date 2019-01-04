@@ -23,6 +23,7 @@ import models.Team;
 import javax.persistence.EntityManager;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -86,6 +87,7 @@ public class ListWindowController implements Initializable {
         //ObservableList<Cowshed> cowsheds = FXCollections.observableArrayList();
         ObservableList<String> cowsheds = FXCollections.observableArrayList();
 
+        cowsheds.add("Wszystkie obory");
         for (int i = 0; i < csh.size(); i++) {
             //cowsheds.add(new Cowshed(csh.get(i).getIdCowshed()));
             cowsheds.add(csh.get(i).getName());
@@ -130,14 +132,24 @@ public class ListWindowController implements Initializable {
 
     @FXML
     public void cowshedActionListener(MouseEvent arg0) {
-        groups = HTeam.getByCowshedName(em, listCowshed.getSelectionModel().getSelectedItem());
         ObservableList<String> teams = FXCollections.observableArrayList();
+        ObservableList<Cattle> allCattleInCowshed = FXCollections.observableArrayList();
+        if(listCowshed.getSelectionModel().getSelectedIndex() == 0){
+            List<Cattle> cattles;
+            cattles = HCattle.read(em);
+            allCattleInCowshed.addAll(cattles);
 
-        for (int i = 0; i < groups.size(); i++) {
-            teams.add(groups.get(i).getName());
+        }else {
+            groups = HTeam.getByCowshedName(em, listCowshed.getSelectionModel().getSelectedItem());
+
+            for (int i = 0; i < groups.size(); i++) {
+                teams.add(groups.get(i).getName());
+                allCattleInCowshed.addAll(groups.get(i).getCattleList());
+            }
+
         }
-
         listTeam.setItems(teams);
+        listCattles.setItems(allCattleInCowshed);
     }
 
     @FXML
@@ -145,13 +157,6 @@ public class ListWindowController implements Initializable {
         ObservableList<Cattle> cattles = FXCollections.observableArrayList();
 
         cattles.addAll(groups.get(listTeam.getSelectionModel().getSelectedIndex()).getCattleList());
-
-        number.setCellValueFactory(new PropertyValueFactory<Cattle,Integer>("idCattle"));
-        earring.setCellValueFactory(new PropertyValueFactory<Cattle,String>("earring"));
-        cowshedNumber.setCellValueFactory(new PropertyValueFactory<Cattle, Integer>("cowshedNumber"));
-        cowshed.setCellValueFactory(new PropertyValueFactory<Cattle,String>("notes"));
-        team.setCellValueFactory(new PropertyValueFactory<Cattle,String>("teamList"));
-        birthDate.setCellValueFactory(new PropertyValueFactory<Cattle, Date>("birthDate"));
         listCattles.setItems(cattles);
     }
 
