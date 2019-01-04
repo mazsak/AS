@@ -63,13 +63,18 @@ public class AddWindowController {
     }
 
     @FXML
-    void addBullActionListener(ActionEvent event) {
-
-    }
-
-    @FXML
     void addInseminationActionListener(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddInsemination.fxml"));
 
+        GridPane addInsemination = null;
+
+        try {
+            addInsemination = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        addWindow.setContent(addInsemination);
     }
 
     @FXML

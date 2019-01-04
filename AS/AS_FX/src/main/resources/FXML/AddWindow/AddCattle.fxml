@@ -109,7 +109,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <ComboBox fx:id="sex" maxWidth="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <ComboBox fx:id="sex" maxWidth="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <DatePicker fx:id="birthDate" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <DatePicker fx:id="joinDate" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="8" />
             <DatePicker fx:id="leaveDate" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
