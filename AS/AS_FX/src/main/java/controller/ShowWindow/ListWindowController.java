@@ -7,19 +7,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import models.Cowshed;
 
 import javax.persistence.EntityManager;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ListWindowController implements Initializable {
 
@@ -29,7 +32,13 @@ public class ListWindowController implements Initializable {
     private BorderPane rootListWindow;
 
     @FXML
+    private Tab listAnimals;
+
+    @FXML
     private ListView<?> listCattles;
+
+    @FXML
+    private ScrollPane informationCattle;
 
     @FXML
     private ListView<String> listCowshed;
@@ -54,6 +63,18 @@ public class ListWindowController implements Initializable {
         }
 
         listCowshed.setItems(cowsheds);
+
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/ShowWindow/InformationCattle.fxml"));
+
+        GridPane informationWindow = null;
+
+        try {
+            informationWindow = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        informationCattle.setContent(informationWindow);
 
     }
 

@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.transform.Scale;
 
 /**
  * FXML Controller class
@@ -57,6 +58,20 @@ public class MainController implements Initializable {
 
     @FXML
     private void OnActionGrup(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/ShowWindow/ListWindow.fxml"));
+
+        BorderPane showWindow = null;
+
+        try {
+            showWindow = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ListWindowController mac = loader.getController();
+
+        mac.setMc(this);
+
+        MainWindow.setCenter(showWindow);
     }
 
     @FXML
