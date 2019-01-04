@@ -49,7 +49,7 @@
                </GridPane.margin>
             </Label>
             <TextField fx:id="name" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cowshed" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="cowshed" onAction="#checkedActionListener" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="earring" maxWidth="250.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Numer oborowy" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
