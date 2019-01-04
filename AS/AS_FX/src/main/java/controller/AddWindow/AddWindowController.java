@@ -49,7 +49,17 @@ public class AddWindowController {
 
     @FXML
     void addCattleActionListener(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddCattle.fxml"));
 
+        GridPane addCattle = null;
+
+        try {
+            addCattle = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        addWindow.setContent(addCattle);
     }
 
     @FXML
