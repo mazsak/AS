@@ -7,6 +7,7 @@ package models;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class Cattle {
     @Column(name = "NOTES")
     private String notes;
     @ManyToMany(mappedBy = "cattleList")
-    private List<Team> teamList;
+    private List<Team> teamList = new ArrayList<>();
     @OneToMany(mappedBy = "idCattle")
     private List<Insemination> inseminationList;
     @OneToMany(mappedBy = "idCattle")
@@ -168,6 +169,10 @@ public class Cattle {
 
     public void setTeamList(List<Team> teamList) {
         this.teamList = teamList;
+    }
+
+    public void addToTeamList(Team team){
+        teamList.add(team);
     }
 
     @XmlTransient

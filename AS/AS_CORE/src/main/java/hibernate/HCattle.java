@@ -5,6 +5,7 @@ import models.Cowshed;
 import models.Team;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,20 +28,8 @@ public class HCattle {
         return result;
     }
 
-    public static void save(EntityManager em, String name, String earring, String sex, Integer cowshedNumber,
-                            Date birthDate, Date joinDate, Date leaveDate, Date leaveReason, String notes){
+    public static void save(EntityManager em, Cattle cattle){
         em.getTransaction().begin();
-        Cattle cattle = new Cattle();
-        cattle.setName(name);
-        cattle.setEarring(earring);
-        cattle.setSex(sex);
-        cattle.setBirthDate(birthDate);
-        cattle.setJoinDate(joinDate);
-        cattle.setLeaveDate(leaveDate);
-        cattle.setLeaveDate(leaveReason);
-        cattle.setCowshedNumber(cowshedNumber);
-        cattle.setNotes(notes);
-        //cowshed.setTeamList(new ArrayList<Team>());
         em.persist(cattle);
         em.getTransaction().commit();
     }

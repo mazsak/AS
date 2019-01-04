@@ -38,4 +38,10 @@ public class HTeam {
         em.persist(team);
         em.getTransaction().commit();
     }
+
+    public static void update(EntityManager em, Team team){
+        em.getTransaction().begin();
+        em.merge(team);
+        em.getTransaction().commit();
+    }
 }

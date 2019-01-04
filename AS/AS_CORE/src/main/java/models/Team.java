@@ -74,6 +74,10 @@ public class Team {
         this.cattleList = cattleList;
     }
 
+    public void addCattleToList(Cattle cattle){
+        cattleList.add(cattle);
+    }
+
     public Cowshed getIdCowshed() {
         return idCowshed;
     }
