@@ -84,6 +84,17 @@ public class MainController implements Initializable {
 
     @FXML
     private void OnActionAdd(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddWindow.fxml"));
+
+        BorderPane addWindow = null;
+
+        try {
+            addWindow = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        MainWindow.setCenter(addWindow);
     }
     
 }

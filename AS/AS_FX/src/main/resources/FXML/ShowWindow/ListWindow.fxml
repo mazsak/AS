@@ -9,14 +9,14 @@
 
 <BorderPane fx:id="rootListWindow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowWindow.ListWindowController">
    <left>
-      <VBox prefHeight="400.0" prefWidth="142.0" BorderPane.alignment="CENTER">
+      <VBox prefWidth="142.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="Obory" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ListView fx:id="listCowshed" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#cowshedActionListener" prefWidth="200.0" />
+            <ListView fx:id="listCowshed" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" onMousePressed="#cowshedActionListener" prefWidth="200.0" />
             <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="Grupy" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -37,11 +37,11 @@
                   <TableView fx:id="listCattles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#listCattlesActionListener">
                     <columns>
                       <TableColumn fx:id="number" maxWidth="1.7976931348623157E308" minWidth="30.0" prefWidth="-1.0" text="Nr." />
-                      <TableColumn fx:id="earring" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Numer kolczyka" />
-                        <TableColumn fx:id="cowshed" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="-1.0" text="Obora" />
-                        <TableColumn fx:id="cowshedNumber" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Numer oborowy" />
-                        <TableColumn fx:id="team" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Grupa" />
-                        <TableColumn fx:id="birthDate" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Data urpdzenia" />
+                      <TableColumn fx:id="earring" maxWidth="-Infinity" minWidth="100.0" prefWidth="-1.0" text="Numer kolczyka" />
+                        <TableColumn fx:id="cowshed" maxWidth="-Infinity" minWidth="50.0" prefWidth="-1.0" text="Obora" />
+                        <TableColumn fx:id="cowshedNumber" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Numer oborowy" />
+                        <TableColumn fx:id="team" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Grupa" />
+                        <TableColumn fx:id="birthDate" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Data urpdzenia" />
                     </columns>
                   </TableView>
                </content>
