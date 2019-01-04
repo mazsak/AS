@@ -34,7 +34,16 @@
         <tabs>
           <Tab fx:id="listAnimals" text="Lista zwierząt">
                <content>
-                  <ListView fx:id="listCattles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#listCattlesActionListener" />
+                  <TableView fx:id="listCattles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#listCattlesActionListener">
+                    <columns>
+                      <TableColumn fx:id="number" maxWidth="1.7976931348623157E308" minWidth="30.0" prefWidth="-1.0" text="Nr." />
+                      <TableColumn fx:id="earring" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Numer kolczyka" />
+                        <TableColumn fx:id="cowshed" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="-1.0" text="Obora" />
+                        <TableColumn fx:id="cowshedNumber" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Numer oborowy" />
+                        <TableColumn fx:id="team" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Grupa" />
+                        <TableColumn fx:id="birthDate" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Data urpdzenia" />
+                    </columns>
+                  </TableView>
                </content>
             </Tab>
           <Tab text="Szczegóły zwierzęcia">

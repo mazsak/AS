@@ -29,16 +29,34 @@ public class ListWindowController implements Initializable {
     private MainController mc;
 
     @FXML
+    private TableColumn<?, ?> number;
+
+    @FXML
+    private TableColumn<?, ?> earring;
+
+    @FXML
     private BorderPane rootListWindow;
+
+    @FXML
+    private TableColumn<?, ?> cowshedNumber;
+
+    @FXML
+    private TableColumn<?, ?> cowshed;
+
+    @FXML
+    private TableColumn<?, ?> team;
 
     @FXML
     private Tab listAnimals;
 
     @FXML
-    private ListView<?> listCattles;
+    private TableColumn<?, ?> birthDate;
 
     @FXML
     private ScrollPane informationCattle;
+
+    @FXML
+    private TableView<?> listCattles;
 
     @FXML
     private ListView<String> listCowshed;
