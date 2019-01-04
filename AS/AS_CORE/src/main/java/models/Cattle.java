@@ -39,7 +39,7 @@ public class Cattle {
     @Column(name = "LEAVE_DATE")
     @Temporal(TemporalType.DATE)
     private Date leaveDate;
-    @Column(name = "LEAVE_REASON")
+    @Column(name = "LEVA_REASON")
     private String leaveReason;
     @Column(name = "NOTES")
     private String notes;
@@ -138,7 +138,16 @@ public class Cattle {
     }
 
     public String getNotes() {
-        return notes;
+        String tmp = null;
+        StringBuilder result = new StringBuilder();
+        for (Team team : teamList) {
+            if (!team.getIdCowshed().getName().equals(tmp)) {
+                tmp = team.getIdCowshed().getName();
+                result.append(team.getIdCowshed().getName()).append(" ");
+            }
+        }
+        return result.toString();
+        //return notes;
     }
 
     public void setNotes(String notes) {
@@ -146,8 +155,15 @@ public class Cattle {
     }
 
     @XmlTransient
-    public List<Team> getTeamList() {
-        return teamList;
+    public String getTeamList() {
+        StringBuilder result = new StringBuilder();
+        for (Team team : teamList) {
+            if (team.getType().equals("EAT")) {
+                result.append(team.getName()).append(" ");
+            }
+        }
+        return result.toString();
+        //return teamList;
     }
 
     public void setTeamList(List<Team> teamList) {

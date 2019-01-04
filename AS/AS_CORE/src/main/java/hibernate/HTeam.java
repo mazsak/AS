@@ -1,5 +1,6 @@
 package hibernate;
 
+import models.Cattle;
 import models.Cowshed;
 import models.Team;
 
@@ -22,6 +23,16 @@ public class HTeam {
         List<Team> result = em.createQuery("from Team t where t.idCowshed.name = :n", Team.class).setParameter("n", nameCowshed).getResultList();
         for(Team team : result){
             System.out.println("Grupa " + team.getName());
+        }
+        em.getTransaction().commit();
+        return result;
+    }
+
+    public static List<Cattle> getCattlesFromTeam(EntityManager em, String nameGroup){
+        em.getTransaction().begin();
+        List<Cattle> result = em.createQuery("from Cattle c where c.teamList.name = :n", Cattle.class).setParameter("n", nameGroup).getResultList();
+        for(Cattle cattle : result){
+            System.out.println("Cattle " + cattle.getName());
         }
         em.getTransaction().commit();
         return result;
