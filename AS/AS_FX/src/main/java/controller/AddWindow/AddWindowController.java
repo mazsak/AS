@@ -34,7 +34,17 @@ public class AddWindowController {
 
     @FXML
     void addGroupActionListener(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddGroup.fxml"));
 
+        GridPane addGroup = null;
+
+        try {
+            addGroup = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        addWindow.setContent(addGroup);
     }
 
     @FXML

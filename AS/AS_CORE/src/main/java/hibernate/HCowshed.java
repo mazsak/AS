@@ -18,6 +18,13 @@ public class HCowshed {
         return result;
     }
 
+    public static Cowshed findByName(EntityManager em, String name){
+        em.getTransaction().begin();
+        Cowshed result = em.createQuery("from Cowshed where name = :n", Cowshed.class).setParameter("n", name).getSingleResult();
+        em.getTransaction().commit();
+        return result;
+    }
+
     public static void save(EntityManager em, String address, String info, String name){
         em.getTransaction().begin();
         Cowshed cowshed = new Cowshed();

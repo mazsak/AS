@@ -37,7 +37,6 @@ public class AddCowshedController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        FactoryHibernate fh = new FactoryHibernate();
         em = FactoryHibernate.getEm();
     }
 }
