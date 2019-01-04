@@ -16,7 +16,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ListView fx:id="listCowshed" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" onMousePressed="#cowshedActionListener" prefWidth="200.0" />
+            <ListView fx:id="listCowshed" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#cowshedActionListener" prefWidth="200.0" />
             <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="Grupy" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />

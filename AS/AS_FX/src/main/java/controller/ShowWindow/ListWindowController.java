@@ -3,6 +3,7 @@ package controller.ShowWindow;
 import controller.Main.MainController;
 import hibernate.FactoryHibernate;
 import hibernate.HCowshed;
+import hibernate.HTeam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import models.Cowshed;
+import models.Team;
 
 import javax.persistence.EntityManager;
 import java.io.IOException;
@@ -27,6 +29,7 @@ import java.util.logging.Logger;
 public class ListWindowController implements Initializable {
 
     private MainController mc;
+    private EntityManager em;
 
     @FXML
     private TableColumn<?, ?> number;
@@ -63,12 +66,12 @@ public class ListWindowController implements Initializable {
     //private ListView<Cowshed> listCowshed;
 
     @FXML
-    private ListView<?> listTeam;
+    private ListView<String> listTeam;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         FactoryHibernate fh = new FactoryHibernate();
-        EntityManager em = FactoryHibernate.getEm();
+        em = FactoryHibernate.getEm();
 
         List<Cowshed> csh = HCowshed.read(em);
 
@@ -98,12 +101,20 @@ public class ListWindowController implements Initializable {
 
     @FXML
     void listCattlesActionListener(ActionEvent event) {
-
     }
 
     @FXML
-    void cowshedActionListener(ActionEvent event) {
+    public void cowshedActionListener(MouseEvent arg0) {
+        List<Team> tms = HTeam.getByCowshedName(em, listCowshed.getSelectionModel().getSelectedItem());
+        ObservableList<String> teams = FXCollections.observableArrayList();
 
+        for(int i = 0; i < tms.size(); i++){
+            teams.add(tms.get(i).getName());
+        }
+
+        listTeam.setItems(teams);
+
+            System.out.println("clicked on " + listCowshed.getSelectionModel().getSelectedItem());
     }
 
     @FXML
