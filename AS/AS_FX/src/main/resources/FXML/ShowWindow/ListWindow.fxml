@@ -30,7 +30,7 @@
       </VBox>
    </left>
    <center>
-      <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="cattleBar" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab fx:id="listAnimals" text="Lista zwierząt">
                <content>

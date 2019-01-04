@@ -18,4 +18,11 @@ public class HCattle {
         em.getTransaction().commit();
         return result;
     }
+
+    public static Cattle findByEarring(EntityManager em, String earring){
+        em.getTransaction().begin();
+        Cattle result = em.createQuery("from Cattle where earring = :n", Cattle.class).setParameter("n", earring).getSingleResult();
+        em.getTransaction().commit();
+        return result;
+    }
 }

@@ -33,6 +33,7 @@ public class ListWindowController implements Initializable {
 
     private MainController mc;
     private EntityManager em;
+    private InformationController infocon;
 
     @FXML
     private TableColumn<Cattle, Integer> number;
@@ -51,6 +52,9 @@ public class ListWindowController implements Initializable {
 
     @FXML
     private TableColumn<Cattle, String> team;
+
+    @FXML
+    private TabPane cattleBar;
 
     @FXML
     private Tab listAnimals;
@@ -109,13 +113,18 @@ public class ListWindowController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        infocon = loader.getController();
         informationCattle.setContent(informationWindow);
 
     }
 
     @FXML
-    void listCattlesActionListener(ActionEvent event) {
+    public void listCattlesActionListener(MouseEvent arg0) {
+        Cattle cattle = HCattle.findByEarring(em, earring.getCellObservableValue(listCattles.getSelectionModel().getFocusedIndex()).getValue());
+        infocon.setCattleInfo(cattle);
+        if(arg0.getClickCount() == 2){
+            cattleBar.getSelectionModel().select(1);
+        }
     }
 
     @FXML
@@ -137,6 +146,12 @@ public class ListWindowController implements Initializable {
 
         cattles.addAll(ctl);
 
+        number.setCellValueFactory(new PropertyValueFactory<Cattle,Integer>("idCattle"));
+        earring.setCellValueFactory(new PropertyValueFactory<Cattle,String>("earring"));
+        cowshedNumber.setCellValueFactory(new PropertyValueFactory<Cattle, Integer>("cowshedNumber"));
+        cowshed.setCellValueFactory(new PropertyValueFactory<Cattle,String>("notes"));
+        team.setCellValueFactory(new PropertyValueFactory<Cattle,String>("teamList"));
+        birthDate.setCellValueFactory(new PropertyValueFactory<Cattle, Date>("birthDate"));
         listCattles.setItems(cattles);
     }
 
