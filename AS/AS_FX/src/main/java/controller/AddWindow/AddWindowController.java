@@ -79,7 +79,17 @@ public class AddWindowController {
 
     @FXML
     void addCalvingActionListener(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddCalving.fxml"));
 
+        GridPane addCalving = null;
+
+        try {
+            addCalving = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        addWindow.setContent(addCalving);
     }
 
 }

@@ -83,12 +83,10 @@ public class ListWindowController implements Initializable {
 
         List<Cowshed> csh = HCowshed.read(em);
 
-        //ObservableList<Cowshed> cowsheds = FXCollections.observableArrayList();
         ObservableList<String> cowsheds = FXCollections.observableArrayList();
 
         cowsheds.add("Wszystkie obory");
         for (int i = 0; i < csh.size(); i++) {
-            //cowsheds.add(new Cowshed(csh.get(i).getIdCowshed()));
             cowsheds.add(csh.get(i).getName());
         }
 
