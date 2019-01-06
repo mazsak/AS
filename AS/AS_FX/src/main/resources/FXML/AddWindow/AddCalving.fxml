@@ -73,7 +73,7 @@
                </GridPane.margin>
             </Label>
             <ComboBox fx:id="group" onAction="#groupCheckedActionListener" prefWidth="200.0" GridPane.columnIndex="3" />
-            <ComboBox fx:id="cattle" prefWidth="200.0" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cattle" onAction="#cattleCheckedActionListener" prefWidth="200.0" GridPane.rowIndex="2" />
             <DatePicker fx:id="calvingDate" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" text="Data wycielenia" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>

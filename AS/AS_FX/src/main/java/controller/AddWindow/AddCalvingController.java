@@ -1,9 +1,6 @@
 package controller.AddWindow;
 
-import hibernate.FactoryHibernate;
-import hibernate.HBull;
-import hibernate.HCowshed;
-import hibernate.HTeam;
+import hibernate.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,10 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
-import models.Bull;
-import models.Cattle;
-import models.Cowshed;
-import models.Team;
+import models.*;
 
 import javax.persistence.EntityManager;
 import java.net.URL;
@@ -27,6 +21,7 @@ public class AddCalvingController implements Initializable {
 
     private EntityManager em;
     private List<Team> groups;
+    private List<Cattle> cattleList;
 
     @FXML
     private TextArea note;
@@ -51,7 +46,22 @@ public class AddCalvingController implements Initializable {
 
     @FXML
     void addCalvingActionListener(ActionEvent event) {
+        if(!cattle.getValue().isEmpty() && !calf.getValue().isEmpty() && !calvingDate.getValue().toString().isEmpty()){
+            Calving calving = new Calving();
+            calving.setCalvingDate(java.sql.Date.valueOf(calvingDate.getValue()));
+            calving.setIdCattle(groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
+            calving.setIdCalf(cattleList.get(calf.getSelectionModel().getSelectedIndex()));
+            calving.setNotes(note.getText());
+            HCalving.save(em, calving);
 
+            groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(cattle.getSelectionModel().getSelectedIndex())
+                    .addToCalvingListCalfForMother(calving);
+            HCattle.update(em, groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
+
+            cattleList.get(calf.getSelectionModel().getSelectedIndex()).addToCalvingListMotherForCalf(calving);
+            HCattle.update(em, cattleList.get(calf.getSelectionModel().getSelectedIndex()));
+        }
+        note.clear();
     }
 
     @FXML
@@ -78,17 +88,48 @@ public class AddCalvingController implements Initializable {
     void cowshedCalfCheckedActionListener(ActionEvent event) {
         ObservableList<String> calfs = FXCollections.observableArrayList();
 
-        groups = HTeam.getByCowshedName(em, cowshedCalf.getSelectionModel().getSelectedItem());
+        List<Team> groupsCalf = HTeam.getByCowshedName(em, cowshedCalf.getSelectionModel().getSelectedItem());
 
-        List<Cattle> allCattleInCowshed = new ArrayList<>();
-        for (int i = 0; i < groups.size(); i++) {
-            allCattleInCowshed.addAll(groups.get(i).getCattleList());
+
+        cattleList = new ArrayList<>();
+        for (int i = 0; i < groupsCalf.size(); i++) {
+            cattleList.addAll(groupsCalf.get(i).getCattleList());
         }
 
-        for(int i = 0; i < allCattleInCowshed.size(); i++){
-            calfs.add(allCattleInCowshed.get(i).getEarring());
+        for(int i = 0; i < cattleList.size(); i++){
+            if(!cattleList.get(i).getEarring().equals(cattle.getValue())) {
+                calfs.add(cattleList.get(i).getEarring());
+            }else{
+                cattleList.remove(i);
+                i--;
+            }
         }
         calf.setItems(calfs);
+    }
+
+    @FXML
+    void cattleCheckedActionListener(ActionEvent event){
+        if(!calf.getItems().isEmpty()){
+            ObservableList<String> calfs = FXCollections.observableArrayList();
+
+            List<Team> groupsCalf = HTeam.getByCowshedName(em, cowshedCalf.getSelectionModel().getSelectedItem());
+
+
+            cattleList = new ArrayList<>();
+            for (int i = 0; i < groupsCalf.size(); i++) {
+                cattleList.addAll(groupsCalf.get(i).getCattleList());
+            }
+
+            for(int i = 0; i < cattleList.size(); i++){
+                if(!cattleList.get(i).getEarring().equals(cattle.getValue())) {
+                    calfs.add(cattleList.get(i).getEarring());
+                }else{
+                    cattleList.remove(i);
+                    i--;
+                }
+            }
+            calf.setItems(calfs);
+        }
     }
 
     @Override

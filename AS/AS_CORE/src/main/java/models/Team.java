@@ -7,6 +7,7 @@ package models;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class Team {
             @JoinColumn(name = "ID_GROUP", referencedColumnName = "ID_GROUP")}, inverseJoinColumns = {
             @JoinColumn(name = "ID_CATTLE", referencedColumnName = "ID_CATTLE")})
     @ManyToMany
-    private List<Cattle> cattleList;
+    private List<Cattle> cattleList = new ArrayList<>();
     @JoinColumn(name = "ID_COWSHED", referencedColumnName = "ID_COWSHED")
     @ManyToOne
     private Cowshed idCowshed;

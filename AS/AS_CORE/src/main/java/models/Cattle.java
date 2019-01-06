@@ -208,8 +208,16 @@ public class Cattle {
         return calvingList1;
     }
 
+    public void addToCalvingListMotherForCalf(Calving calving){
+        calvingList.add(calving);
+    }
+
     public void setCalvingList1(List<Calving> calvingList1) {
         this.calvingList1 = calvingList1;
+    }
+
+    public void addToCalvingListCalfForMother(Calving calving){
+        calvingList1.add(calving);
     }
 
     @XmlTransient
