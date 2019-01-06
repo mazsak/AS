@@ -64,7 +64,10 @@ public class AddCattleController implements Initializable {
     void addCattleActionListener(ActionEvent event) {
         em = FactoryHibernate.getEm();
 
-        if(!name.getText().isEmpty()) {
+        if(!earring.getText().isEmpty() && !sex.getValue().isEmpty() && !cowshed.getValue().isEmpty()
+            && !group.getValue().isEmpty() && !birthDate.getValue().toString().isEmpty()
+            && !joinDate.getValue().toString().isEmpty()) {
+
             Cattle cattle = new Cattle();
             cattle.setName(name.getText());
             cattle.setEarring(earring.getText());

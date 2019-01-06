@@ -45,19 +45,36 @@ public class AddInseminationController implements Initializable {
     @FXML
     void addInseminationActionListener(ActionEvent event) {
         //TODO zapisywanie byka
-        if(!cattle.getValue().isEmpty()){
+        if (!cattle.getValue().isEmpty()) {
+
             Insemination insemination = new Insemination();
-            insemination.setInseminationDate(java.sql.Date.valueOf(inseminationDate.getValue()));
-            insemination.setResult(result.getValue());
-            insemination.setNotes(note.getText());
-            insemination.setIdCattle(groups.get(group.getSelectionModel().getSelectedIndex())
-                    .getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
-            insemination.setIdBull(bulls.get(bull.getSelectionModel().getSelectedIndex()));
-            HInsemination.save(em, insemination);
+            if (HBull.searhByName(em, bull.getSelectionModel().getSelectedItem())) {
+                Bull bbll = new Bull();
+                bbll.setName(bull.getSelectionModel().getSelectedItem());
+                HBull.save(em, bbll);
 
-            bulls.get(bull.getSelectionModel().getSelectedIndex()).addToInseminationList(insemination);
-            HBull.update(em, bulls.get(bull.getSelectionModel().getSelectedIndex()));
+                insemination.setInseminationDate(java.sql.Date.valueOf(inseminationDate.getValue()));
+                insemination.setResult(result.getValue());
+                insemination.setNotes(note.getText());
+                insemination.setIdCattle(groups.get(group.getSelectionModel().getSelectedIndex())
+                        .getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
+                insemination.setIdBull(bbll);
+                HInsemination.save(em, insemination);
 
+                bbll.addToInseminationList(insemination);
+                HBull.update(em, bbll);
+            } else {
+                insemination.setInseminationDate(java.sql.Date.valueOf(inseminationDate.getValue()));
+                insemination.setResult(result.getValue());
+                insemination.setNotes(note.getText());
+                insemination.setIdCattle(groups.get(group.getSelectionModel().getSelectedIndex())
+                        .getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
+                insemination.setIdBull(bulls.get(bull.getSelectionModel().getSelectedIndex()));
+                HInsemination.save(em, insemination);
+
+                bulls.get(bull.getSelectionModel().getSelectedIndex()).addToInseminationList(insemination);
+                HBull.update(em, bulls.get(bull.getSelectionModel().getSelectedIndex()));
+            }
             groups.get(group.getSelectionModel().getSelectedIndex())
                     .getCattleList().get(cattle.getSelectionModel().getSelectedIndex()).addToInseminationList(insemination);
             HCattle.update(em, groups.get(group.getSelectionModel().getSelectedIndex())
