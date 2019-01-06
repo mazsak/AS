@@ -10,9 +10,6 @@ public class HInsemination {
     public static List<Insemination> read(EntityManager em){
         em.getTransaction().begin();
         List<Insemination> result = em.createQuery("from Insemination", Insemination.class).getResultList();
-        for(Insemination insemination : result){
-            System.out.println("Zacieleie " + insemination.getInseminationDate().toString());
-        }
         em.getTransaction().commit();
         return result;
     }

@@ -139,6 +139,14 @@ public class Cattle {
     }
 
     public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getCowshed(){
         String tmp = null;
         StringBuilder result = new StringBuilder();
         for (Team team : teamList) {
@@ -148,15 +156,9 @@ public class Cattle {
             }
         }
         return result.toString();
-        //return notes;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    @XmlTransient
-    public String getTeamList() {
+    public String getTeamEAT(){
         StringBuilder result = new StringBuilder();
         for (Team team : teamList) {
             if (team.getType().equals("EAT")) {
@@ -164,7 +166,11 @@ public class Cattle {
             }
         }
         return result.toString();
-        //return teamList;
+    }
+
+    @XmlTransient
+    public List<Team> getTeamList() {
+        return teamList;
     }
 
     public void setTeamList(List<Team> teamList) {

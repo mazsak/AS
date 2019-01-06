@@ -11,9 +11,6 @@ public class HTeam {
     public static List<Team> read(EntityManager em){
         em.getTransaction().begin();
         List<Team> result = em.createQuery("from Team", Team.class).getResultList();
-        for(Team team : result){
-            System.out.println("Grupa " + team.getName());
-        }
         em.getTransaction().commit();
         return result;
     }

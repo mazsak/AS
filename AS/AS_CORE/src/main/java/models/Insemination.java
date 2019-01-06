@@ -85,6 +85,10 @@ public class Insemination {
         return idBull;
     }
 
+    public String getBull(){
+        return idBull.getName();
+    }
+
     public void setIdBull(Bull idBull) {
         this.idBull = idBull;
     }

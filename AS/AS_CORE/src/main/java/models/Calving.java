@@ -75,6 +75,10 @@ public class Calving {
         return idCalf;
     }
 
+    public String getCalf(){
+        return idCalf.getEarring();
+    }
+
     public void setIdCalf(Cattle idCalf) {
         this.idCalf = idCalf;
     }

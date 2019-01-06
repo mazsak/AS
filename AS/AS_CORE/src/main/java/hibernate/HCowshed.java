@@ -11,9 +11,6 @@ public class HCowshed {
     public static List<Cowshed> read(EntityManager em){
         em.getTransaction().begin();
         List<Cowshed> result = em.createQuery("from Cowshed", Cowshed.class).getResultList();
-        for(Cowshed cowshed : result){
-            System.out.println("Obora " + cowshed.getName());
-        }
         em.getTransaction().commit();
         return result;
     }

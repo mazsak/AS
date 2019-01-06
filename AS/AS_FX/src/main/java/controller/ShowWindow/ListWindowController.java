@@ -72,7 +72,6 @@ public class ListWindowController implements Initializable {
 
     @FXML
     private ListView<String> listCowshed;
-    //private ListView<Cowshed> listCowshed;
 
     @FXML
     private ListView<String> listTeam;
@@ -102,8 +101,8 @@ public class ListWindowController implements Initializable {
         number.setCellValueFactory(new PropertyValueFactory<Cattle,Integer>("idCattle"));
         earring.setCellValueFactory(new PropertyValueFactory<Cattle,String>("earring"));
         cowshedNumber.setCellValueFactory(new PropertyValueFactory<Cattle, Integer>("cowshedNumber"));
-        cowshed.setCellValueFactory(new PropertyValueFactory<Cattle,String>("notes"));
-        team.setCellValueFactory(new PropertyValueFactory<Cattle,String>("teamList"));
+        cowshed.setCellValueFactory(new PropertyValueFactory<Cattle,String>("cowshed"));
+        team.setCellValueFactory(new PropertyValueFactory<Cattle,String>("teamEAT"));
         birthDate.setCellValueFactory(new PropertyValueFactory<Cattle, Date>("birthDate"));
         listCattles.setItems(cattles);
 

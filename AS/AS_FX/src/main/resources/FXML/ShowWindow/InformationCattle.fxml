@@ -7,16 +7,16 @@
 
 <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowWindow.InformationController">
    <children>
-      <Label fx:id="earringCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Label fx:id="earringCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nie wybrano krowy" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Label>
       <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nazwa">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label fx:id="nameCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
@@ -26,27 +26,27 @@
             </Label>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Data przybycia" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Numer oborowy" GridPane.rowIndex="2">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Data urodzenia" GridPane.columnIndex="4">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Płeć" GridPane.rowIndex="4">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Data ubycia" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label fx:id="cowshedNumberCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -76,7 +76,7 @@
             </Label>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Powód ubycia" GridPane.columnIndex="4" GridPane.rowIndex="6">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label fx:id="leaveReasonCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="6" GridPane.rowIndex="6">
@@ -104,20 +104,52 @@
             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="7">
         <tabs>
-          <Tab text="Untitled Tab 1">
+          <Tab text="Zacielenia">
                <content>
-                  <ListView maxHeight="1000.0" maxWidth="1.7976931348623157E308" />
+                  <TableView fx:id="listInsemination" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                    <columns>
+                      <TableColumn fx:id="numberInsemination" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="Nr." />
+                      <TableColumn fx:id="dataInsemination" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Data inseminacji" />
+                        <TableColumn fx:id="bullInsemination" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Byk" />
+                        <TableColumn fx:id="resultInsemination" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Rezultat" />
+                        <TableColumn fx:id="noteInsemination" maxWidth="-1.0" minWidth="200.0" prefWidth="-1.0" text="Opis" />
+                    </columns>
+                  </TableView>
                </content>
             </Tab>
-          <Tab text="Untitled Tab 2">
+          <Tab text="Wycielenia">
                <content>
-                  <ListView maxHeight="1000.0" maxWidth="1.7976931348623157E308" />
+                  <TableView fx:id="listCalving" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                    <columns>
+                      <TableColumn fx:id="numberCalving" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="Nr." />
+                      <TableColumn fx:id="dateCalving" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Data wycielenia" />
+                        <TableColumn fx:id="calfCalving" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Cielak" />
+                        <TableColumn fx:id="noteCalving" maxWidth="-1.0" minWidth="200.0" prefWidth="-1.0" text="Opis" />
+                    </columns>
+                  </TableView>
                </content>
             </Tab>
         </tabs>
       </TabPane>
+      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Opis">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="noteCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
    </children>
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
@@ -129,6 +161,8 @@
       <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
       <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />

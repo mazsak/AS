@@ -9,9 +9,6 @@ public class HBull {
     public static List<Bull> read(EntityManager em){
         em.getTransaction().begin();
         List<Bull> result = em.createQuery("from Bull", Bull.class).getResultList();
-        for(Bull bull : result){
-            System.out.println("Byk " + bull.getName());
-        }
         em.getTransaction().commit();
         return result;
     }

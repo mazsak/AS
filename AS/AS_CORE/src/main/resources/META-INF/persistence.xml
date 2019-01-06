@@ -18,7 +18,7 @@
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:mysql://25.24.11.67:3306/farm?useUnicode=tue&amp;useJDBCCompliantTimezoneShift=true&amp;serverTimezone=UTC"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.user" value="Piro13"/>
+            <property name="javax.persistence.jdbc.user" value="Mazsak"/>
             <property name="javax.persistence.jdbc.password" value="mati1234"/>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.connection.CharSet" value="utf8"/>
