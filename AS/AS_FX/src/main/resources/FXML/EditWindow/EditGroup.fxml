@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-          xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1"
+          xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="controller.EditWindow.EditGroupController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
@@ -56,7 +56,8 @@
                         <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
-                        <ComboBox fx:id="groupSecond" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3"/>
+                        <ComboBox fx:id="groupSecond" maxWidth="1.7976931348623157E308"
+                                  onAction="#groupSecondActionListener" GridPane.columnIndex="3"/>
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Wybrana grupa"
                                GridPane.columnIndex="1">
                             <GridPane.margin>
@@ -83,7 +84,8 @@
                         <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
-                        <ComboBox fx:id="groupFirst" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3"/>
+                        <ComboBox fx:id="groupFirst" maxWidth="1.7976931348623157E308"
+                                  onAction="#groupFirstActionListener" GridPane.columnIndex="3"/>
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Wybrana grupa"
                                GridPane.columnIndex="1">
                             <GridPane.margin>
