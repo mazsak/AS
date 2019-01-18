@@ -1,6 +1,5 @@
 package controller.AddWindow;
 
-import hibernate.FactoryHibernate;
 import hibernate.HCowshed;
 import hibernate.HTeam;
 import javafx.collections.FXCollections;
@@ -12,15 +11,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import models.Cowshed;
 
-import javax.persistence.EntityManager;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddGroupController implements Initializable {
-
-    private EntityManager em;
-
+    
     @FXML
     private TextField name;
 
@@ -38,17 +34,16 @@ public class AddGroupController implements Initializable {
                 typeString = "EAT";
             else
                 typeString = "SICK";
-            HTeam.save(em, typeString, name.getText(), HCowshed.findByName(em, cowshed.getValue()));
+            HTeam.save(typeString, name.getText(), HCowshed.findByName(cowshed.getValue()));
             name.clear();
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        em = FactoryHibernate.getEm();
         type.getItems().addAll("Żywieniowe", "Leczone");
 
-        List<Cowshed> csh = HCowshed.read(em);
+        List<Cowshed> csh = HCowshed.read();
 
         ObservableList<String> cowsheds = FXCollections.observableArrayList();
 

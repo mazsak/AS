@@ -11,13 +11,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import models.*;
 
-import javax.persistence.EntityManager;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddInseminationController implements Initializable {
-    private EntityManager em;
     private List<Team> groups;
     private List<Bull> bulls;
 
@@ -48,10 +46,10 @@ public class AddInseminationController implements Initializable {
         if (!cattle.getValue().isEmpty()) {
 
             Insemination insemination = new Insemination();
-            if (HBull.searhByName(em, bull.getSelectionModel().getSelectedItem())) {
+            if (HBull.searchByName(bull.getSelectionModel().getSelectedItem())) {
                 Bull bbll = new Bull();
                 bbll.setName(bull.getSelectionModel().getSelectedItem());
-                HBull.save(em, bbll);
+                HBull.save(bbll);
 
                 insemination.setInseminationDate(java.sql.Date.valueOf(inseminationDate.getValue()));
                 insemination.setResult(result.getValue());
@@ -59,10 +57,10 @@ public class AddInseminationController implements Initializable {
                 insemination.setIdCattle(groups.get(group.getSelectionModel().getSelectedIndex())
                         .getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
                 insemination.setIdBull(bbll);
-                HInsemination.save(em, insemination);
+                HInsemination.save(insemination);
 
                 bbll.addToInseminationList(insemination);
-                HBull.update(em, bbll);
+                HBull.update(bbll);
             } else {
                 insemination.setInseminationDate(java.sql.Date.valueOf(inseminationDate.getValue()));
                 insemination.setResult(result.getValue());
@@ -70,14 +68,14 @@ public class AddInseminationController implements Initializable {
                 insemination.setIdCattle(groups.get(group.getSelectionModel().getSelectedIndex())
                         .getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
                 insemination.setIdBull(bulls.get(bull.getSelectionModel().getSelectedIndex()));
-                HInsemination.save(em, insemination);
+                HInsemination.save(insemination);
 
                 bulls.get(bull.getSelectionModel().getSelectedIndex()).addToInseminationList(insemination);
-                HBull.update(em, bulls.get(bull.getSelectionModel().getSelectedIndex()));
+                HBull.update(bulls.get(bull.getSelectionModel().getSelectedIndex()));
             }
             groups.get(group.getSelectionModel().getSelectedIndex())
                     .getCattleList().get(cattle.getSelectionModel().getSelectedIndex()).addToInseminationList(insemination);
-            HCattle.update(em, groups.get(group.getSelectionModel().getSelectedIndex())
+            HCattle.update(groups.get(group.getSelectionModel().getSelectedIndex())
                     .getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
 
             note.clear();
@@ -86,9 +84,7 @@ public class AddInseminationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        em = FactoryHibernate.getEm();
-
-        List<Cowshed> csh = HCowshed.read(em);
+        List<Cowshed> csh = HCowshed.read();
         ObservableList<String> cowsheds = FXCollections.observableArrayList();
         for (int i = 0; i < csh.size(); i++) {
             cowsheds.add(csh.get(i).getName());
@@ -96,7 +92,7 @@ public class AddInseminationController implements Initializable {
         cowshed.setItems(cowsheds);
         result.getItems().addAll("Powodzenie", "Niepowodzenie", "Nieznane");
 
-        bulls = HBull.read(em);
+        bulls = HBull.read();
         ObservableList<String> bulls4 = FXCollections.observableArrayList();
         for (int i = 0; i < bulls.size(); i++) {
             bulls4.add(bulls.get(i).getName());
@@ -107,7 +103,7 @@ public class AddInseminationController implements Initializable {
     @FXML
     public void cowshedCheckedActionListener(ActionEvent event) {
         ObservableList<String> teams = FXCollections.observableArrayList();
-        groups = HTeam.getByCowshedName(em, cowshed.getSelectionModel().getSelectedItem());
+        groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem());
         for (int i = 0; i < groups.size(); i++) {
             teams.add(groups.get(i).getName());
         }

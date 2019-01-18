@@ -81,7 +81,7 @@ public class ListWindowController implements Initializable {
         FactoryHibernate fh = new FactoryHibernate();
         em = FactoryHibernate.getEm();
 
-        List<Cowshed> csh = HCowshed.read(em);
+        List<Cowshed> csh = HCowshed.read();
 
         ObservableList<String> cowsheds = FXCollections.observableArrayList();
 
@@ -92,7 +92,7 @@ public class ListWindowController implements Initializable {
 
         listCowshed.setItems(cowsheds);
 
-        List<Cattle> ctl = HCattle.read(em);
+        List<Cattle> ctl = HCattle.read();
         ObservableList<Cattle> cattles = FXCollections.observableArrayList();
         cattles.addAll(ctl);
 
@@ -120,7 +120,7 @@ public class ListWindowController implements Initializable {
 
     @FXML
     public void listCattlesActionListener(MouseEvent arg0) {
-        Cattle cattle = HCattle.findByEarring(em, earring.getCellObservableValue(listCattles.getSelectionModel().getFocusedIndex()).getValue());
+        Cattle cattle = HCattle.findByEarring(earring.getCellObservableValue(listCattles.getSelectionModel().getFocusedIndex()).getValue());
         infocon.setCattleInfo(cattle);
         if(arg0.getClickCount() == 2){
             cattleBar.getSelectionModel().select(1);
@@ -133,11 +133,11 @@ public class ListWindowController implements Initializable {
         ObservableList<Cattle> allCattleInCowshed = FXCollections.observableArrayList();
         if(listCowshed.getSelectionModel().getSelectedIndex() == 0){
             List<Cattle> cattles;
-            cattles = HCattle.read(em);
+            cattles = HCattle.read();
             allCattleInCowshed.addAll(cattles);
 
         }else {
-            groups = HTeam.getByCowshedName(em, listCowshed.getSelectionModel().getSelectedItem());
+            groups = HTeam.getByCowshedName(listCowshed.getSelectionModel().getSelectedItem());
 
             for (int i = 0; i < groups.size(); i++) {
                 teams.add(groups.get(i).getName());

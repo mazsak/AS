@@ -7,14 +7,16 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 public class HBull {
-    public static List<Bull> read(EntityManager em){
+    private static EntityManager em = FactoryHibernate.getEm();
+    
+    public static List<Bull> read(){
         em.getTransaction().begin();
         List<Bull> result = em.createQuery("from Bull", Bull.class).getResultList();
         em.getTransaction().commit();
         return result;
     }
 
-    public static boolean searhByName(EntityManager em, String nameBull){
+    public static boolean searchByName(String nameBull){
         em.getTransaction().begin();
         Bull bull= null;
         try {
@@ -27,13 +29,13 @@ public class HBull {
         return false;
     }
 
-    public static void save(EntityManager em, Bull bull){
+    public static void save(Bull bull){
         em.getTransaction().begin();
         em.persist(bull);
         em.getTransaction().commit();
     }
 
-    public static void update(EntityManager em, Bull bull){
+    public static void update(Bull bull){
         em.getTransaction().begin();
         em.merge(bull);
         em.getTransaction().commit();

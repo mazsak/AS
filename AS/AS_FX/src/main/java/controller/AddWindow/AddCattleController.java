@@ -1,6 +1,5 @@
 package controller.AddWindow;
 
-import hibernate.FactoryHibernate;
 import hibernate.HCattle;
 import hibernate.HCowshed;
 import hibernate.HTeam;
@@ -9,7 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
@@ -18,13 +16,11 @@ import models.Cattle;
 import models.Cowshed;
 import models.Team;
 
-import javax.persistence.EntityManager;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddCattleController implements Initializable {
-    private EntityManager em;
     private List<Team> groups;
 
     @FXML
@@ -62,8 +58,6 @@ public class AddCattleController implements Initializable {
 
     @FXML
     void addCattleActionListener(ActionEvent event) {
-        em = FactoryHibernate.getEm();
-
         if(!earring.getText().isEmpty() && !sex.getValue().isEmpty() && !cowshed.getValue().isEmpty()
             && !group.getValue().isEmpty() && !birthDate.getValue().toString().isEmpty()
             && !joinDate.getValue().toString().isEmpty()) {
@@ -72,16 +66,24 @@ public class AddCattleController implements Initializable {
             cattle.setName(name.getText());
             cattle.setEarring(earring.getText());
             cattle.setSex(sex.getValue());
-            cattle.setCowshedNumber(Integer.valueOf(numberCowshed.getText()));
+            if(numberCowshed.getText().equals("")){
+                
+            }else{
+                try {
+                    cattle.setCowshedNumber(Integer.valueOf(numberCowshed.getText()));
+                } catch (Exception e) {
+                    cattle.setCowshedNumber(0);
+                }
+            }
             cattle.setBirthDate(java.sql.Date.valueOf(birthDate.getValue()));
             cattle.setJoinDate(java.sql.Date.valueOf(joinDate.getValue()));
             cattle.setLeaveDate(java.sql.Date.valueOf(leaveDate.getValue()));
             cattle.setLevaReason(leaveReason.getText());
             cattle.setNotes(note.getText());
             cattle.addToTeamList(groups.get(group.getSelectionModel().getSelectedIndex()));
-            HCattle.save(em, cattle);
+            HCattle.save(cattle);
             groups.get(group.getSelectionModel().getSelectedIndex()).addCattleToList(cattle);
-            HTeam.update(em, groups.get(group.getSelectionModel().getSelectedIndex()));
+            HTeam.update(groups.get(group.getSelectionModel().getSelectedIndex()));
 
             name.clear();
             earring.clear();
@@ -93,10 +95,9 @@ public class AddCattleController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        em = FactoryHibernate.getEm();
         sex.getItems().addAll("XX", "XY");
 
-        List<Cowshed> csh = HCowshed.read(em);
+        List<Cowshed> csh = HCowshed.read();
 
         ObservableList<String> cowsheds = FXCollections.observableArrayList();
 
@@ -109,7 +110,7 @@ public class AddCattleController implements Initializable {
 
     @FXML
     public void checkedActionListener(ActionEvent event) {
-        groups = HTeam.getByCowshedName(em, cowshed.getSelectionModel().getSelectedItem());
+        groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem());
         ObservableList<String> groups2 = FXCollections.observableArrayList();
         for (int i = 0; i < groups.size(); i++) {
             groups2.add(groups.get(i).getName());

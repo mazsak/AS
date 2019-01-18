@@ -11,7 +11,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import models.*;
 
-import javax.persistence.EntityManager;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,6 @@ import java.util.ResourceBundle;
 
 public class AddCalvingController implements Initializable {
 
-    private EntityManager em;
     private List<Team> groups;
     private List<Cattle> cattleList;
 
@@ -52,14 +50,14 @@ public class AddCalvingController implements Initializable {
             calving.setIdCattle(groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
             calving.setIdCalf(cattleList.get(calf.getSelectionModel().getSelectedIndex()));
             calving.setNotes(note.getText());
-            HCalving.save(em, calving);
+            HCalving.save(calving);
 
             groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(cattle.getSelectionModel().getSelectedIndex())
                     .addToCalvingListCalfForMother(calving);
-            HCattle.update(em, groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
+            HCattle.update(groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
 
             cattleList.get(calf.getSelectionModel().getSelectedIndex()).addToCalvingListMotherForCalf(calving);
-            HCattle.update(em, cattleList.get(calf.getSelectionModel().getSelectedIndex()));
+            HCattle.update(cattleList.get(calf.getSelectionModel().getSelectedIndex()));
         }
         note.clear();
     }
@@ -67,7 +65,7 @@ public class AddCalvingController implements Initializable {
     @FXML
     void cowshedCheckedActionListener(ActionEvent event) {
         ObservableList<String> teams = FXCollections.observableArrayList();
-        groups = HTeam.getByCowshedName(em, cowshed.getSelectionModel().getSelectedItem());
+        groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem());
         for (int i = 0; i < groups.size(); i++) {
             teams.add(groups.get(i).getName());
         }
@@ -88,7 +86,7 @@ public class AddCalvingController implements Initializable {
     void cowshedCalfCheckedActionListener(ActionEvent event) {
         ObservableList<String> calfs = FXCollections.observableArrayList();
 
-        List<Team> groupsCalf = HTeam.getByCowshedName(em, cowshedCalf.getSelectionModel().getSelectedItem());
+        List<Team> groupsCalf = HTeam.getByCowshedName(cowshedCalf.getSelectionModel().getSelectedItem());
 
 
         cattleList = new ArrayList<>();
@@ -112,7 +110,7 @@ public class AddCalvingController implements Initializable {
         if(!calf.getItems().isEmpty()){
             ObservableList<String> calfs = FXCollections.observableArrayList();
 
-            List<Team> groupsCalf = HTeam.getByCowshedName(em, cowshedCalf.getSelectionModel().getSelectedItem());
+            List<Team> groupsCalf = HTeam.getByCowshedName(cowshedCalf.getSelectionModel().getSelectedItem());
 
 
             cattleList = new ArrayList<>();
@@ -134,9 +132,7 @@ public class AddCalvingController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        em = FactoryHibernate.getEm();
-
-        List<Cowshed> csh = HCowshed.read(em);
+        List<Cowshed> csh = HCowshed.read();
         ObservableList<String> cowsheds = FXCollections.observableArrayList();
         for (int i = 0; i < csh.size(); i++) {
             cowsheds.add(csh.get(i).getName());

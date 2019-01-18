@@ -8,21 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HCowshed {
-    public static List<Cowshed> read(EntityManager em){
+    private static EntityManager em = FactoryHibernate.getEm();
+    
+    public static List<Cowshed> read(){
         em.getTransaction().begin();
         List<Cowshed> result = em.createQuery("from Cowshed", Cowshed.class).getResultList();
         em.getTransaction().commit();
         return result;
     }
 
-    public static Cowshed findByName(EntityManager em, String name){
+    public static Cowshed findByName(String name){
         em.getTransaction().begin();
         Cowshed result = em.createQuery("from Cowshed where name = :n", Cowshed.class).setParameter("n", name).getSingleResult();
         em.getTransaction().commit();
         return result;
     }
 
-    public static void save(EntityManager em, String address, String info, String name){
+    public static void save(String address, String info, String name){
         em.getTransaction().begin();
         Cowshed cowshed = new Cowshed();
         cowshed.setAddress(address);
