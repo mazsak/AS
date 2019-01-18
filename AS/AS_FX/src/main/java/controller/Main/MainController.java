@@ -5,21 +5,19 @@
  */
 package controller.Main;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import controller.ShowWindow.ListWindowController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.transform.Scale;
+import javafx.scene.layout.GridPane;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -76,10 +74,32 @@ public class MainController implements Initializable {
 
     @FXML
     private void OnActionTreatment(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/ShowWindow/ListWindowTreatment.fxml"));
+
+        BorderPane showWindowTreatment = null;
+
+        try {
+            showWindowTreatment = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        MainWindow.setCenter(showWindowTreatment);
     }
 
     @FXML
     private void OnActionList(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/EditWindow/EditGroup.fxml"));
+
+        GridPane editGroupWindow = null;
+
+        try {
+            editGroupWindow = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        MainWindow.setCenter(editGroupWindow);
     }
 
     @FXML
