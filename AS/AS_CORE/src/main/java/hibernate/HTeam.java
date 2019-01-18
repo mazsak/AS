@@ -5,6 +5,7 @@ import models.Team;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import models.Cattle;
 
 public class HTeam {
     private static EntityManager em = FactoryHibernate.getEm();

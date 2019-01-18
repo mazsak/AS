@@ -33,4 +33,18 @@ public class HCattle {
         em.merge(cattle);
         em.getTransaction().commit();
     }
+    
+    public static void delete(Cattle cattle){
+        em.getTransaction().begin();
+        
+        
+        
+        em.remove(cattle);
+        em.getTransaction().commit();
+    }
+    
+    public static void removeFromTeam(Cattle cattle){
+        em.getTransaction().begin();
+        
+    }
 }

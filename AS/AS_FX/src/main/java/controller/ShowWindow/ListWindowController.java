@@ -33,7 +33,6 @@ import java.util.logging.Logger;
 public class ListWindowController implements Initializable {
 
     private MainController mc;
-    private EntityManager em;
     private InformationController infocon;
     private List<Team> groups;
 
@@ -78,8 +77,6 @@ public class ListWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        FactoryHibernate fh = new FactoryHibernate();
-        em = FactoryHibernate.getEm();
 
         List<Cowshed> csh = HCowshed.read();
 

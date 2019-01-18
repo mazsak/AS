@@ -1,6 +1,6 @@
 package controller.ShowWindow;
 
-import hibernate.FactoryHibernate;
+import hibernate.HCattle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,14 +15,15 @@ import models.Calving;
 import models.Cattle;
 import models.Insemination;
 
-import javax.persistence.EntityManager;
 import java.net.URL;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class InformationController implements Initializable {
-
-    private EntityManager em;
 
     @FXML
     private TableView<Calving> listCalving;
@@ -120,7 +121,24 @@ public class InformationController implements Initializable {
 
     @FXML
     void deleteCattleActionListener(ActionEvent event) {
+        String current = earringCattle.getText();
+        if (!current.equals("Nie wybrano krowy")) {
+            Cattle cattle = HCattle.findByEarring(earringCattle.getText());
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Potwierdzenie usunięcia");
+            alert.setHeaderText("Czy usunąć zwierzę: " + cattle.getEarring());
+            ButtonType buttonTak = new ButtonType("Tak");
+            ButtonType buttonNie = new ButtonType("Nie");
 
+            alert.getButtonTypes().setAll(buttonTak, buttonNie);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTak) {
+                HCattle.delete(cattle);
+            } else {
+
+            }
+        }
     }
 
     @FXML
@@ -165,17 +183,18 @@ public class InformationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        em = FactoryHibernate.getEm();
+
     }
 
     public void setCattleInfo(Cattle cattle) {
+
         birthDateCattle.setText(cattle.getBirthDate().toString());
         nameCattle.setText(cattle.getName());
         joinDateCattle.setText(cattle.getJoinDate().toString());
-        if(cattle.getLeaveDate()!=null){
+        if (cattle.getLeaveDate() != null) {
             leaveDateCattle.setText(cattle.getLeaveDate().toString());
             leaveReasonCattle.setText(cattle.getLevaReason());
-        }else{
+        } else {
             leaveDateCattle.setText("-");
             leaveReasonCattle.setText("-");
         }
@@ -187,20 +206,20 @@ public class InformationController implements Initializable {
         ObservableList<Insemination> inseminations = FXCollections.observableArrayList();
         inseminations.addAll(cattle.getInseminationList());
 
-        numberInsemination.setCellValueFactory(new PropertyValueFactory<Insemination,Integer>("idInsemination"));
+        numberInsemination.setCellValueFactory(new PropertyValueFactory<Insemination, Integer>("idInsemination"));
         dataInsemination.setCellValueFactory(new PropertyValueFactory<Insemination, Date>("inseminationDate"));
         bullInsemination.setCellValueFactory(new PropertyValueFactory<Insemination, String>("bull"));
-        resultInsemination.setCellValueFactory(new PropertyValueFactory<Insemination,String>("result"));
-        noteInsemination.setCellValueFactory(new PropertyValueFactory<Insemination,String>("notes"));
+        resultInsemination.setCellValueFactory(new PropertyValueFactory<Insemination, String>("result"));
+        noteInsemination.setCellValueFactory(new PropertyValueFactory<Insemination, String>("notes"));
         listInsemination.setItems(inseminations);
 
         ObservableList<Calving> calvings = FXCollections.observableArrayList();
         calvings.addAll(cattle.getCalvingList());
 
-        numberCalving.setCellValueFactory(new PropertyValueFactory<Calving,Integer>("idCalving"));
+        numberCalving.setCellValueFactory(new PropertyValueFactory<Calving, Integer>("idCalving"));
         dateCalving.setCellValueFactory(new PropertyValueFactory<Calving, Date>("calvingDate"));
         calfCalving.setCellValueFactory(new PropertyValueFactory<Calving, String>("calf"));
-        noteCalving.setCellValueFactory(new PropertyValueFactory<Calving,String>("notes"));
+        noteCalving.setCellValueFactory(new PropertyValueFactory<Calving, String>("notes"));
         listCalving.setItems(calvings);
     }
 }
