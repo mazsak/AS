@@ -1,13 +1,11 @@
 package controller.ShowWindow;
 
 import controller.Main.MainController;
-import hibernate.FactoryHibernate;
 import hibernate.HCattle;
 import hibernate.HCowshed;
 import hibernate.HTeam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,10 +18,8 @@ import models.Cattle;
 import models.Cowshed;
 import models.Team;
 
-import javax.persistence.EntityManager;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -113,6 +109,7 @@ public class ListWindowController implements Initializable {
         infocon = loader.getController();
         informationCattle.setContent(informationWindow);
 
+        infocon.setParentController(this);
     }
 
     @FXML
@@ -156,6 +153,18 @@ public class ListWindowController implements Initializable {
 
     public void setMc(MainController mc) {
         this.mc = mc;
+    }
+    
+    public TabPane getTabPane(){
+        return cattleBar;
+    }
+    
+    public Tab getListAnimals(){
+        return listAnimals;
+    }
+    
+    public void switchBack(){
+        getTabPane().getSelectionModel().select(listAnimals);
     }
 
 }

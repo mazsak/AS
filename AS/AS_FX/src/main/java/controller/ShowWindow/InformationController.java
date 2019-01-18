@@ -1,6 +1,8 @@
 package controller.ShowWindow;
 
+import controller.Main.MainController;
 import hibernate.HCattle;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +27,8 @@ import javafx.scene.control.ButtonType;
 
 public class InformationController implements Initializable {
 
+    private ListWindowController parentController;
+    
     @FXML
     private TableView<Calving> listCalving;
 
@@ -118,9 +122,9 @@ public class InformationController implements Initializable {
     void addInseminationActionListener(ActionEvent event) {
 
     }
-
+  
     @FXML
-    void deleteCattleActionListener(ActionEvent event) {
+    void deleteCattleActionListener(ActionEvent event) throws IOException {
         String current = earringCattle.getText();
         if (!current.equals("Nie wybrano krowy")) {
             Cattle cattle = HCattle.findByEarring(earringCattle.getText());
@@ -137,6 +141,16 @@ public class InformationController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTak) {
                 HCattle.delete(cattle);
+                birthDateCattle.setText("");
+                nameCattle.setText("");
+                joinDateCattle.setText("");
+                leaveDateCattle.setText("");
+                leaveReasonCattle.setText("");
+                earringCattle.setText("Nie wybrano krowy");
+                cowshedNumberCattle.setText("");
+                sexCattle.setText("");
+                noteCattle.setText("");
+                parentController.switchBack();
             } else {
 
             }
@@ -223,5 +237,9 @@ public class InformationController implements Initializable {
         calfCalving.setCellValueFactory(new PropertyValueFactory<Calving, String>("calf"));
         noteCalving.setCellValueFactory(new PropertyValueFactory<Calving, String>("notes"));
         listCalving.setItems(calvings);
+    }
+    
+    public void setParentController(ListWindowController parentController) {
+        this.parentController = parentController;
     }
 }

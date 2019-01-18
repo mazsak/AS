@@ -47,17 +47,17 @@ public class Cattle {
     @ManyToMany(mappedBy = "cattleList")
     private List<Team> teamList = new ArrayList<>();
     @OneToMany(mappedBy = "idCattle")
-    private List<Insemination> inseminationList;
+    private List<Insemination> inseminationList = new ArrayList<>();
     @OneToMany(mappedBy = "idCattle")
-    private List<Calving> calvingList;
+    private List<Calving> calvingList = new ArrayList<>();
     @OneToMany(mappedBy = "idCalf")
-    private List<Calving> calvingList1;
+    private List<Calving> calvingList1 = new ArrayList<>();
     @OneToMany(mappedBy = "idCattle")
-    private List<StatsDaily> statsDailyList;
+    private List<StatsDaily> statsDailyList = new ArrayList<>();
     @OneToMany(mappedBy = "idCattle")
-    private List<Treatment> treatmentList;
+    private List<Treatment> treatmentList = new ArrayList<>();
     @OneToMany(mappedBy = "idCattle")
-    private List<StatsMonthly> statsMonthlyList;
+    private List<StatsMonthly> statsMonthlyList = new ArrayList<>();
 
     public Cattle() {
     }

@@ -1,6 +1,5 @@
 package hibernate;
 
-import java.util.Iterator;
 import models.Cattle;
 
 import javax.persistence.EntityManager;
@@ -50,25 +49,25 @@ public class HCattle {
         List<Insemination> inseminations = cattle.getInseminationList();
         HInsemination.delete(inseminations);
         cattle.getInseminationList().removeAll(inseminations);
-        em.merge(cattle);
-        //calving
+        
+        //TODO
+        //calving(is parent) 
         List<Calving> calvings = cattle.getCalvingList();
         HCalving.delete(calvings);
         cattle.getCalvingList().removeAll(calvings);
-        em.merge(cattle);
+        //TODO
+        //calving(is child)
+        List<Calving> calvings1 = cattle.getCalvingList1();
+        HCalving.delete(calvings1);
+        cattle.getCalvingList1().removeAll(calvings1);
         //treatment
         
         //stats monthly
         
         //stats daily
         
-        
+        em.merge(cattle);
         em.remove(cattle);
         em.getTransaction().commit();
-    }
-    
-    public static void removeFromTeam(Cattle cattle){
-        em.getTransaction().begin();
-        
     }
 }

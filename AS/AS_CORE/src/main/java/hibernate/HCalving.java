@@ -25,8 +25,6 @@ public class HCalving {
     public static void delete(List<Calving> calvings){
         for (Calving cal : calvings) {
             em.remove(cal);
-            //cal.setIdCattle(null);
-            //em.merge(cal);
         }
     }
 }
