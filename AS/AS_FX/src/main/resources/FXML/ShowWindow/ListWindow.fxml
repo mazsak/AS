@@ -48,7 +48,7 @@
             </Tab>
           <Tab text="Szczegóły zwierzęcia">
                <content>
-                  <ScrollPane fx:id="informationCattle" minHeight="-Infinity" minWidth="-Infinity" />
+                  <ScrollPane fx:id="informationCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                </content>
             </Tab>
         </tabs>
