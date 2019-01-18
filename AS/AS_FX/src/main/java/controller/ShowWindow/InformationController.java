@@ -1,50 +1,34 @@
 package controller.ShowWindow;
 
-import controller.Main.MainController;
 import hibernate.FactoryHibernate;
-import hibernate.HCattle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import models.Calving;
 import models.Cattle;
 import models.Insemination;
 
 import javax.persistence.EntityManager;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class InformationController implements Initializable {
 
     private EntityManager em;
 
     @FXML
-    private TableColumn<Calving, Integer> numberCalving;
-
-    @FXML
-    private Label birthDateCattle;
-
-    @FXML
-    private TableColumn<Insemination, Integer> numberInsemination;
-
-    @FXML
-    private TableColumn<Insemination, String> resultInsemination;
-
-    @FXML
     private TableView<Calving> listCalving;
+
+    @FXML
+    private TableColumn<Calving, Integer> numberCalving;
 
     @FXML
     private TableColumn<Calving, String> calfCalving;
@@ -53,43 +37,131 @@ public class InformationController implements Initializable {
     private TableColumn<Calving, String> noteCalving;
 
     @FXML
-    private Label cowshedNumberCattle;
-
-    @FXML
-    private TableColumn<Insemination, String> noteInsemination;
-
-    @FXML
-    private Label noteCattle;
-
-    @FXML
-    private Label nameCattle;
-
-    @FXML
-    private Label joinDateCattle;
-
-    @FXML
-    private Label leaveReasonCattle;
-
-    @FXML
-    private TableColumn<Insemination, Date> dataInsemination;
+    private TableColumn<Calving, Date> dateCalving;
 
     @FXML
     private TableView<Insemination> listInsemination;
 
     @FXML
+    private TableColumn<Insemination, Integer> numberInsemination;
+
+    @FXML
+    private TableColumn<Insemination, String> resultInsemination;
+
+    @FXML
+    private TableColumn<Insemination, String> noteInsemination;
+
+    @FXML
+    private TableColumn<Insemination, Date> dataInsemination;
+
+    @FXML
     private TableColumn<Insemination, String> bullInsemination;
 
     @FXML
-    private Label earringCattle;
+    private Label nameCattle;
+
+    @FXML
+    private Label cowshedNumberCattle;
 
     @FXML
     private Label sexCattle;
 
     @FXML
+    private Label birthDateCattle;
+
+    @FXML
+    private Label joinDateCattle;
+
+    @FXML
     private Label leaveDateCattle;
 
     @FXML
-    private TableColumn<Calving, Date> dateCalving;
+    private Label leaveReasonCattle;
+
+    @FXML
+    private Button editNameCattle;
+
+    @FXML
+    private Button editNumberCowshedCattle;
+
+    @FXML
+    private Button editSexCattle;
+
+    @FXML
+    private Button editBirthDateCattle;
+
+    @FXML
+    private Button editJoinDateCattle;
+
+    @FXML
+    private Button editLeaveDateCattle;
+
+    @FXML
+    private Button editLeaveReasonCattle;
+
+    @FXML
+    private Label noteCattle;
+
+    @FXML
+    private Button editNoteCattle;
+
+    @FXML
+    private Label earringCattle;
+
+    @FXML
+    void addCalvingActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void addInseminationActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void deleteCattleActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editBirthDateCattleActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editJoinDateCattleActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editLeaveDateCattleActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editNameCattleActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editNoteCattleActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editNumberCowshedCattleActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editSexCattleActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editLeaveReasonCattleActionListener(ActionEvent event) {
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
