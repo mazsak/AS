@@ -20,4 +20,13 @@ public class HCalving {
         em.persist(calving);
         em.getTransaction().commit();
     }
+    
+    //used by other HClasses
+    public static void delete(List<Calving> calvings){
+        for (Calving cal : calvings) {
+            em.remove(cal);
+            //cal.setIdCattle(null);
+            //em.merge(cal);
+        }
+    }
 }

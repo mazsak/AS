@@ -125,8 +125,10 @@ public class InformationController implements Initializable {
         if (!current.equals("Nie wybrano krowy")) {
             Cattle cattle = HCattle.findByEarring(earringCattle.getText());
             Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
             alert.setTitle("Potwierdzenie usunięcia");
-            alert.setHeaderText("Czy usunąć zwierzę: " + cattle.getEarring());
+            alert.setContentText("Czy usunąć zwierzę: " + cattle.getEarring() +"?");
             ButtonType buttonTak = new ButtonType("Tak");
             ButtonType buttonNie = new ButtonType("Nie");
 

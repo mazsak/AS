@@ -5,6 +5,7 @@ import models.Team;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import javax.persistence.Query;
 import models.Cattle;
 
 public class HTeam {
@@ -42,5 +43,18 @@ public class HTeam {
         em.getTransaction().begin();
         em.merge(team);
         em.getTransaction().commit();
+    }
+
+    //used by other HClasses
+    public static List<Team> getByCattleIn(Cattle cattle){
+        int cattle1  = cattle.getIdCattle();
+        String hql = "select distinct a from Team a " +
+                "join a.cattleList t " +
+                "where t.idCattle = :cattle1";
+        Query query = em.createQuery(hql);
+        query.setParameter("cattle1", cattle1);
+        List<Team> teams = query.getResultList();
+        System.out.println(teams);
+        return teams;
     }
 }

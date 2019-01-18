@@ -20,4 +20,11 @@ public class HInsemination {
         em.persist(insemination);
         em.getTransaction().commit();
     }
+    
+    //used by other HClasses
+    public static void delete(List<Insemination> inseminations){
+        for (Insemination ins : inseminations) {
+            em.remove(ins);
+        }
+    }
 }

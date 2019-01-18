@@ -73,6 +73,11 @@ public class Team {
     public void addCattleToList(Cattle cattle){
         cattleList.add(cattle);
     }
+    
+    public void removeCattle(Cattle cattle) {
+        cattleList.remove(cattle);
+        cattle.getTeamList().remove(this);
+    }
 
     public Cowshed getIdCowshed() {
         return idCowshed;

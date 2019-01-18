@@ -1,9 +1,13 @@
 package hibernate;
 
+import java.util.Iterator;
 import models.Cattle;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import models.Calving;
+import models.Insemination;
+import models.Team;
 
 public class HCattle {
     private static EntityManager em = FactoryHibernate.getEm();
@@ -36,7 +40,27 @@ public class HCattle {
     
     public static void delete(Cattle cattle){
         em.getTransaction().begin();
+        //team_cattle
+        List<Team> teams = HTeam.getByCattleIn(cattle);
+        for (int i = 0; i < teams.size(); i++) {
+            Team team1 = em.find(Team.class, teams.get(i).getIdGroup());
+            team1.removeCattle(cattle);
+        }
+        //insemination
+        List<Insemination> inseminations = cattle.getInseminationList();
+        HInsemination.delete(inseminations);
+        cattle.getInseminationList().removeAll(inseminations);
+        em.merge(cattle);
+        //calving
+        List<Calving> calvings = cattle.getCalvingList();
+        HCalving.delete(calvings);
+        cattle.getCalvingList().removeAll(calvings);
+        em.merge(cattle);
+        //treatment
         
+        //stats monthly
+        
+        //stats daily
         
         
         em.remove(cattle);
