@@ -1,5 +1,6 @@
 package controller.AddWindow;
 
+import controller.Main.MainController;
 import hibernate.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,10 +18,13 @@ import models.Team;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import models.Cattle;
 
 public class AddInseminationController implements Initializable {
     private List<Team> groups;
     private List<Bull> bulls;
+    private MainController mc;
+    private Cattle chosenCattle;
 
     @FXML
     private ComboBox<String> result;
@@ -127,6 +131,25 @@ public class AddInseminationController implements Initializable {
             cattles.add(groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(i).getEarring());
         }
         cattle.setItems(cattles);
+    }
+
+    public MainController getMc() {
+        return mc;
+    }
+
+    public void setMc(MainController mc) {
+        this.mc = mc;
+    }
+
+    public Cattle getChosenCattle() {
+        return chosenCattle;
+    }
+
+    public void setChosenCattle(Cattle chosenCattle) {
+        this.chosenCattle = chosenCattle;
+        
+        //TODO
+        cattle.getSelectionModel().select(this.chosenCattle.getEarring());
     }
 }
 

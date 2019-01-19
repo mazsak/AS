@@ -1,5 +1,6 @@
 package controller.ShowWindow;
 
+import controller.AddWindow.AddWindowController;
 import controller.Main.MainController;
 import hibernate.HCattle;
 import java.io.IOException;
@@ -21,13 +22,19 @@ import java.net.URL;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 public class InformationController implements Initializable {
 
     private ListWindowController parentController;
+    private MainController mc;
     
     @FXML
     private TableView<Calving> listCalving;
@@ -115,12 +122,41 @@ public class InformationController implements Initializable {
 
     @FXML
     void addCalvingActionListener(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddWindow.fxml"));
 
+        BorderPane addWindow = null;
+
+        try {
+            addWindow = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        AddWindowController awc = loader.getController();
+        awc.setChosen(4);
+        
+        parentController.getMc().getMainWindow().setCenter(addWindow);
     }
 
     @FXML
     void addInseminationActionListener(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddWindow.fxml"));
 
+        BorderPane addWindow = null;
+
+        try {
+            addWindow = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        AddWindowController awc = loader.getController();
+        if(!earringCattle.getText().equals("Nie wybrano krowy")){
+            awc.setChosenCattle(HCattle.findByEarring(earringCattle.getText()));
+        }
+        awc.setChosen(3);
+
+        parentController.getMc().getMainWindow().setCenter(addWindow);
     }
   
     @FXML
@@ -245,5 +281,13 @@ public class InformationController implements Initializable {
     
     public void setParentController(ListWindowController parentController) {
         this.parentController = parentController;
+    }
+    
+    public MainController getMc() {
+        return mc;
+    }
+
+    public void setMc(MainController mc) {
+        this.mc = mc;
     }
 }

@@ -151,6 +151,10 @@ public class ListWindowController implements Initializable {
         listCattles.setItems(cattles);
     }
 
+    public MainController getMc(){
+        return mc;
+    }
+    
     public void setMc(MainController mc) {
         this.mc = mc;
     }
@@ -162,7 +166,7 @@ public class ListWindowController implements Initializable {
     public Tab getListAnimals(){
         return listAnimals;
     }
-    
+       
     public void switchBack(){
         getTabPane().getSelectionModel().select(listAnimals);
         ObservableList<Cattle> allCattleInCowshed = FXCollections.observableArrayList();

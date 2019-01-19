@@ -1,5 +1,6 @@
 package controller.AddWindow;
 
+import controller.Main.MainController;
 import hibernate.HCalving;
 import hibernate.HCattle;
 import hibernate.HCowshed;
@@ -26,6 +27,7 @@ public class AddCalvingController implements Initializable {
 
     private List<Team> groups;
     private List<Cattle> cattleList;
+    private MainController mc;
 
     @FXML
     private TextArea note;
@@ -154,5 +156,13 @@ public class AddCalvingController implements Initializable {
         }
         cowshed.setItems(cowsheds);
         cowshedCalf.setItems(cowsheds);
+    }
+
+    public MainController getMc() {
+        return mc;
+    }
+
+    public void setMc(MainController mc) {
+        this.mc = mc;
     }
 }
