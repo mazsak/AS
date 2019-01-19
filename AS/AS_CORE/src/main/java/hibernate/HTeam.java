@@ -1,12 +1,12 @@
 package hibernate;
 
+import models.Cattle;
 import models.Cowshed;
 import models.Team;
 
 import javax.persistence.EntityManager;
-import java.util.List;
 import javax.persistence.Query;
-import models.Cattle;
+import java.util.List;
 
 public class HTeam {
     private static EntityManager em = FactoryHibernate.getEm();
@@ -18,9 +18,9 @@ public class HTeam {
         return result;
     }
 
-    public static List<Team> getByCowshedName(String nameCowshed){
+    public static List<Team> getByCowshedName(String nameCowshed, String type) {
         em.getTransaction().begin();
-        List<Team> result = em.createQuery("from Team t where t.idCowshed.name = :n and type='EAT'", Team.class).setParameter("n", nameCowshed).getResultList();
+        List<Team> result = em.createQuery("from Team t where t.idCowshed.name = :n and type= :t", Team.class).setParameter("n", nameCowshed).setParameter("t", type).getResultList();
         for(Team team : result){
             System.out.println("Grupa " + team.getName());
         }

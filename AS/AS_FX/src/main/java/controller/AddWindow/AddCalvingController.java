@@ -1,6 +1,9 @@
 package controller.AddWindow;
 
-import hibernate.*;
+import hibernate.HCalving;
+import hibernate.HCattle;
+import hibernate.HCowshed;
+import hibernate.HTeam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,7 +12,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
-import models.*;
+import models.Calving;
+import models.Cattle;
+import models.Cowshed;
+import models.Team;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -65,7 +71,7 @@ public class AddCalvingController implements Initializable {
     @FXML
     void cowshedCheckedActionListener(ActionEvent event) {
         ObservableList<String> teams = FXCollections.observableArrayList();
-        groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem());
+        groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem(), "EAT");
         for (int i = 0; i < groups.size(); i++) {
             teams.add(groups.get(i).getName());
         }
@@ -86,7 +92,7 @@ public class AddCalvingController implements Initializable {
     void cowshedCalfCheckedActionListener(ActionEvent event) {
         ObservableList<String> calfs = FXCollections.observableArrayList();
 
-        List<Team> groupsCalf = HTeam.getByCowshedName(cowshedCalf.getSelectionModel().getSelectedItem());
+        List<Team> groupsCalf = HTeam.getByCowshedName(cowshedCalf.getSelectionModel().getSelectedItem(), "EAT");
 
 
         cattleList = new ArrayList<>();
@@ -110,7 +116,7 @@ public class AddCalvingController implements Initializable {
         if(!calf.getItems().isEmpty()){
             ObservableList<String> calfs = FXCollections.observableArrayList();
 
-            List<Team> groupsCalf = HTeam.getByCowshedName(cowshedCalf.getSelectionModel().getSelectedItem());
+            List<Team> groupsCalf = HTeam.getByCowshedName(cowshedCalf.getSelectionModel().getSelectedItem(), "EAT");
 
 
             cattleList = new ArrayList<>();

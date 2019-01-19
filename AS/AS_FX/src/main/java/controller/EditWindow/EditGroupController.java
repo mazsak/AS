@@ -45,7 +45,13 @@ public class EditGroupController implements Initializable {
 
     @FXML
     void cowshedFirstActionListener(ActionEvent event) {
-        groupsFirstList = HTeam.getByCowshedName(cowshedFirst.getSelectionModel().getSelectedItem());
+        String typeName;
+        if (type.getSelectionModel().getSelectedItem().equals("Żywieniowe")) {
+            typeName = "EAT";
+        } else {
+            typeName = "SICK";
+        }
+        groupsFirstList = HTeam.getByCowshedName(cowshedFirst.getSelectionModel().getSelectedItem(), typeName);
         ObservableList<String> groups2 = FXCollections.observableArrayList();
         for (int i = 0; i < groupsFirstList.size(); i++) {
             groups2.add(groupsFirstList.get(i).getName());
@@ -60,7 +66,13 @@ public class EditGroupController implements Initializable {
 
     @FXML
     void cowshedSecondActionListener(ActionEvent event) {
-        groupsSecondList = HTeam.getByCowshedName(cowshedSecond.getSelectionModel().getSelectedItem());
+        String typeName;
+        if (type.getSelectionModel().getSelectedItem().equals("Żywieniowe")) {
+            typeName = "EAT";
+        } else {
+            typeName = "SICK";
+        }
+        groupsSecondList = HTeam.getByCowshedName(cowshedSecond.getSelectionModel().getSelectedItem(), typeName);
         ObservableList<String> groups2 = FXCollections.observableArrayList();
         for (int i = 0; i < groupsSecondList.size(); i++) {
             groups2.add(groupsSecondList.get(i).getName());

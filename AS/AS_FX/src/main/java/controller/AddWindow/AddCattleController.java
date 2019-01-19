@@ -110,7 +110,7 @@ public class AddCattleController implements Initializable {
 
     @FXML
     public void checkedActionListener(ActionEvent event) {
-        groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem());
+        groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem(), "EAT");
         ObservableList<String> groups2 = FXCollections.observableArrayList();
         for (int i = 0; i < groups.size(); i++) {
             groups2.add(groups.get(i).getName());

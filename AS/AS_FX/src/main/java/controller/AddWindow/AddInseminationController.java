@@ -9,7 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
-import models.*;
+import models.Bull;
+import models.Cowshed;
+import models.Insemination;
+import models.Team;
 
 import java.net.URL;
 import java.util.List;
@@ -103,7 +106,7 @@ public class AddInseminationController implements Initializable {
     @FXML
     public void cowshedCheckedActionListener(ActionEvent event) {
         ObservableList<String> teams = FXCollections.observableArrayList();
-        groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem());
+        groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem(), "EAT");
         for (int i = 0; i < groups.size(); i++) {
             teams.add(groups.get(i).getName());
         }

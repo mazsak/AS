@@ -131,7 +131,7 @@ public class ListWindowController implements Initializable {
             allCattleInCowshed.addAll(cattles);
 
         }else {
-            groups = HTeam.getByCowshedName(listCowshed.getSelectionModel().getSelectedItem());
+            groups = HTeam.getByCowshedName(listCowshed.getSelectionModel().getSelectedItem(), "EAT");
 
             for (int i = 0; i < groups.size(); i++) {
                 teams.add(groups.get(i).getName());
