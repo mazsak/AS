@@ -167,6 +167,16 @@ public class Cattle {
         }
         return result.toString();
     }
+    
+    public String getTeamSICK(){
+        StringBuilder result = new StringBuilder();
+        for (Team team : teamList) {
+            if (team.getType().equals("SICK")) {
+                result.append(team.getName()).append(" ");
+            }
+        }
+        return result.toString();
+    }
 
     @XmlTransient
     public List<Team> getTeamList() {

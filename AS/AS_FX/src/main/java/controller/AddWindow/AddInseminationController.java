@@ -81,6 +81,12 @@ public class AddInseminationController implements Initializable {
             HCattle.update(groups.get(group.getSelectionModel().getSelectedIndex())
                     .getCattleList().get(cattle.getSelectionModel().getSelectedIndex()));
 
+            result.getSelectionModel().clearSelection();
+            cowshed.getSelectionModel().clearSelection();
+            cattle.getSelectionModel().clearSelection();
+            bull.getSelectionModel().clearSelection();
+            group.getSelectionModel().clearSelection();
+            inseminationDate.getEditor().clear();
             note.clear();
         }
     }

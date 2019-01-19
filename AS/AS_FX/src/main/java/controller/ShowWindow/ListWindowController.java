@@ -165,6 +165,18 @@ public class ListWindowController implements Initializable {
     
     public void switchBack(){
         getTabPane().getSelectionModel().select(listAnimals);
+        ObservableList<Cattle> allCattleInCowshed = FXCollections.observableArrayList();
+        if(listCowshed.getSelectionModel().isEmpty() || listCowshed.getSelectionModel().getSelectedIndex() == 0){
+            List<Cattle> cattles;
+            cattles = HCattle.read();
+            allCattleInCowshed.addAll(cattles);
+        }else {
+            groups = HTeam.getByCowshedName(listCowshed.getSelectionModel().getSelectedItem(), "EAT");
+            for (int i = 0; i < groups.size(); i++) {
+                allCattleInCowshed.addAll(groups.get(i).getCattleList());
+            }
+        }
+        listCattles.setItems(allCattleInCowshed);
     }
 
 }

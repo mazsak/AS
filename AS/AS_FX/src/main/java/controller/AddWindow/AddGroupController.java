@@ -36,6 +36,8 @@ public class AddGroupController implements Initializable {
                 typeString = "SICK";
             HTeam.save(typeString, name.getText(), HCowshed.findByName(cowshed.getValue()));
             name.clear();
+            type.getSelectionModel().clearSelection();
+            cowshed.getSelectionModel().clearSelection();
         }
     }
 

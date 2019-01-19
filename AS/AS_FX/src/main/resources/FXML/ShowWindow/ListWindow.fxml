@@ -45,7 +45,7 @@
                         <TableColumn fx:id="team" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0"
                                      text="Grupa"/>
                         <TableColumn fx:id="birthDate" maxWidth="1.7976931348623157E308" minWidth="200.0"
-                                     prefWidth="200.0" text="Data urpdzenia"/>
+                                     prefWidth="200.0" text="Data urodzenia"/>
                     </columns>
                   </TableView>
                </content>

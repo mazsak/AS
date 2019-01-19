@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddCattleController implements Initializable {
+
     private List<Team> groups;
 
     @FXML
@@ -58,17 +59,18 @@ public class AddCattleController implements Initializable {
 
     @FXML
     void addCattleActionListener(ActionEvent event) {
-        if(!earring.getText().isEmpty() && !sex.getValue().isEmpty() && !cowshed.getValue().isEmpty()
-            && !group.getValue().isEmpty() && !birthDate.getValue().toString().isEmpty()
-            && !joinDate.getValue().toString().isEmpty()) {
+        if (!earring.getText().isEmpty() && !sex.getValue().isEmpty() && !cowshed.getValue().isEmpty()
+                && !group.getValue().isEmpty() && !birthDate.getValue().toString().isEmpty()
+                && !joinDate.getValue().toString().isEmpty()) {
 
             Cattle cattle = new Cattle();
             cattle.setName(name.getText());
             cattle.setEarring(earring.getText());
             cattle.setSex(sex.getValue());
-            if(numberCowshed.getText().equals("")){
+            //numberCowshed
+            if (numberCowshed.getText().equals("")) {
                 
-            }else{
+            } else {
                 try {
                     cattle.setCowshedNumber(Integer.valueOf(numberCowshed.getText()));
                 } catch (Exception e) {
@@ -77,7 +79,12 @@ public class AddCattleController implements Initializable {
             }
             cattle.setBirthDate(java.sql.Date.valueOf(birthDate.getValue()));
             cattle.setJoinDate(java.sql.Date.valueOf(joinDate.getValue()));
-            cattle.setLeaveDate(java.sql.Date.valueOf(leaveDate.getValue()));
+            //leave date
+            if (leaveDate.getValue() == null) {
+                //cattle.setLeaveDate(null);
+            } else {
+                cattle.setLeaveDate(java.sql.Date.valueOf(leaveDate.getValue()));
+            }
             cattle.setLevaReason(leaveReason.getText());
             cattle.setNotes(note.getText());
             cattle.addToTeamList(groups.get(group.getSelectionModel().getSelectedIndex()));
@@ -86,7 +93,13 @@ public class AddCattleController implements Initializable {
             HTeam.update(groups.get(group.getSelectionModel().getSelectedIndex()));
 
             name.clear();
+            sex.getSelectionModel().clearSelection();
             earring.clear();
+            cowshed.getSelectionModel().clearSelection();
+            group.getSelectionModel().clearSelection();
+            birthDate.getEditor().clear();
+            joinDate.getEditor().clear();
+            leaveDate.getEditor().clear();
             numberCowshed.clear();
             leaveReason.clear();
             note.clear();
@@ -118,4 +131,3 @@ public class AddCattleController implements Initializable {
         group.setItems(groups2);
     }
 }
-

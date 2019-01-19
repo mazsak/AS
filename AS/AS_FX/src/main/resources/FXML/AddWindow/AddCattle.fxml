@@ -93,7 +93,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" text="Powód ubcyia" GridPane.columnIndex="3" GridPane.rowIndex="10">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" text="Powód ubycia" GridPane.columnIndex="3" GridPane.rowIndex="10">
                <font>
                   <Font size="18.0" />
                </font>

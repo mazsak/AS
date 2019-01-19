@@ -64,8 +64,15 @@ public class AddCalvingController implements Initializable {
 
             cattleList.get(calf.getSelectionModel().getSelectedIndex()).addToCalvingListMotherForCalf(calving);
             HCattle.update(cattleList.get(calf.getSelectionModel().getSelectedIndex()));
+            
+            note.clear();
+            calvingDate.getEditor().clear();
+            calf.getSelectionModel().clearSelection();
+            cowshedCalf.getSelectionModel().clearSelection();
+            cattle.getSelectionModel().clearSelection();
+            group.getSelectionModel().clearSelection();
+            cowshed.getSelectionModel().clearSelection();
         }
-        note.clear();
     }
 
     @FXML
@@ -82,8 +89,10 @@ public class AddCalvingController implements Initializable {
     void groupCheckedActionListener(ActionEvent event) {
         ObservableList<String> cattles = FXCollections.observableArrayList();
 
-        for (int i = 0; i < groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().size(); i++) {
-            cattles.add(groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(i).getEarring());
+        if(!group.getSelectionModel().isEmpty()){
+            for (int i = 0; i < groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().size(); i++) {
+                cattles.add(groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(i).getEarring());
+            }
         }
         cattle.setItems(cattles);
     }

@@ -215,7 +215,11 @@ public class InformationController implements Initializable {
             leaveReasonCattle.setText("-");
         }
         earringCattle.setText(cattle.getEarring());
-        cowshedNumberCattle.setText(cattle.getCowshedNumber().toString());
+        if(cattle.getCowshedNumber()!=null){
+            cowshedNumberCattle.setText(cattle.getCowshedNumber().toString());
+        }else{
+            cowshedNumberCattle.setText("-");
+        }
         sexCattle.setText(cattle.getSex());
         noteCattle.setText(cattle.getNotes());
 
