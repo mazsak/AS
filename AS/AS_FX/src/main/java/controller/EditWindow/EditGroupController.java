@@ -106,12 +106,18 @@ public class EditGroupController implements Initializable {
 
     @FXML
     void fromFirstToSecondActionListener(ActionEvent event) {
-
+        cattleSecond.getItems().add(cattleFirst.getItems().get(cattleFirst.getSelectionModel().getSelectedIndex()));
+        cattleSecond.getSelectionModel().selectFirst();
+        cattleFirst.getItems().remove(cattleFirst.getSelectionModel().getSelectedIndex());
+        cattleFirst.getSelectionModel().selectFirst();
     }
 
     @FXML
     void fromSecondToFirstActionListener(ActionEvent event) {
-
+        cattleFirst.getItems().add(cattleSecond.getItems().get(cattleSecond.getSelectionModel().getSelectedIndex()));
+        cattleFirst.getSelectionModel().selectFirst();
+        cattleSecond.getItems().remove(cattleSecond.getSelectionModel().getSelectedIndex());
+        cattleSecond.getSelectionModel().selectFirst();
     }
 
     @FXML
