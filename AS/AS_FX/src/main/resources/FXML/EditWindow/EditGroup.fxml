@@ -4,248 +4,252 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-          xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="controller.EditWindow.EditGroupController">
-    <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
-    </rowConstraints>
-    <children>
-        <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="450.0" prefWidth="450.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="450.0" prefWidth="450.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="500.0" minHeight="500.0" prefHeight="500.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <children>
-                <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-                          GridPane.rowIndex="4"/>
-                <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="5"
-                          GridPane.rowIndex="4"/>
-                <GridPane GridPane.columnIndex="5" GridPane.rowIndex="2">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-                    </rowConstraints>
-                    <children>
-                        <ComboBox fx:id="groupSecond" maxWidth="1.7976931348623157E308"
-                                  onAction="#groupSecondActionListener" GridPane.columnIndex="3"/>
-                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Wybrana grupa"
-                               GridPane.columnIndex="1">
-                            <GridPane.margin>
-                                <Insets left="10.0"/>
-                            </GridPane.margin>
-                            <font>
-                                <Font size="18.0"/>
-                            </font>
-                            <padding>
-                                <Insets left="10.0"/>
-                            </padding>
-                        </Label>
-                    </children>
-                </GridPane>
-                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-                    </rowConstraints>
-                    <children>
-                        <ComboBox fx:id="groupFirst" maxWidth="1.7976931348623157E308"
-                                  onAction="#groupFirstActionListener" GridPane.columnIndex="3"/>
-                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Wybrana grupa"
-                               GridPane.columnIndex="1">
-                            <GridPane.margin>
-                                <Insets left="10.0"/>
-                            </GridPane.margin>
-                            <font>
-                                <Font size="18.0"/>
-                            </font>
-                            <padding>
-                                <Insets left="10.0"/>
-                            </padding>
-                        </Label>
-                    </children>
-                </GridPane>
-                <GridPane GridPane.columnIndex="3" GridPane.rowIndex="4">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES"/>
-                    </rowConstraints>
-                    <children>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                                mnemonicParsing="false" onAction="#fromFirstToSecondActionListener" text="-&gt;"
-                                GridPane.rowIndex="1">
-                            <font>
-                                <Font name="System Bold" size="18.0"/>
-                            </font>
-                        </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                                mnemonicParsing="false" onAction="#fromSecondToFirstActionListener" text="&lt;-"
-                                GridPane.rowIndex="3">
-                            <font>
-                                <Font name="System Bold" size="18.0"/>
-                            </font>
-                        </Button>
-                    </children>
-                </GridPane>
-                <GridPane GridPane.columnIndex="1">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-                    </rowConstraints>
-                    <children>
-                        <ComboBox fx:id="cowshedFirst" maxWidth="1.7976931348623157E308"
-                                  onAction="#cowshedFirstActionListener" GridPane.columnIndex="3"/>
-                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Wybrana obora"
-                               GridPane.columnIndex="1">
-                            <GridPane.margin>
-                                <Insets left="10.0"/>
-                            </GridPane.margin>
-                            <font>
-                                <Font size="18.0"/>
-                            </font>
-                            <padding>
-                                <Insets left="10.0"/>
-                            </padding>
-                        </Label>
-                    </children>
-                </GridPane>
-                <GridPane GridPane.columnIndex="5">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-                    </rowConstraints>
-                    <children>
-                        <ComboBox fx:id="cowshedSecond" maxWidth="1.7976931348623157E308"
-                                  onAction="#cowshedSecondActionListener" GridPane.columnIndex="3"/>
-                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Wybrana obora"
-                               GridPane.columnIndex="1">
-                            <GridPane.margin>
-                                <Insets left="10.0"/>
-                            </GridPane.margin>
-                            <font>
-                                <Font size="18.0"/>
-                            </font>
-                            <padding>
-                                <Insets left="10.0"/>
-                            </padding>
-                        </Label>
-                    </children>
-                </GridPane>
-            </children>
-        </GridPane>
-        <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <children>
-                <ComboBox fx:id="type" maxWidth="1.7976931348623157E308" onAction="#typeActionListener"
-                          GridPane.columnIndex="3"/>
-                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Typ grupy"
-                       GridPane.columnIndex="1">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                    <padding>
-                        <Insets left="10.0"/>
-                    </padding>
-                </Label>
-                <ComboBox fx:id="nameMedicine" disable="true" editable="true" maxWidth="1.7976931348623157E308"
-                          GridPane.columnIndex="7"/>
-                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nazwa lekarstwa"
-                       GridPane.columnIndex="5">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                    <padding>
-                        <Insets left="10.0"/>
-                    </padding>
-                </Label>
-                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Data podawania"
-                       GridPane.columnIndex="9">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                    <padding>
-                        <Insets left="10.0"/>
-                    </padding>
-                </Label>
-                <DatePicker fx:id="dateStartTreatment" disable="true" maxWidth="1.7976931348623157E308"
-                            GridPane.columnIndex="11"/>
-            </children>
-        </GridPane>
-        <Button mnemonicParsing="false" onAction="#saveListener" text="Zapisz" GridPane.columnIndex="1"
-                GridPane.halignment="RIGHT" GridPane.rowIndex="5">
-            <GridPane.margin>
-                <Insets right="10.0"/>
-            </GridPane.margin>
-        </Button>
-    </children>
-</GridPane>
+<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity"
+            xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.EditWindow.EditGroupController">
+    <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <children>
+            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="450.0" prefWidth="450.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="450.0" prefWidth="450.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                    <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+                    <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                    <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+                    <RowConstraints maxHeight="500.0" minHeight="500.0" prefHeight="500.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <children>
+                    <ListView fx:id="cattleFirst" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                              GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                    <ListView fx:id="cattleSecond" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                              GridPane.columnIndex="5" GridPane.rowIndex="4"/>
+                    <GridPane GridPane.columnIndex="5" GridPane.rowIndex="2">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                        </rowConstraints>
+                        <children>
+                            <ComboBox fx:id="groupSecond" maxWidth="1.7976931348623157E308"
+                                      onAction="#groupSecondActionListener" GridPane.columnIndex="3"/>
+                            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                   text="Wybrana grupa" GridPane.columnIndex="1">
+                                <GridPane.margin>
+                                    <Insets left="10.0"/>
+                                </GridPane.margin>
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                                <padding>
+                                    <Insets left="10.0"/>
+                                </padding>
+                            </Label>
+                        </children>
+                    </GridPane>
+                    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                        </rowConstraints>
+                        <children>
+                            <ComboBox fx:id="groupFirst" maxWidth="1.7976931348623157E308"
+                                      onAction="#groupFirstActionListener" GridPane.columnIndex="3"/>
+                            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                   text="Wybrana grupa" GridPane.columnIndex="1">
+                                <GridPane.margin>
+                                    <Insets left="10.0"/>
+                                </GridPane.margin>
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                                <padding>
+                                    <Insets left="10.0"/>
+                                </padding>
+                            </Label>
+                        </children>
+                    </GridPane>
+                    <GridPane GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES"/>
+                        </rowConstraints>
+                        <children>
+                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                    mnemonicParsing="false" onAction="#fromFirstToSecondActionListener" text="-&gt;"
+                                    GridPane.rowIndex="1">
+                                <font>
+                                    <Font name="System Bold" size="18.0"/>
+                                </font>
+                            </Button>
+                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                    mnemonicParsing="false" onAction="#fromSecondToFirstActionListener" text="&lt;-"
+                                    GridPane.rowIndex="3">
+                                <font>
+                                    <Font name="System Bold" size="18.0"/>
+                                </font>
+                            </Button>
+                        </children>
+                    </GridPane>
+                    <GridPane GridPane.columnIndex="1">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                        </rowConstraints>
+                        <children>
+                            <ComboBox fx:id="cowshedFirst" maxWidth="1.7976931348623157E308"
+                                      onAction="#cowshedFirstActionListener" GridPane.columnIndex="3"/>
+                            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                   text="Wybrana obora" GridPane.columnIndex="1">
+                                <GridPane.margin>
+                                    <Insets left="10.0"/>
+                                </GridPane.margin>
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                                <padding>
+                                    <Insets left="10.0"/>
+                                </padding>
+                            </Label>
+                        </children>
+                    </GridPane>
+                    <GridPane GridPane.columnIndex="5">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                        </rowConstraints>
+                        <children>
+                            <ComboBox fx:id="cowshedSecond" maxWidth="1.7976931348623157E308"
+                                      onAction="#cowshedSecondActionListener" GridPane.columnIndex="3"/>
+                            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                   text="Wybrana obora" GridPane.columnIndex="1">
+                                <GridPane.margin>
+                                    <Insets left="10.0"/>
+                                </GridPane.margin>
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                                <padding>
+                                    <Insets left="10.0"/>
+                                </padding>
+                            </Label>
+                        </children>
+                    </GridPane>
+                </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <children>
+                    <ComboBox fx:id="type" maxWidth="1.7976931348623157E308" onAction="#typeActionListener"
+                              GridPane.columnIndex="3"/>
+                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Typ grupy"
+                           GridPane.columnIndex="1">
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                        <padding>
+                            <Insets left="10.0"/>
+                        </padding>
+                    </Label>
+                    <ComboBox fx:id="nameMedicine" disable="true" editable="true" maxWidth="1.7976931348623157E308"
+                              GridPane.columnIndex="7"/>
+                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nazwa lekarstwa"
+                           GridPane.columnIndex="5">
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                        <padding>
+                            <Insets left="10.0"/>
+                        </padding>
+                    </Label>
+                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Data podawania"
+                           GridPane.columnIndex="9">
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                        <padding>
+                            <Insets left="10.0"/>
+                        </padding>
+                    </Label>
+                    <DatePicker fx:id="dateStartTreatment" disable="true" maxWidth="1.7976931348623157E308"
+                                GridPane.columnIndex="11"/>
+                </children>
+            </GridPane>
+            <Button mnemonicParsing="false" onAction="#saveListener" text="Zapisz" GridPane.columnIndex="2"
+                    GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                <GridPane.margin>
+                    <Insets right="10.0"/>
+                </GridPane.margin>
+            </Button>
+        </children>
+    </GridPane>
+</ScrollPane>

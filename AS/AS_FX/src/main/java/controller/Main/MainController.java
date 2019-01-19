@@ -10,8 +10,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -91,7 +91,7 @@ public class MainController implements Initializable {
     private void OnActionList(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/EditWindow/EditGroup.fxml"));
 
-        GridPane editGroupWindow = null;
+        ScrollPane editGroupWindow = null;
 
         try {
             editGroupWindow = loader.load();
