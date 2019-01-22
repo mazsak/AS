@@ -19,6 +19,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
+             <TextField fx:id="nameCattleText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    GridPane.columnIndex="1" visible="false">
+                 <font>
+                     <Font size="18.0" />
+                 </font>
+             </TextField>
              <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Data przybycia"
                     GridPane.columnIndex="5" GridPane.rowIndex="2">
                <font>
@@ -53,6 +59,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
+             <TextField fx:id="cowshedNumberCattleText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    GridPane.columnIndex="1" GridPane.rowIndex="2" visible="false">
+                 <font>
+                     <Font size="18.0" />
+                 </font>
+             </TextField>
              <Label fx:id="sexCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
                     GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
@@ -85,6 +97,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
+             <TextField fx:id="leaveReasonCattleText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                        GridPane.columnIndex="6" GridPane.rowIndex="6" visible="false">
+                 <font>
+                     <Font size="18.0" />
+                 </font>
+             </TextField>
              <Button fx:id="editNameCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
                      mnemonicParsing="false" onAction="#editNameCattleActionListener" GridPane.columnIndex="3"/>
              <Button fx:id="editNumberCowshedCattle" maxHeight="1.7976931348623157E308"
@@ -187,6 +205,12 @@
                      <Font size="18.0"/>
                  </font>
              </Label>
+             <TextField fx:id="noteCattleText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    GridPane.columnIndex="1" visible="false">
+                 <font>
+                     <Font size="18.0"/>
+                 </font>
+             </TextField>
              <Button fx:id="editNoteCattle" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
                      onAction="#editNoteCattleActionListener" GridPane.columnIndex="3"/>
          </children>

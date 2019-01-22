@@ -9,10 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Calving;
 import models.Cattle;
@@ -25,9 +22,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -119,6 +114,18 @@ public class InformationController implements Initializable {
 
     @FXML
     private Label earringCattle;
+
+    @FXML
+    private TextField nameCattleText;
+
+    @FXML
+    private TextField noteCattleText;
+
+    @FXML
+    private TextField leaveReasonCattleText;
+
+    @FXML
+    private TextField cowshedNumberCattleText;
 
     @FXML
     void addCalvingActionListener(ActionEvent event) {
@@ -213,17 +220,56 @@ public class InformationController implements Initializable {
 
     @FXML
     void editNameCattleActionListener(ActionEvent event) {
-
+        if(nameCattle.isVisible()){
+            nameCattle.setVisible(false);
+            nameCattleText.setVisible(true);
+            nameCattleText.setText(nameCattle.getText());
+        }else{
+            if(!nameCattleText.getText().equals(nameCattle.getText())) {
+                Cattle cattle = HCattle.findByEarring(earringCattle.getText());
+                cattle.setName(nameCattleText.getText());
+                HCattle.update(cattle);
+                nameCattle.setText(nameCattleText.getText());
+            }
+            nameCattleText.setVisible(false);
+            nameCattle.setVisible(true);
+        }
     }
 
     @FXML
     void editNoteCattleActionListener(ActionEvent event) {
-
+        if(noteCattle.isVisible()){
+            noteCattle.setVisible(false);
+            noteCattleText.setVisible(true);
+            noteCattleText.setText(noteCattle.getText());
+        }else{
+            if(!noteCattleText.getText().equals(noteCattle.getText())) {
+                Cattle cattle = HCattle.findByEarring(earringCattle.getText());
+                cattle.setNotes(noteCattleText.getText());
+                HCattle.update(cattle);
+                noteCattle.setText(noteCattleText.getText());
+            }
+            noteCattleText.setVisible(false);
+            noteCattle.setVisible(true);
+        }
     }
 
     @FXML
     void editNumberCowshedCattleActionListener(ActionEvent event) {
-
+        if(cowshedNumberCattle.isVisible()){
+            cowshedNumberCattle.setVisible(false);
+            cowshedNumberCattleText.setVisible(true);
+            cowshedNumberCattleText.setText(cowshedNumberCattle.getText());
+        }else{
+            if(!cowshedNumberCattleText.getText().equals(cowshedNumberCattle.getText())){
+                Cattle cattle = HCattle.findByEarring(earringCattle.getText());
+                cattle.setCowshedNumber(Integer.valueOf(cowshedNumberCattleText.getText()));
+                HCattle.update(cattle);
+                cowshedNumberCattle.setText(cowshedNumberCattleText.getText());
+            }
+            cowshedNumberCattleText.setVisible(false);
+            cowshedNumberCattle.setVisible(true);
+        }
     }
 
     @FXML
@@ -233,7 +279,22 @@ public class InformationController implements Initializable {
 
     @FXML
     void editLeaveReasonCattleActionListener(ActionEvent event) {
-
+        if(leaveReasonCattle.isVisible()){
+            leaveReasonCattle.setVisible(false);
+            leaveReasonCattleText.setVisible(true);
+            leaveReasonCattleText.setText(leaveReasonCattle.getText());
+        }else{
+            //TODO nie dziala gdy edytujesz '-'
+            if(!leaveReasonCattleText.getText().equals(leaveReasonCattle.getText())){
+                Cattle cattle = HCattle.findByEarring(earringCattle.getText());
+                cattle.setLevaReason(leaveReasonCattleText.getText());
+                HCattle.update(cattle);
+                leaveReasonCattle.setText(leaveReasonCattleText.getText());
+                System.out.println(leaveReasonCattleText.getText());
+            }
+            leaveReasonCattleText.setVisible(false);
+            leaveReasonCattle.setVisible(true);
+        }
     }
 
     @Override
