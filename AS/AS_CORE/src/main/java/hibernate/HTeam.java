@@ -57,4 +57,19 @@ public class HTeam {
         System.out.println(teams);
         return teams;
     }
+
+    //used by other HClasses
+    public static List<Team> getByCattleInEm(Cattle cattle){
+        em.getTransaction().begin();
+        int cattle1  = cattle.getIdCattle();
+        String hql = "select distinct a from Team a " +
+                "join a.cattleList t " +
+                "where t.idCattle = :cattle1";
+        Query query = em.createQuery(hql);
+        query.setParameter("cattle1", cattle1);
+        List<Team> teams = query.getResultList();
+        System.out.println(teams);
+        em.getTransaction().commit();
+        return teams;
+    }
 }

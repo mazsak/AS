@@ -28,6 +28,7 @@ public class AddCalvingController implements Initializable {
     private List<Team> groups;
     private List<Cattle> cattleList;
     private MainController mc;
+    private Cattle chosenCattle;
 
     @FXML
     private TextArea note;
@@ -164,5 +165,37 @@ public class AddCalvingController implements Initializable {
 
     public void setMc(MainController mc) {
         this.mc = mc;
+    }
+
+    public Cattle getChosenCattle() {
+        return chosenCattle;
+    }
+
+    public void setChosenCattle(Cattle chosenCattle) {
+        this.chosenCattle = chosenCattle;
+
+        ObservableList<String> teams = FXCollections.observableArrayList();
+        groups = HTeam.getByCattleInEm(chosenCattle);
+        Team currentTeam = null;
+        for (int i = 0; i < groups.size(); i++) {
+            teams.add(groups.get(i).getName());
+            currentTeam = groups.get(i);
+        }
+        ObservableList<String> groupsInCowshed = FXCollections.observableArrayList();
+        groups = currentTeam.getIdCowshed().getTeamList();
+        for (int i = 0; i < groups.size(); i++) {
+            groupsInCowshed.add(groups.get(i).getName());
+        }
+        group.setItems(groupsInCowshed);
+        group.getSelectionModel().select(teams.get(0));
+
+        cowshed.getSelectionModel().select(currentTeam.getIdCowshed().getName());
+        cattle.getSelectionModel().select(this.chosenCattle.getEarring());
+        ObservableList<String> cattles = FXCollections.observableArrayList();
+
+        for (int i = 0; i < groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().size(); i++) {
+            cattles.add(groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(i).getEarring());
+        }
+        cattle.setItems(cattles);
     }
 }

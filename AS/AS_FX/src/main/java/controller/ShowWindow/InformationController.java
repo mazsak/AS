@@ -133,6 +133,9 @@ public class InformationController implements Initializable {
         }
 
         AddWindowController awc = loader.getController();
+        if(!earringCattle.getText().equals("Nie wybrano krowy")){
+            awc.setChosenCattle(HCattle.findByEarring(earringCattle.getText()));
+        }
         awc.setChosen(4);
         
         parentController.getMc().getMainWindow().setCenter(addWindow);

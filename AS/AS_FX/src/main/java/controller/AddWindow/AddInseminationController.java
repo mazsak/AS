@@ -147,9 +147,30 @@ public class AddInseminationController implements Initializable {
 
     public void setChosenCattle(Cattle chosenCattle) {
         this.chosenCattle = chosenCattle;
-        
-        //TODO
+
+        ObservableList<String> teams = FXCollections.observableArrayList();
+        groups = HTeam.getByCattleInEm(chosenCattle);
+        Team currentTeam = null;
+        for (int i = 0; i < groups.size(); i++) {
+            teams.add(groups.get(i).getName());
+             currentTeam = groups.get(i);
+        }
+        ObservableList<String> groupsInCowshed = FXCollections.observableArrayList();
+        groups = currentTeam.getIdCowshed().getTeamList();
+        for (int i = 0; i < groups.size(); i++) {
+            groupsInCowshed.add(groups.get(i).getName());
+        }
+        group.setItems(groupsInCowshed);
+        group.getSelectionModel().select(teams.get(0));
+
+        cowshed.getSelectionModel().select(currentTeam.getIdCowshed().getName());
         cattle.getSelectionModel().select(this.chosenCattle.getEarring());
+        ObservableList<String> cattles = FXCollections.observableArrayList();
+
+        for (int i = 0; i < groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().size(); i++) {
+            cattles.add(groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(i).getEarring());
+        }
+        cattle.setItems(cattles);
     }
 }
 

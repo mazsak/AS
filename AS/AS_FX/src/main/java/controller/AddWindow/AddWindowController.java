@@ -108,7 +108,7 @@ public class AddWindowController implements Initializable{
         
         if(chosenCattle!=null){
             AddCalvingController acc = loader.getController();
-            //acc.setMc();
+            acc.setChosenCattle(chosenCattle);
         }
 
         addWindow.setContent(addCalving);
