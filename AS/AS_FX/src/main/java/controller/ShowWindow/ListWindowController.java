@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,20 +79,100 @@ public class ListWindowController implements Initializable {
 
         ContextMenu contextMenuGroup = new ContextMenu();
 
-        MenuItem addGroup = new MenuItem("Dodaj");
-        contextMenuGroup.getItems().add(addGroup);
-        MenuItem deleteGroup = new MenuItem("Usuń");
+        MenuItem addCattle = new MenuItem("Dodaj zwierzę");
+        addCattle.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO dodawnaie do tej grupy zwierzecia
+            }
+        });
+        contextMenuGroup.getItems().add(addCattle);
+        MenuItem deleteAllCattleGroup = new MenuItem("Usuń zwierzęta");
+        deleteAllCattleGroup.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO usuniecie wszystkiech z grupy
+            }
+        });
+        contextMenuGroup.getItems().add(deleteAllCattleGroup);
+        MenuItem deleteGroup = new MenuItem("Usuń grupę");
         deleteGroup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 for (Team team : groups) {
+                    if (team.getName().equals(listTeam.getSelectionModel().getSelectedItem())) {
+                        if (team.getCattleList().isEmpty()) {
+                            groups.remove(team);
+                            HTeam.delete(team);
+                            listTeam.getItems().remove(listTeam.getSelectionModel().getSelectedItem());
+                            return;
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setHeaderText(null);
+                            alert.setGraphic(null);
+                            alert.setTitle("Infromacja");
+                            alert.setContentText("Przed usunięciem grupy \"" + team.getName() + "\" zmienić grupę zwierząt!");
+                            ButtonType buttonTak = new ButtonType("Ok");
+                            alert.getButtonTypes().setAll(buttonTak);
 
+                            alert.showAndWait();
+                        }
+                    }
                 }
             }
         });
         contextMenuGroup.getItems().add(deleteGroup);
 
         listTeam.setContextMenu(contextMenuGroup);
+
+        ContextMenu contextMenuCowshed = new ContextMenu();
+
+        MenuItem addGroup = new MenuItem("Dodaj grupę");
+        addGroup.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO dodawnaie do tej obory grupy
+            }
+        });
+        contextMenuCowshed.getItems().add(addGroup);
+        MenuItem deleteAllGroupCowshed = new MenuItem("Usuń grupy");
+        deleteAllGroupCowshed.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO usuniecie wszystkiech grupy
+            }
+        });
+        contextMenuCowshed.getItems().add(deleteAllGroupCowshed);
+        MenuItem deleteCowshed = new MenuItem("Usuń oborę");
+        deleteCowshed.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                for (Cowshed cowshed : HCowshed.read()) {
+                    if (cowshed.getName().equals(listCowshed.getSelectionModel().getSelectedItem())) {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText(null);
+                        alert.setGraphic(null);
+                        alert.setTitle("Potwierdzenie usunięcia");
+                        alert.setContentText("Usunięcie obory \"" + cowshed.getName() + "\" usunie wszystkie obiekty zwiazane znią!");
+                        ButtonType buttonTak = new ButtonType("Tak");
+                        ButtonType buttonNie = new ButtonType("Nie");
+
+                        alert.getButtonTypes().setAll(buttonTak, buttonNie);
+
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == buttonTak) {
+                            listCowshed.getItems().remove(cowshed.getName());
+                            listTeam.getItems().clear();
+                            listCattles.getItems().clear();
+                            HCowshed.delete(cowshed);
+                        }
+                    }
+                }
+            }
+        });
+        contextMenuCowshed.getItems().add(deleteCowshed);
+
+        listCowshed.setContextMenu(contextMenuCowshed);
 
         List<Cowshed> csh = HCowshed.read();
 
@@ -108,11 +189,11 @@ public class ListWindowController implements Initializable {
         ObservableList<Cattle> cattles = FXCollections.observableArrayList();
         cattles.addAll(ctl);
 
-        number.setCellValueFactory(new PropertyValueFactory<Cattle,Integer>("idCattle"));
-        earring.setCellValueFactory(new PropertyValueFactory<Cattle,String>("earring"));
+        number.setCellValueFactory(new PropertyValueFactory<Cattle, Integer>("idCattle"));
+        earring.setCellValueFactory(new PropertyValueFactory<Cattle, String>("earring"));
         cowshedNumber.setCellValueFactory(new PropertyValueFactory<Cattle, Integer>("cowshedNumber"));
-        cowshed.setCellValueFactory(new PropertyValueFactory<Cattle,String>("cowshed"));
-        team.setCellValueFactory(new PropertyValueFactory<Cattle,String>("teamEAT"));
+        cowshed.setCellValueFactory(new PropertyValueFactory<Cattle, String>("cowshed"));
+        team.setCellValueFactory(new PropertyValueFactory<Cattle, String>("teamEAT"));
         birthDate.setCellValueFactory(new PropertyValueFactory<Cattle, Date>("birthDate"));
         listCattles.setItems(cattles);
 
@@ -135,7 +216,7 @@ public class ListWindowController implements Initializable {
     public void listCattlesActionListener(MouseEvent arg0) {
         Cattle cattle = HCattle.findByEarring(earring.getCellObservableValue(listCattles.getSelectionModel().getFocusedIndex()).getValue());
         infocon.setCattleInfo(cattle);
-        if(arg0.getClickCount() == 2){
+        if (arg0.getClickCount() == 2) {
             cattleBar.getSelectionModel().select(1);
         }
     }
@@ -144,12 +225,12 @@ public class ListWindowController implements Initializable {
     public void cowshedActionListener(MouseEvent arg0) {
         ObservableList<String> teams = FXCollections.observableArrayList();
         ObservableList<Cattle> allCattleInCowshed = FXCollections.observableArrayList();
-        if(listCowshed.getSelectionModel().getSelectedIndex() == 0){
+        if (listCowshed.getSelectionModel().getSelectedIndex() == 0) {
             List<Cattle> cattles;
             cattles = HCattle.read();
             allCattleInCowshed.addAll(cattles);
 
-        }else {
+        } else {
             groups = HTeam.getByCowshedName(listCowshed.getSelectionModel().getSelectedItem(), "EAT");
 
             for (int i = 0; i < groups.size(); i++) {
@@ -170,30 +251,30 @@ public class ListWindowController implements Initializable {
         listCattles.setItems(cattles);
     }
 
-    public MainController getMc(){
+    public MainController getMc() {
         return mc;
     }
-    
+
     public void setMc(MainController mc) {
         this.mc = mc;
     }
-    
-    public TabPane getTabPane(){
+
+    public TabPane getTabPane() {
         return cattleBar;
     }
-    
-    public Tab getListAnimals(){
+
+    public Tab getListAnimals() {
         return listAnimals;
     }
-       
-    public void switchBack(){
+
+    public void switchBack() {
         getTabPane().getSelectionModel().select(listAnimals);
         ObservableList<Cattle> allCattleInCowshed = FXCollections.observableArrayList();
-        if(listCowshed.getSelectionModel().isEmpty() || listCowshed.getSelectionModel().getSelectedIndex() == 0){
+        if (listCowshed.getSelectionModel().isEmpty() || listCowshed.getSelectionModel().getSelectedIndex() == 0) {
             List<Cattle> cattles;
             cattles = HCattle.read();
             allCattleInCowshed.addAll(cattles);
-        }else {
+        } else {
             groups = HTeam.getByCowshedName(listCowshed.getSelectionModel().getSelectedItem(), "EAT");
             for (int i = 0; i < groups.size(); i++) {
                 allCattleInCowshed.addAll(groups.get(i).getCattleList());

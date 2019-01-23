@@ -24,16 +24,16 @@ public class Treatment {
     private Integer idTreatment;
     @Column(name = "START_DATE")
     @Temporal(TemporalType.DATE)
-    private Date startDate;
+    private Date startDate;//
     @Column(name = "END_DATE")
     @Temporal(TemporalType.DATE)
-    private Date endDate;
+    private Date endDate;//
     @Column(name = "DISEASE")
-    private String disease;
+    private String disease;//
     @Column(name = "NOTES")
-    private String notes;
+    private String notes;//
     @ManyToMany(mappedBy = "treatments")
-    private List<Medicine> medicines = new ArrayList<>();
+    private List<Medicine> medicines = new ArrayList<>();//
     @JoinColumn(name = "ID_CATTLE", referencedColumnName = "ID_CATTLE")
     @ManyToOne
     private Cattle idCattle;

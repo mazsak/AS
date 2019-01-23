@@ -1,5 +1,6 @@
 package hibernate;
 
+import models.Cattle;
 import models.Cowshed;
 import models.Team;
 
@@ -32,6 +33,23 @@ public class HCowshed {
         cowshed.setName(name);
         cowshed.setTeamList(new ArrayList<Team>());
         em.persist(cowshed);
+        em.getTransaction().commit();
+    }
+
+    public static void delete(Cowshed cowshed) {
+        for (Team team : cowshed.getTeamList()) {
+            if (team.getType().equals("EAT")) {
+                List<Cattle> cattles = team.getCattleList();
+                int i = 0;
+                while (i != cattles.size()) {
+                    HCattle.delete(cattles.get(i));
+                }
+            }
+            HTeam.delete(team);
+        }
+
+        em.getTransaction().begin();
+        em.remove(cowshed);
         em.getTransaction().commit();
     }
 }

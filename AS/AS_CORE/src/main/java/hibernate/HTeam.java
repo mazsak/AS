@@ -43,6 +43,12 @@ public class HTeam {
         em.getTransaction().commit();
     }
 
+    public static void delete(Team team) {
+        em.getTransaction().begin();
+        em.remove(team);
+        em.getTransaction().commit();
+    }
+
     public static void update(Team team){
         em.getTransaction().begin();
         em.merge(team);
