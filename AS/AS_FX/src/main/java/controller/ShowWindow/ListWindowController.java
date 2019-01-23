@@ -6,6 +6,8 @@ import hibernate.HCowshed;
 import hibernate.HTeam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -73,6 +75,23 @@ public class ListWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        ContextMenu contextMenuGroup = new ContextMenu();
+
+        MenuItem addGroup = new MenuItem("Dodaj");
+        contextMenuGroup.getItems().add(addGroup);
+        MenuItem deleteGroup = new MenuItem("Usuń");
+        deleteGroup.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                for (Team team : groups) {
+
+                }
+            }
+        });
+        contextMenuGroup.getItems().add(deleteGroup);
+
+        listTeam.setContextMenu(contextMenuGroup);
 
         List<Cowshed> csh = HCowshed.read();
 

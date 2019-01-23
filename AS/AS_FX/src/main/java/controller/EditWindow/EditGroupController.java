@@ -25,6 +25,8 @@ public class EditGroupController implements Initializable {
 
     private List<Team> groupsFirstList = new ArrayList<>();
     private List<Team> groupsSecondList = new ArrayList<>();
+    private List<String> cattlesFirstList = new ArrayList<>();
+    private List<String> cattlesSecondList = new ArrayList<>();
 
     @FXML
     private ListView<String> cattleFirst;
@@ -106,23 +108,78 @@ public class EditGroupController implements Initializable {
 
     @FXML
     void fromFirstToSecondActionListener(ActionEvent event) {
-        cattleSecond.getItems().add(cattleFirst.getItems().get(cattleFirst.getSelectionModel().getSelectedIndex()));
-        cattleSecond.getSelectionModel().selectFirst();
-        cattleFirst.getItems().remove(cattleFirst.getSelectionModel().getSelectedIndex());
-        cattleFirst.getSelectionModel().selectFirst();
+        if (!groupSecond.getSelectionModel().isEmpty() && !cattleFirst.getItems().isEmpty()) {
+            cattlesSecondList.add(cattleFirst.getSelectionModel().getSelectedItem());
+            cattlesFirstList.remove(cattleFirst.getSelectionModel().getSelectedItem());
+            cattleSecond.getItems().add(cattleFirst.getItems().get(cattleFirst.getSelectionModel().getSelectedIndex()));
+            cattleSecond.getSelectionModel().selectFirst();
+            cattleFirst.getItems().remove(cattleFirst.getSelectionModel().getSelectedIndex());
+            cattleFirst.getSelectionModel().selectFirst();
+            if (!groupSecond.isDisable()) {
+                type.setDisable(true);
+                cowshedFirst.setDisable(true);
+                groupFirst.setDisable(true);
+                cowshedSecond.setDisable(true);
+                groupSecond.setDisable(true);
+            }
+        }
     }
 
     @FXML
     void fromSecondToFirstActionListener(ActionEvent event) {
-        cattleFirst.getItems().add(cattleSecond.getItems().get(cattleSecond.getSelectionModel().getSelectedIndex()));
-        cattleFirst.getSelectionModel().selectFirst();
-        cattleSecond.getItems().remove(cattleSecond.getSelectionModel().getSelectedIndex());
-        cattleSecond.getSelectionModel().selectFirst();
+        if (((type.getSelectionModel().getSelectedItem().equals("Żywieniowe") && !groupFirst.getSelectionModel().isEmpty()) && !groupSecond.getItems().isEmpty()) || (type.getSelectionModel().getSelectedItem().equals("Leczone") && !groupSecond.getItems().isEmpty())) {
+            cattlesFirstList.add(cattleSecond.getSelectionModel().getSelectedItem());
+            cattlesSecondList.remove(cattleSecond.getSelectionModel().getSelectedItem());
+            cattleFirst.getItems().add(cattleSecond.getItems().get(cattleSecond.getSelectionModel().getSelectedIndex()));
+            cattleFirst.getSelectionModel().selectFirst();
+            cattleSecond.getItems().remove(cattleSecond.getSelectionModel().getSelectedIndex());
+            cattleSecond.getSelectionModel().selectFirst();
+            if (!groupSecond.isDisable()) {
+                type.setDisable(true);
+                cowshedFirst.setDisable(true);
+                groupFirst.setDisable(true);
+                cowshedSecond.setDisable(true);
+                groupSecond.setDisable(true);
+            }
+        }
     }
 
     @FXML
     void saveListener(ActionEvent event) {
-        System.out.println("Blabla");
+        if (!cattleFirst.getItems().isEmpty() || !cattleSecond.getItems().isEmpty()) {
+            if (type.getSelectionModel().getSelectedItem().equals("Żywieniowe")) {
+                cowshedFirst.setDisable(false);
+                groupFirst.setDisable(false);
+                for (String cattleEarring : cattlesFirstList) {
+                    Cattle cattle = HCattle.findByEarring(cattleEarring);
+                    Team team = HTeam.getByName(groupFirst.getSelectionModel().getSelectedItem());
+                    cattle.replaceTeamEAT(team);
+                }
+                for (String cattleEarring : cattlesSecondList) {
+                    Cattle cattle = HCattle.findByEarring(cattleEarring);
+                    Team team = HTeam.getByName(groupSecond.getSelectionModel().getSelectedItem());
+                    cattle.replaceTeamEAT(team);
+                }
+            } else {
+                for (String cattleEarring : cattlesFirstList) {
+                    Cattle cattle = HCattle.findByEarring(cattleEarring);
+                    Team team = HTeam.getByName(groupSecond.getSelectionModel().getSelectedItem());
+                    cattle.deleteTeamSICK(team);
+                }
+                for (String cattleEarring : cattlesSecondList) {
+                    Cattle cattle = HCattle.findByEarring(cattleEarring);
+                    Team team = HTeam.getByName(groupSecond.getSelectionModel().getSelectedItem());
+                    cattle.addTeamSICK(team);
+                }
+            }
+        }
+        if (type.getSelectionModel().getSelectedItem().equals("Żywieniowe")) {
+            cowshedFirst.setDisable(false);
+            groupFirst.setDisable(false);
+        }
+        cowshedSecond.setDisable(false);
+        groupSecond.setDisable(false);
+        type.setDisable(false);
     }
 
     @FXML
@@ -136,15 +193,6 @@ public class EditGroupController implements Initializable {
             cowshedFirst.setDisable(true);
             groupFirst.getItems().clear();
             groupFirst.setDisable(true);
-
-            List<Cattle> cattleListAll = HCattle.read();
-            ObservableList<String> cattleObservable = FXCollections.observableArrayList();
-
-            for (int i = 0; i < cattleListAll.size(); i++) {
-                cattleObservable.add(cattleListAll.get(i).getEarring());
-            }
-            cattleFirst.setItems(cattleObservable);
-            cattleFirst.getSelectionModel().selectFirst();
 
             typeName = "SICK";
         } else {
@@ -194,6 +242,10 @@ public class EditGroupController implements Initializable {
         for (int i = 0; i < cattles.size(); i++) {
             cattlesFirst.add(cattles.get(i).getEarring());
         }
+        if (!cattlesFirstList.isEmpty()) {
+            cattlesFirstList.clear();
+        }
+        cattlesFirstList.addAll(cattlesFirst);
         cattleFirst.setItems(cattlesFirst);
         cattleFirst.getSelectionModel().selectFirst();
     }
@@ -217,8 +269,31 @@ public class EditGroupController implements Initializable {
         for (int i = 0; i < cattles.size(); i++) {
             cattlesSecond.add(cattles.get(i).getEarring());
         }
+        if (!cattlesSecondList.isEmpty()) {
+            cattlesSecondList.clear();
+        }
+        cattlesSecondList.addAll(cattlesSecond);
         cattleSecond.setItems(cattlesSecond);
         cattleSecond.getSelectionModel().selectFirst();
+
+        if (type.getSelectionModel().getSelectedItem().equals("Leczone")) {
+            ObservableList<String> cattlesFirst = FXCollections.observableArrayList();
+            Cowshed cowshed = HCowshed.findByName(cowshedSecond.getSelectionModel().getSelectedItem());
+            for (Team team : cowshed.getTeamList()) {
+                if (team.getType().equals("EAT")) {
+                    for (Cattle cattle : team.getCattleList()) {
+                        cattlesFirst.addAll(cattle.getEarring());
+                    }
+                }
+            }
+            cattlesFirst.removeAll(cattlesSecond);
+            if (!cattlesFirstList.isEmpty()) {
+                cattlesFirstList.clear();
+            }
+            cattlesFirstList.addAll(cattlesFirst);
+            cattleFirst.setItems(cattlesFirst);
+            cattleFirst.getSelectionModel().selectFirst();
+        }
     }
 
     @Override

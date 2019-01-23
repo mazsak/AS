@@ -5,6 +5,9 @@
  */
 package models;
 
+import hibernate.HCattle;
+import hibernate.HTeam;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
@@ -166,6 +169,37 @@ public class Cattle {
             }
         }
         return result.toString();
+    }
+
+    public void replaceTeamEAT(Team teamNew) {
+        for (Team team : teamList) {
+            if (team.getType().equals("EAT")) {
+
+                team.removeCattle(this);
+                teamList.remove(team);
+                HTeam.update(team);
+
+                teamNew.addCattleToList(this);
+                teamList.add(teamNew);
+                HTeam.update(teamNew);
+
+                HCattle.update(this);
+                return;
+            }
+        }
+    }
+
+    public void deleteTeamSICK(Team team) {
+        team.removeCattle(this);
+        HTeam.update(team);
+        HCattle.update(this);
+    }
+
+    public void addTeamSICK(Team team) {
+        team.addCattleToList(this);
+        addToTeamList(team);
+        HTeam.update(team);
+        HCattle.update(this);
     }
     
     public String getTeamSICK(){

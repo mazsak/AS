@@ -21,9 +21,13 @@ public class HTeam {
     public static List<Team> getByCowshedName(String nameCowshed, String type) {
         em.getTransaction().begin();
         List<Team> result = em.createQuery("from Team t where t.idCowshed.name = :n and type= :t", Team.class).setParameter("n", nameCowshed).setParameter("t", type).getResultList();
-        for(Team team : result){
-            System.out.println("Grupa " + team.getName());
-        }
+        em.getTransaction().commit();
+        return result;
+    }
+
+    public static Team getByName(String name) {
+        em.getTransaction().begin();
+        Team result = em.createQuery("from Team t where t.name = :n", Team.class).setParameter("n", name).getSingleResult();
         em.getTransaction().commit();
         return result;
     }
@@ -54,7 +58,6 @@ public class HTeam {
         Query query = em.createQuery(hql);
         query.setParameter("cattle1", cattle1);
         List<Team> teams = query.getResultList();
-        System.out.println(teams);
         return teams;
     }
 
