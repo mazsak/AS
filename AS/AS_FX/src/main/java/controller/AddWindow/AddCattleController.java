@@ -17,6 +17,9 @@ import models.Cowshed;
 import models.Team;
 
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -81,11 +84,19 @@ public class AddCattleController implements Initializable {
             cattle.setJoinDate(java.sql.Date.valueOf(joinDate.getValue()));
             //leave date
             if (leaveDate.getValue() == null) {
-                //cattle.setLeaveDate(null);
+                LocalDate lc = LocalDate.of(1901, Month.FEBRUARY, 28);
+                LocalDate lc2 = lc.plusDays(1);
+                final long hours12 = 12L * 60L * 60L * 1000L;
+                Date date = new Date(1901,2,28);
+                cattle.setLeaveDate(java.sql.Date.valueOf(lc));
             } else {
                 cattle.setLeaveDate(java.sql.Date.valueOf(leaveDate.getValue()));
             }
-            cattle.setLevaReason(leaveReason.getText());
+            if(leaveReason.getText().equals("")){
+                cattle.setLevaReason("XD1337");
+            }else{
+                cattle.setLevaReason(leaveReason.getText());
+            }
             cattle.setNotes(note.getText());
             cattle.addToTeamList(groups.get(group.getSelectionModel().getSelectedIndex()));
             HCattle.save(cattle);

@@ -6,6 +6,8 @@
 package models;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,7 +23,7 @@ public class Calving {
     @Column(name = "ID_CALVING", nullable = false)
     private Integer idCalving;
     @Column(name = "CALVING_DATE")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date calvingDate;
     @Column(name = "NOTES")
     private String notes;
@@ -47,8 +49,9 @@ public class Calving {
         this.idCalving = idCalving;
     }
 
-    public Date getCalvingDate() {
-        return calvingDate;
+    public String getCalvingDate() {
+        DateFormat outputFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        return outputFormatter.format(calvingDate);
     }
 
     public void setCalvingDate(Date calvingDate) {

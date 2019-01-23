@@ -10,6 +10,8 @@ import hibernate.HTeam;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,13 +37,13 @@ public class Cattle {
     @Column(name = "COWSHED_NUMBER")
     private Integer cowshedNumber;
     @Column(name = "BIRTH_DATE")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
     @Column(name = "JOIN_DATE")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date joinDate;
     @Column(name = "LEAVE_DATE")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date leaveDate;
     @Column(name = "LEVA_REASON")
     private String leaveReason;
@@ -109,24 +111,27 @@ public class Cattle {
         this.cowshedNumber = cowshedNumber;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public String getBirthDate() {
+        DateFormat outputFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        return outputFormatter.format(birthDate);
     }
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Date getJoinDate() {
-        return joinDate;
+    public String getJoinDate() {
+        DateFormat outputFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        return outputFormatter.format(joinDate);
     }
 
     public void setJoinDate(Date joinDate) {
         this.joinDate = joinDate;
     }
 
-    public Date getLeaveDate() {
-        return leaveDate;
+    public String getLeaveDate() {
+        DateFormat outputFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        return outputFormatter.format(leaveDate);
     }
 
     public void setLeaveDate(Date leaveDate) {

@@ -22,6 +22,7 @@ import models.Team;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -213,7 +214,7 @@ public class ListWindowController implements Initializable {
     }
 
     @FXML
-    public void listCattlesActionListener(MouseEvent arg0) {
+    public void listCattlesActionListener(MouseEvent arg0) throws ParseException {
         Cattle cattle = HCattle.findByEarring(earring.getCellObservableValue(listCattles.getSelectionModel().getFocusedIndex()).getValue());
         infocon.setCattleInfo(cattle);
         if (arg0.getClickCount() == 2) {

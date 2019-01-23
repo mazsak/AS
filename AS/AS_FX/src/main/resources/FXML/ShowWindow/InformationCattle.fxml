@@ -71,21 +71,33 @@
                   <Font size="18.0" />
                </font>
             </Label>
+             <ComboBox fx:id="sexCattleBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    GridPane.columnIndex="1" GridPane.rowIndex="4" visible="false">
+             </ComboBox>
             <Label fx:id="birthDateCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="6">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
+             <DatePicker fx:id="birthDateCattleDate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                         GridPane.columnIndex="6" visible="false">
+             </DatePicker>
             <Label fx:id="joinDateCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
+             <DatePicker fx:id="joinDateCattleDate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                         GridPane.columnIndex="6" GridPane.rowIndex="2" visible="false">
+             </DatePicker>
             <Label fx:id="leaveDateCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="6" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
+             <DatePicker fx:id="leaveDateCattleDate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                         GridPane.columnIndex="6" GridPane.rowIndex="4" visible="false">
+             </DatePicker>
              <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Powód ubycia"
                     GridPane.columnIndex="5" GridPane.rowIndex="6">
                <font>

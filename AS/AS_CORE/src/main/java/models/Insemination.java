@@ -6,6 +6,8 @@
 package models;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,7 +23,7 @@ public class Insemination {
     @Column(name = "ID_INSEMINATION", nullable = false)
     private Integer idInsemination;
     @Column(name = "INSEMINATION_DATE")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date inseminationDate;
     @Column(name = "RESULT")
     private String result;
@@ -49,8 +51,9 @@ public class Insemination {
         this.idInsemination = idInsemination;
     }
 
-    public Date getInseminationDate() {
-        return inseminationDate;
+    public String getInseminationDate() {
+        DateFormat outputFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        return outputFormatter.format(inseminationDate);
     }
 
     public void setInseminationDate(Date inseminationDate) {

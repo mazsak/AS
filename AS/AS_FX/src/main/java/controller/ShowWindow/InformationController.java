@@ -16,6 +16,13 @@ import models.Cattle;
 import models.Insemination;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -128,6 +135,18 @@ public class InformationController implements Initializable {
     private TextField cowshedNumberCattleText;
 
     @FXML
+    private ComboBox<String> sexCattleBox;
+
+    @FXML
+    private DatePicker birthDateCattleDate;
+
+    @FXML
+    private DatePicker joinDateCattleDate;
+
+    @FXML
+    private DatePicker leaveDateCattleDate;
+
+    @FXML
     void addCalvingActionListener(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddWindow.fxml"));
 
@@ -205,17 +224,60 @@ public class InformationController implements Initializable {
 
     @FXML
     void editBirthDateCattleActionListener(ActionEvent event) {
-
+        if(birthDateCattle.isVisible()){
+            birthDateCattle.setVisible(false);
+            birthDateCattleDate.setVisible(true);
+            birthDateCattleDate.setValue(LocalDate.parse(birthDateCattle.getText()));
+        }else{
+            if(!birthDateCattleDate.getValue().toString().equals(birthDateCattle.getText())) {
+                Cattle cattle = HCattle.findByEarring(earringCattle.getText());
+                cattle.setBirthDate(java.sql.Date.valueOf(birthDateCattleDate.getValue()));
+                HCattle.update(cattle);
+                birthDateCattle.setText(birthDateCattleDate.getValue().toString());
+            }
+            birthDateCattleDate.setVisible(false);
+            birthDateCattle.setVisible(true);
+        }
     }
 
     @FXML
     void editJoinDateCattleActionListener(ActionEvent event) {
-
+        if(joinDateCattle.isVisible()){
+            joinDateCattle.setVisible(false);
+            joinDateCattleDate.setVisible(true);
+            joinDateCattleDate.setValue(LocalDate.parse(joinDateCattle.getText()));
+        }else{
+            if(!joinDateCattleDate.getValue().toString().equals(joinDateCattle.getText())) {
+                Cattle cattle = HCattle.findByEarring(earringCattle.getText());
+                cattle.setJoinDate(java.sql.Date.valueOf(joinDateCattleDate.getValue()));
+                HCattle.update(cattle);
+                joinDateCattle.setText(joinDateCattleDate.getValue().toString());
+            }
+            joinDateCattleDate.setVisible(false);
+            joinDateCattle.setVisible(true);
+        }
     }
 
     @FXML
     void editLeaveDateCattleActionListener(ActionEvent event) {
-
+        if(leaveDateCattle.isVisible()){
+            leaveDateCattle.setVisible(false);
+            leaveDateCattleDate.setVisible(true);
+            if(leaveDateCattle.getText().equals("-")){
+                leaveDateCattleDate.setValue(LocalDate.now());
+            }else{
+                leaveDateCattleDate.setValue(LocalDate.parse(leaveDateCattle.getText()));
+            }
+        }else{
+            if(!leaveDateCattleDate.getValue().toString().equals(leaveDateCattle.getText())) {
+                Cattle cattle = HCattle.findByEarring(earringCattle.getText());
+                cattle.setLeaveDate(java.sql.Date.valueOf(leaveDateCattleDate.getValue()));
+                HCattle.update(cattle);
+                leaveDateCattle.setText(leaveDateCattleDate.getValue().toString());
+            }
+            leaveDateCattleDate.setVisible(false);
+            leaveDateCattle.setVisible(true);
+        }
     }
 
     @FXML
@@ -274,7 +336,23 @@ public class InformationController implements Initializable {
 
     @FXML
     void editSexCattleActionListener(ActionEvent event) {
-
+        if(sexCattle.isVisible()){
+            sexCattle.setVisible(false);
+            sexCattleBox.setVisible(true);
+            ObservableList<String> sexes = FXCollections.observableArrayList();
+            sexes.addAll("XX", "YY");
+            sexCattleBox.setItems(sexes);
+            sexCattleBox.getSelectionModel().select(sexCattle.getText());
+        }else{
+            if(!sexCattleBox.getSelectionModel().getSelectedItem().equals(sexCattle.getText())){
+                Cattle cattle = HCattle.findByEarring(earringCattle.getText());
+                cattle.setSex(sexCattleBox.getSelectionModel().getSelectedItem());
+                HCattle.update(cattle);
+                sexCattle.setText(sexCattleBox.getSelectionModel().getSelectedItem());
+            }
+            sexCattleBox.setVisible(false);
+            sexCattle.setVisible(true);
+        }
     }
 
     @FXML
@@ -290,7 +368,6 @@ public class InformationController implements Initializable {
                 cattle.setLevaReason(leaveReasonCattleText.getText());
                 HCattle.update(cattle);
                 leaveReasonCattle.setText(leaveReasonCattleText.getText());
-                System.out.println(leaveReasonCattleText.getText());
             }
             leaveReasonCattleText.setVisible(false);
             leaveReasonCattle.setVisible(true);
@@ -302,17 +379,22 @@ public class InformationController implements Initializable {
 
     }
 
-    public void setCattleInfo(Cattle cattle) {
+    public void setCattleInfo(Cattle cattle) throws ParseException {
 
-        birthDateCattle.setText(cattle.getBirthDate().toString());
+        birthDateCattle.setText(cattle.getBirthDate());
         nameCattle.setText(cattle.getName());
-        joinDateCattle.setText(cattle.getJoinDate().toString());
-        if (cattle.getLeaveDate() != null) {
-            leaveDateCattle.setText(cattle.getLeaveDate().toString());
-            leaveReasonCattle.setText(cattle.getLevaReason());
-        } else {
+        joinDateCattle.setText(cattle.getJoinDate());
+        if (cattle.getLeaveDate().equals(java.sql.Date.valueOf(LocalDate.of(1901, Month.FEBRUARY, 28)).toString())){
             leaveDateCattle.setText("-");
+        }
+        else {
+            leaveDateCattle.setText(cattle.getLeaveDate());
+        }
+        if (cattle.getLevaReason().equals("XD1337")){
             leaveReasonCattle.setText("-");
+        }
+        else {
+            leaveReasonCattle.setText(cattle.getLevaReason());
         }
         earringCattle.setText(cattle.getEarring());
         if(cattle.getCowshedNumber()!=null){
