@@ -312,6 +312,14 @@ public class Cattle {
         treatmentList.add(treatment);
     }
 
+    public void addStatsDaily(StatsDaily statsDaily) {
+        statsDailyList.add(statsDaily);
+    }
+
+    public void addStatsMonthly(StatsMonthly statsMonthly) {
+        statsMonthlyList.add(statsMonthly);
+    }
+
     @Override
     public String toString() {
         return "Cattle[ idCattle=" + idCattle + " ]";

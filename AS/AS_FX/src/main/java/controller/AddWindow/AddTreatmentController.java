@@ -1,26 +1,20 @@
 package controller.AddWindow;
 
 import controller.Main.MainController;
-import hibernate.HCowshed;
-import hibernate.HTeam;
+import hibernate.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import hibernate.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import models.Cattle;
-import models.Cowshed;
-import models.Team;
-import models.Medicine;
-import models.Treatment;
+import models.*;
 
 import java.net.URL;
-import java.util.List;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddTreatmentController implements Initializable {
@@ -96,11 +90,23 @@ public class AddTreatmentController implements Initializable {
                     HTreatment.update(treatment);
                 }
             }
+
+            cowshed.getSelectionModel().clearSelection();
+            group.getSelectionModel().clearSelection();
+            cattle.getSelectionModel().clearSelection();
+            disease.clear();
+            startDate.getEditor().clear();
+            endDate.getEditor().clear();
+            note.clear();
+            medicine.getSelectionModel().clearSelection();
+            listMedicine.getItems().clear();
         }
     }
 
     @FXML
     void cowshedCheckedActionListener(ActionEvent event) {
+        cattle.getItems().clear();
+
         ObservableList<String> teams = FXCollections.observableArrayList();
         groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem(), "EAT");
         for (int i = 0; i < groups.size(); i++) {
@@ -112,7 +118,6 @@ public class AddTreatmentController implements Initializable {
     @FXML
     void groupCheckedActionListener(ActionEvent event) {
         ObservableList<String> cattles = FXCollections.observableArrayList();
-
         for (int i = 0; i < groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().size(); i++) {
             cattles.add(groups.get(group.getSelectionModel().getSelectedIndex()).getCattleList().get(i).getEarring());
         }

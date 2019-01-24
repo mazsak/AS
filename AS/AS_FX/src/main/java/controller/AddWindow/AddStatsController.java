@@ -1,7 +1,9 @@
 package controller.AddWindow;
 
 import controller.Main.MainController;
+import hibernate.HCattle;
 import hibernate.HCowshed;
+import hibernate.HStats;
 import hibernate.HTeam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,9 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import models.Cattle;
-import models.Cowshed;
-import models.Team;
+import models.*;
 
 import java.net.URL;
 import java.util.List;
@@ -66,21 +66,61 @@ public class AddStatsController implements Initializable {
 
     @FXML
     void addStatsDailyActionListener(ActionEvent event) {
+        if (!cattleDaily.getSelectionModel().isEmpty() && !milkAmount.getText().isEmpty() && milkingDate.getValue() != null && !milkingTime.getSelectionModel().isEmpty()) {
+            StatsDaily statsDaily = new StatsDaily();
+            statsDaily.setMilkAmount(Integer.parseInt(milkAmount.getText()));
+            statsDaily.setMilkingDate(java.sql.Date.valueOf(milkingDate.getValue()));
+            statsDaily.setMilkingTime(milkingTime.getSelectionModel().getSelectedItem());
 
+            groups.get(groupDaily.getSelectionModel().getSelectedIndex())
+                    .getCattleList().get(cattleDaily.getSelectionModel().getSelectedIndex()).addStatsDaily(statsDaily);
+            statsDaily.setIdCattle(groups.get(groupDaily.getSelectionModel().getSelectedIndex())
+                    .getCattleList().get(cattleDaily.getSelectionModel().getSelectedIndex()));
+
+            HStats.saveDaily(statsDaily);
+            HCattle.update(groups.get(groupDaily.getSelectionModel().getSelectedIndex())
+                    .getCattleList().get(cattleDaily.getSelectionModel().getSelectedIndex()));
+
+            milkAmount.clear();
+            milkingDate.getEditor().clear();
+            cowshedDaily.getSelectionModel().clearSelection();
+            groupDaily.getItems().clear();
+            cattleDaily.getItems().clear();
+            milkingTime.getSelectionModel().clearSelection();
+        }
     }
 
     @FXML
     void addStatsMonthlyActionListener(ActionEvent event) {
+        if (!cattleMonthly.getSelectionModel().isEmpty() && !proteinContent.getText().isEmpty() && date.getValue() != null && !fatContent.getText().isEmpty() && !bacteriaContent.getText().isEmpty()) {
+            StatsMonthly statsMonthly = new StatsMonthly();
+            statsMonthly.setBacteriaContent(Integer.parseInt(bacteriaContent.getText()));
+            statsMonthly.setFatContent(Double.parseDouble(fatContent.getText()));
+            statsMonthly.setProteinContent(Double.parseDouble(proteinContent.getText()));
+            statsMonthly.setTestDate(java.sql.Date.valueOf(date.getValue()));
 
-    }
+            groups.get(groupMonthly.getSelectionModel().getSelectedIndex())
+                    .getCattleList().get(cattleMonthly.getSelectionModel().getSelectedIndex()).addStatsMonthly(statsMonthly);
+            statsMonthly.setIdCattle(groups.get(groupMonthly.getSelectionModel().getSelectedIndex())
+                    .getCattleList().get(cattleMonthly.getSelectionModel().getSelectedIndex()));
 
-    @FXML
-    void cattleDailyCheckedActionListener(ActionEvent event) {
+            HStats.saveMonthly(statsMonthly);
+            HCattle.update(groups.get(groupMonthly.getSelectionModel().getSelectedIndex())
+                    .getCattleList().get(cattleMonthly.getSelectionModel().getSelectedIndex()));
 
+            bacteriaContent.clear();
+            date.getEditor().clear();
+            cowshedMonthly.getSelectionModel().clearSelection();
+            groupMonthly.getItems().clear();
+            cattleMonthly.getItems().clear();
+            fatContent.clear();
+            proteinContent.clear();
+        }
     }
 
     @FXML
     void cowshedDailyCheckedActionListener(ActionEvent event) {
+        cattleDaily.getItems().clear();
         ObservableList<String> teams = FXCollections.observableArrayList();
         groups = HTeam.getByCowshedName(cowshedDaily.getSelectionModel().getSelectedItem(), "EAT");
         for (int i = 0; i < groups.size(); i++) {
@@ -91,6 +131,7 @@ public class AddStatsController implements Initializable {
 
     @FXML
     void cowshedMonthlyCheckedActionListener(ActionEvent event) {
+        cattleMonthly.getItems().clear();
         ObservableList<String> teams = FXCollections.observableArrayList();
         groups = HTeam.getByCowshedName(cowshedMonthly.getSelectionModel().getSelectedItem(), "EAT");
         for (int i = 0; i < groups.size(); i++) {
@@ -102,7 +143,6 @@ public class AddStatsController implements Initializable {
     @FXML
     void groupDailyCheckedActionListener(ActionEvent event) {
         ObservableList<String> cattles = FXCollections.observableArrayList();
-
         for (int i = 0; i < groups.get(groupDaily.getSelectionModel().getSelectedIndex()).getCattleList().size(); i++) {
             cattles.add(groups.get(groupDaily.getSelectionModel().getSelectedIndex()).getCattleList().get(i).getEarring());
         }
