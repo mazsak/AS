@@ -29,6 +29,8 @@ public class HTreatment {
 
     public static void delete(Treatment treatment) {
         em.getTransaction().begin();
+        HMedicine.deleteConnection(treatment.getMedsUsedList(), treatment);
+        em.merge(treatment);
         em.remove(treatment);
         em.getTransaction().commit();
     }
