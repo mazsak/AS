@@ -30,6 +30,18 @@ public class HMedicine {
         return false;
     }
 
+    public static Medicine searchByNameResult(String nameMedicine){
+        em.getTransaction().begin();
+        Medicine medicine= null;
+        try {
+            medicine = em.createQuery("from Medicine where name = :n", Medicine.class).setParameter("n", nameMedicine).getSingleResult();
+            em.getTransaction().commit();
+        }catch(NoResultException nre){
+            em.getTransaction().commit();
+        }
+        return medicine;
+    }
+
     public static void save(Medicine medicine){
         em.getTransaction().begin();
         em.persist(medicine);

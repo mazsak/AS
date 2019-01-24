@@ -1,9 +1,6 @@
 package controller.ShowWindow;
 
-import hibernate.HCattle;
-import hibernate.HCowshed;
-import hibernate.HMedicine;
-import hibernate.HTeam;
+import hibernate.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,10 +16,7 @@ import models.Medicine;
 import models.Team;
 
 import java.net.URL;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ListWindowTreatmentController implements Initializable {
 
@@ -62,7 +56,7 @@ public class ListWindowTreatmentController implements Initializable {
     private DatePicker medicineGivenDate;
 
     @FXML
-    private ComboBox<Medicine> medicineGiven;
+    private ComboBox<String> medicineGiven;
 
     @FXML
     void cowshedActionListener(MouseEvent event) {
@@ -111,7 +105,19 @@ public class ListWindowTreatmentController implements Initializable {
 
     @FXML
     void saveChangeActionListener(ActionEvent event) {
-
+        //TODO to jest inaczej
+        if(medicineGivenDate.getValue()!=null && !medicineGiven.getValue().isEmpty()){
+            for (int i = 0; i < listCattles.getItems().size(); i++) {
+                if(listCattles.getItems().get(i).getSelect().isSelected()){
+                    for (int j = 0; j < listCattles.getItems().get(i).getTreatmentList().size(); j++) {
+                        listCattles.getItems().get(i).getTreatmentList().get(j).addMedicine(HMedicine.searchByNameResult(medicineGiven.getSelectionModel().getSelectedItem()));
+                        HTreatment.update(listCattles.getItems().get(i).getTreatmentList().get(j));
+                        medicineGiven.getSelectionModel().clearSelection();
+                        medicineGivenDate.getEditor().clear();
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -233,8 +239,10 @@ public class ListWindowTreatmentController implements Initializable {
         listCattles.setItems(cattles);
 
         List<Medicine> csh2 = HMedicine.read();
-        ObservableList<Medicine> cowsheds2 = FXCollections.observableArrayList();
-        cowsheds2.addAll(csh2);
+        ObservableList<String> cowsheds2 = FXCollections.observableArrayList();
+        for (int i = 0; i < csh2.size(); i++) {
+            cowsheds2.add(csh2.get(i).getName());
+        }
         medicineGiven.setItems(cowsheds2);
     }
 }

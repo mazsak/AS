@@ -93,6 +93,16 @@ public class Treatment {
         this.medicines = medsUsedList;
     }
 
+    public String getMedicines() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i<medicines.size(); i++){
+            sb.append(medicines.get(i).getName());
+            sb.append(" ");
+        }
+        String result = sb.toString();
+        return result;
+    }
+
     public void addMedicine(Medicine medicine) {
         medicines.add(medicine);
     }
