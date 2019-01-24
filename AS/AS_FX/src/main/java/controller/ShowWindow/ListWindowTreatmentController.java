@@ -2,6 +2,7 @@ package controller.ShowWindow;
 
 import hibernate.HCattle;
 import hibernate.HCowshed;
+import hibernate.HMedicine;
 import hibernate.HTeam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +38,7 @@ public class ListWindowTreatmentController implements Initializable {
     private TableView<Cattle> listCattles;
 
     @FXML
-    private TableColumn<Cattle, Integer> number;
+    private TableColumn<Cattle, CheckBox> number;
 
     @FXML
     private TableColumn<Cattle, String> earring;
@@ -61,7 +62,7 @@ public class ListWindowTreatmentController implements Initializable {
     private DatePicker medicineGivenDate;
 
     @FXML
-    private ComboBox<?> medicineGiven;
+    private ComboBox<Medicine> medicineGiven;
 
     @FXML
     void cowshedActionListener(MouseEvent event) {
@@ -220,13 +221,20 @@ public class ListWindowTreatmentController implements Initializable {
         ObservableList<Cattle> cattles = FXCollections.observableArrayList();
         cattles.addAll(ctl);
 
-        number.setCellValueFactory(new PropertyValueFactory<Cattle, Integer>("idCattle"));
+        //number.setCellValueFactory(new PropertyValueFactory<Cattle, Integer>("idCattle"));
         earring.setCellValueFactory(new PropertyValueFactory<Cattle, String>("earring"));
         cowshedNumber.setCellValueFactory(new PropertyValueFactory<Cattle, Integer>("cowshedNumber"));
         cowshed.setCellValueFactory(new PropertyValueFactory<Cattle, String>("cowshed"));
         team.setCellValueFactory(new PropertyValueFactory<Cattle, String>("teamSICK"));
         birthDate.setCellValueFactory(new PropertyValueFactory<Cattle, Date>("birthDate"));
         medicineGivenColumn.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
+        number.setCellValueFactory(new PropertyValueFactory<Cattle, CheckBox>("Select"));
+
         listCattles.setItems(cattles);
+
+        List<Medicine> csh2 = HMedicine.read();
+        ObservableList<Medicine> cowsheds2 = FXCollections.observableArrayList();
+        cowsheds2.addAll(csh2);
+        medicineGiven.setItems(cowsheds2);
     }
 }

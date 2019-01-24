@@ -7,6 +7,7 @@ package models;
 
 import hibernate.HCattle;
 import hibernate.HTeam;
+import javafx.scene.control.CheckBox;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
@@ -63,8 +64,19 @@ public class Cattle {
     private List<Treatment> treatmentList = new ArrayList<>();
     @OneToMany(mappedBy = "idCattle")
     private List<StatsMonthly> statsMonthlyList = new ArrayList<>();
+    @Transient
+    private CheckBox select;
+
+    public CheckBox getSelect() {
+        return select;
+    }
+
+    public void setSelect(CheckBox select) {
+        this.select = select;
+    }
 
     public Cattle() {
+        this.select = new CheckBox();
     }
 
     public Cattle(Integer idCattle) {
