@@ -172,7 +172,7 @@ public class InformationController implements Initializable {
     private TableColumn<StatsDaily, Date> milkingDate;
 
     @FXML
-    private TableColumn<StatsDaily, Date> milkingTime;
+    private TableColumn<StatsDaily, String> milkingTime;
 
     @FXML
     private TableColumn<StatsDaily, String> milkAmount;
@@ -473,7 +473,35 @@ public class InformationController implements Initializable {
         noteCalving.setCellValueFactory(new PropertyValueFactory<Calving, String>("notes"));
         listCalving.setItems(calvings);
 
+        ObservableList<Treatment> treatments = FXCollections.observableArrayList();
+        treatments.addAll(cattle.getTreatmentList());
+
         numberTreatment.setCellValueFactory(new PropertyValueFactory<Treatment, Integer>("idTreatment"));
+        startDateTreatment.setCellValueFactory(new PropertyValueFactory<Treatment, Date>("startDate"));
+        endDateTreatment.setCellValueFactory(new PropertyValueFactory<Treatment, Date>("endDate"));
+        diseaseTreatment.setCellValueFactory(new PropertyValueFactory<Treatment, String>("disease"));
+        noteTreatment.setCellValueFactory(new PropertyValueFactory<Treatment, String>("note"));
+        medicineTreatment.setCellValueFactory(new PropertyValueFactory<Treatment, String>("medicines"));
+        listTreatment.setItems(treatments);
+
+        ObservableList<StatsDaily> statsDaily = FXCollections.observableArrayList();
+        statsDaily.addAll(cattle.getStatsDailyList());
+
+        numberStatsDaily.setCellValueFactory(new PropertyValueFactory<StatsDaily, Integer>("idDaily"));
+        milkingDate.setCellValueFactory(new PropertyValueFactory<StatsDaily, Date>("milkingDate"));
+        milkingTime.setCellValueFactory(new PropertyValueFactory<StatsDaily, String>("milkingTime"));
+        milkAmount.setCellValueFactory(new PropertyValueFactory<StatsDaily, String>("milkAmount"));
+        listStatsDaily.setItems(statsDaily);
+
+        ObservableList<StatsMonthly> statsMothly = FXCollections.observableArrayList();
+        statsMothly.addAll(cattle.getStatsMonthlyList());
+
+        numberStatsMonthly.setCellValueFactory(new PropertyValueFactory<StatsMonthly, Integer>("idMonthly"));
+        fatStatsMonthly.setCellValueFactory(new PropertyValueFactory<StatsMonthly, String>("fatContent"));
+        proteinStatsMonthly.setCellValueFactory(new PropertyValueFactory<StatsMonthly, String>("proteinContent"));
+        bacteriaStatsMonthly.setCellValueFactory(new PropertyValueFactory<StatsMonthly, String>("bacteriaContent"));
+        dateStatsMonthly.setCellValueFactory(new PropertyValueFactory<StatsMonthly, Date>("testDate"));
+        listStatsMonthly.setItems(statsMothly);
     }
 
 

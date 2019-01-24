@@ -26,8 +26,7 @@ public class StatsDaily {
     @Temporal(TemporalType.DATE)
     private Date milkingDate;
     @Column(name = "MILKING_TIME")
-    @Temporal(TemporalType.TIME)
-    private Date milkingTime;
+    private String milkingTime;
     @JoinColumn(name = "ID_CATTLE", referencedColumnName = "ID_CATTLE")
     @ManyToOne
     private Cattle idCattle;
@@ -63,11 +62,11 @@ public class StatsDaily {
         this.milkingDate = milkingDate;
     }
 
-    public Date getMilkingTime() {
+    public String getMilkingTime() {
         return milkingTime;
     }
 
-    public void setMilkingTime(Date milkingTime) {
+    public void setMilkingTime(String milkingTime) {
         this.milkingTime = milkingTime;
     }
 
