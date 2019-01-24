@@ -93,6 +93,10 @@ public class Treatment {
         this.medicines = medsUsedList;
     }
 
+    public void addMedicine(Medicine medicine) {
+        medicines.add(medicine);
+    }
+
     public Cattle getIdCattle() {
         return idCattle;
     }

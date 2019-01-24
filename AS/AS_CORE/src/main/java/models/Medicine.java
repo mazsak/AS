@@ -6,6 +6,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class Medicine {
             @JoinColumn(name = "ID_MEDICINE", referencedColumnName = "ID_MEDICINE")}, inverseJoinColumns = {
             @JoinColumn(name = "ID_TREATMENT", referencedColumnName = "ID_TREATMENT")})
     @ManyToMany
-    private List<Treatment> treatments;
+    private List<Treatment> treatments = new ArrayList<>();
 
     public Medicine() {
     }
@@ -57,6 +58,10 @@ public class Medicine {
 
     public void setTreatments(List<Treatment> treatments) {
         this.treatments = treatments;
+    }
+
+    public void addTreatment(Treatment treatment) {
+        treatments.add(treatment);
     }
 
     @Override

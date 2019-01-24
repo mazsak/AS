@@ -308,6 +308,10 @@ public class Cattle {
         this.statsMonthlyList = statsMonthlyList;
     }
 
+    public void addTreatmentList(Treatment treatment) {
+        treatmentList.add(treatment);
+    }
+
     @Override
     public String toString() {
         return "Cattle[ idCattle=" + idCattle + " ]";
