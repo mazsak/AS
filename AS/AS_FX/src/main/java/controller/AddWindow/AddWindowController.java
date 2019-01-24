@@ -83,6 +83,10 @@ public class AddWindowController implements Initializable{
     void addTreatmentActionListener(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddTreatment.fxml"));
         showWindow(loader);
+        if (chosenCattle != null) {
+            AddTreatmentController acc = loader.getController();
+            acc.setChosenCattle(chosenCattle);
+        }
     }
 
     @FXML
@@ -93,6 +97,10 @@ public class AddWindowController implements Initializable{
             addStats = loader.load();
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (chosenCattle != null) {
+            AddStatsController acc = loader.getController();
+            acc.setChosenCattle(chosenCattle);
         }
 
         addWindow.setContent(addStats);

@@ -1,5 +1,6 @@
 package controller.ShowWindow;
 
+import controller.AddWindow.AddStatsController;
 import controller.AddWindow.AddWindowController;
 import controller.Main.MainController;
 import hibernate.HCattle;
@@ -13,9 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import models.Calving;
-import models.Cattle;
-import models.Insemination;
+import javafx.scene.layout.GridPane;
+import models.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -142,58 +142,58 @@ public class InformationController implements Initializable {
     private DatePicker leaveDateCattleDate;
 
     @FXML
-    private TableView<?> listTreatment;
+    private TableView<Treatment> listTreatment;
 
     @FXML
-    private TableColumn<?, ?> numberTreatment;
+    private TableColumn<Treatment, Integer> numberTreatment;
 
     @FXML
-    private TableColumn<?, ?> startDateTreatment;
+    private TableColumn<Treatment, Date> startDateTreatment;
 
     @FXML
-    private TableColumn<?, ?> endDateTreatment;
+    private TableColumn<Treatment, Date> endDateTreatment;
 
     @FXML
-    private TableColumn<?, ?> diseaseTreatment;
+    private TableColumn<Treatment, String> diseaseTreatment;
 
     @FXML
-    private TableColumn<?, ?> medicineTreatment;
+    private TableColumn<Treatment, String> medicineTreatment;
 
     @FXML
-    private TableColumn<?, ?> noteTreatment;
+    private TableColumn<Treatment, String> noteTreatment;
 
     @FXML
-    private TableView<?> listStatsDaily;
+    private TableView<StatsDaily> listStatsDaily;
 
     @FXML
-    private TableColumn<?, ?> numberStatsDaily;
+    private TableColumn<StatsDaily, Integer> numberStatsDaily;
 
     @FXML
-    private TableColumn<?, ?> milkingDate;
+    private TableColumn<StatsDaily, Date> milkingDate;
 
     @FXML
-    private TableColumn<?, ?> milkingTime;
+    private TableColumn<StatsDaily, Date> milkingTime;
 
     @FXML
-    private TableColumn<?, ?> milkAmount;
+    private TableColumn<StatsDaily, String> milkAmount;
 
     @FXML
-    private TableView<?> listStatsMonthly;
+    private TableView<StatsMonthly> listStatsMonthly;
 
     @FXML
-    private TableColumn<?, ?> numberStatsMonthly;
+    private TableColumn<StatsMonthly, Integer> numberStatsMonthly;
 
     @FXML
-    private TableColumn<?, ?> dateStatsMonthly;
+    private TableColumn<StatsMonthly, Date> dateStatsMonthly;
 
     @FXML
-    private TableColumn<?, ?> proteinStatsMonthly;
+    private TableColumn<StatsMonthly, String> proteinStatsMonthly;
 
     @FXML
-    private TableColumn<?, ?> fatStatsMonthly;
+    private TableColumn<StatsMonthly, String> fatStatsMonthly;
 
     @FXML
-    private TableColumn<?, ?> bacteriaStatsMonthly;
+    private TableColumn<StatsMonthly, String> bacteriaStatsMonthly;
 
     @FXML
     void addCalvingActionListener(ActionEvent event) {
@@ -472,21 +472,52 @@ public class InformationController implements Initializable {
         calfCalving.setCellValueFactory(new PropertyValueFactory<Calving, String>("calf"));
         noteCalving.setCellValueFactory(new PropertyValueFactory<Calving, String>("notes"));
         listCalving.setItems(calvings);
+
+        numberTreatment.setCellValueFactory(new PropertyValueFactory<Treatment, Integer>("idTreatment"));
     }
 
 
     @FXML
     void addStatsActionListener(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddWindow.fxml"));
 
+        BorderPane addWindow = null;
+
+        try {
+            addWindow = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        AddWindowController awc = loader.getController();
+        if(!earringCattle.getText().equals("Nie wybrano krowy")){
+            awc.setChosenCattle(HCattle.findByEarring(earringCattle.getText()));
+        }
+        awc.setChosen(6);
+
+        parentController.getMc().getMainWindow().setCenter(addWindow);
     }
 
     @FXML
     void addTreatmentActionListener(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddWindow.fxml"));
 
+        BorderPane addWindow = null;
+
+        try {
+            addWindow = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        AddWindowController awc = loader.getController();
+        if(!earringCattle.getText().equals("Nie wybrano krowy")){
+            awc.setChosenCattle(HCattle.findByEarring(earringCattle.getText()));
+        }
+        awc.setChosen(5);
+
+        parentController.getMc().getMainWindow().setCenter(addWindow);
     }
-
-
-
     
     public void setParentController(ListWindowController parentController) {
         this.parentController = parentController;
