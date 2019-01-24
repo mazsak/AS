@@ -44,8 +44,13 @@ public class HTeam {
     }
 
     public static void delete(Team team) {
+        int i = 0;
+        while (i < team.getCattleList().size()) {
+            HCattle.delete(team.getCattleList().get(i));
+        }
+
         em.getTransaction().begin();
-        em.remove(team);
+        em.remove(em.contains(team) ? team : em.merge(team));
         em.getTransaction().commit();
     }
 

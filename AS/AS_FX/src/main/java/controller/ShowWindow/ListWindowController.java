@@ -1,5 +1,6 @@
 package controller.ShowWindow;
 
+import controller.AddWindow.AddWindowController;
 import controller.Main.MainController;
 import hibernate.HCattle;
 import hibernate.HCowshed;
@@ -84,7 +85,21 @@ public class ListWindowController implements Initializable {
         addCattle.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //TODO dodawnaie do tej grupy zwierzecia
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddWindow.fxml"));
+
+                BorderPane addWindow = null;
+
+                try {
+                    addWindow = loader.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                AddWindowController awc = loader.getController();
+                awc.setChosenTeam(HTeam.getByName(listTeam.getSelectionModel().getSelectedItem()));
+                awc.setChosen(2);
+
+                mc.getMainWindow().setCenter(addWindow);
             }
         });
         contextMenuGroup.getItems().add(addCattle);
@@ -92,7 +107,25 @@ public class ListWindowController implements Initializable {
         deleteAllCattleGroup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //TODO usuniecie wszystkiech z grupy
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText(null);
+                alert.setGraphic(null);
+                alert.setTitle("Potwierdzenie usunięcia");
+                alert.setContentText("Czy usunąć wszystkie zwierzęta z grupy \"" + listTeam.getSelectionModel().getSelectedItem() + "\"?");
+                ButtonType buttonTak = new ButtonType("Tak");
+                ButtonType buttonNie = new ButtonType("Nie");
+
+                alert.getButtonTypes().setAll(buttonTak, buttonNie);
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == buttonTak) {
+                    Team team = HTeam.getByName(listTeam.getSelectionModel().getSelectedItem());
+                    int i = 0;
+                    while (i < team.getCattleList().size()) {
+                        HCattle.delete(team.getCattleList().get(i));
+                    }
+                    listCattles.getItems().clear();
+                }
             }
         });
         contextMenuGroup.getItems().add(deleteAllCattleGroup);
@@ -103,10 +136,23 @@ public class ListWindowController implements Initializable {
                 for (Team team : groups) {
                     if (team.getName().equals(listTeam.getSelectionModel().getSelectedItem())) {
                         if (team.getCattleList().isEmpty()) {
-                            groups.remove(team);
-                            HTeam.delete(team);
-                            listTeam.getItems().remove(listTeam.getSelectionModel().getSelectedItem());
-                            return;
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setHeaderText(null);
+                            alert.setGraphic(null);
+                            alert.setTitle("Potwierdzenie usunięcia");
+                            alert.setContentText("Czy usunąć grupę \"" + listTeam.getSelectionModel().getSelectedItem() + "\"?");
+                            ButtonType buttonTak = new ButtonType("Tak");
+                            ButtonType buttonNie = new ButtonType("Nie");
+
+                            alert.getButtonTypes().setAll(buttonTak, buttonNie);
+
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == buttonTak) {
+                                groups.remove(team);
+                                HTeam.delete(team);
+                                listTeam.getItems().remove(listTeam.getSelectionModel().getSelectedItem());
+                                return;
+                            }
                         } else {
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setHeaderText(null);
@@ -132,7 +178,21 @@ public class ListWindowController implements Initializable {
         addGroup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //TODO dodawnaie do tej obory grupy
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddWindow.fxml"));
+
+                BorderPane addWindow = null;
+
+                try {
+                    addWindow = loader.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                AddWindowController awc = loader.getController();
+                awc.setChosenCowshed(HCowshed.findByName(listCowshed.getSelectionModel().getSelectedItem()));
+                awc.setChosen(1);
+
+                mc.getMainWindow().setCenter(addWindow);
             }
         });
         contextMenuCowshed.getItems().add(addGroup);
@@ -140,7 +200,11 @@ public class ListWindowController implements Initializable {
         deleteAllGroupCowshed.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //TODO usuniecie wszystkiech grupy
+                Cowshed cowshed = HCowshed.findByName(listCowshed.getSelectionModel().getSelectedItem());
+                int i = 0;
+                while (i < cowshed.getTeamList().size()) {
+                    HTeam.delete(cowshed.getTeamList().get(i));
+                }
             }
         });
         contextMenuCowshed.getItems().add(deleteAllGroupCowshed);

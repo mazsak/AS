@@ -28,7 +28,8 @@ public class Cowshed {
     private String name;
     @Column(name = "INFO")
     private String info;
-    @OneToMany(mappedBy = "idCowshed")
+    @OneToMany(mappedBy = "idCowshed", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+
     private List<Team> teamList;
 
     public Cowshed() {

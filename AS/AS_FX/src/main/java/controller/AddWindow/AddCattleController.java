@@ -17,7 +17,6 @@ import models.Cowshed;
 import models.Team;
 
 import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
@@ -26,6 +25,7 @@ import java.util.ResourceBundle;
 public class AddCattleController implements Initializable {
 
     private List<Team> groups;
+    private Team chosenTeam;
 
     @FXML
     private TextField earring;
@@ -85,9 +85,6 @@ public class AddCattleController implements Initializable {
             //leave date
             if (leaveDate.getValue() == null) {
                 LocalDate lc = LocalDate.of(1901, Month.FEBRUARY, 28);
-                LocalDate lc2 = lc.plusDays(1);
-                final long hours12 = 12L * 60L * 60L * 1000L;
-                Date date = new Date(1901,2,28);
                 cattle.setLeaveDate(java.sql.Date.valueOf(lc));
             } else {
                 cattle.setLeaveDate(java.sql.Date.valueOf(leaveDate.getValue()));
@@ -140,5 +137,23 @@ public class AddCattleController implements Initializable {
             groups2.add(groups.get(i).getName());
         }
         group.setItems(groups2);
+    }
+
+    public Team getChosenTeam() {
+        return chosenTeam;
+    }
+
+    public void setChosenTeam(Team chosenTeam) {
+        this.chosenTeam = chosenTeam;
+
+        cowshed.getSelectionModel().select(this.chosenTeam.getIdCowshed().getName());
+
+        groups = HTeam.getByCowshedName(cowshed.getSelectionModel().getSelectedItem(), "EAT");
+        ObservableList<String> groups2 = FXCollections.observableArrayList();
+        for (int i = 0; i < groups.size(); i++) {
+            groups2.add(groups.get(i).getName());
+        }
+        group.setItems(groups2);
+        group.getSelectionModel().select(chosenTeam.getName());
     }
 }

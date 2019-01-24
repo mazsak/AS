@@ -9,6 +9,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
 import models.Cattle;
+import models.Cowshed;
+import models.Team;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,6 +22,8 @@ public class AddWindowController implements Initializable{
 
     private int chosen = 0;
     private Cattle chosenCattle;
+    private Team chosenTeam;
+    private Cowshed chosenCowshed;
     
     @FXML
     private ScrollPane addWindow;
@@ -51,12 +55,20 @@ public class AddWindowController implements Initializable{
     void addGroupActionListener(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddGroup.fxml"));
         showWindow(loader);
+        if (chosenCowshed != null) {
+            AddGroupController agc = loader.getController();
+            agc.setChoenCowshed(chosenCowshed);
+        }
     }
 
     @FXML
     void addCattleActionListener(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddCattle.fxml"));
         showWindow(loader);
+        if (chosenTeam != null) {
+            AddCattleController acc = loader.getController();
+            acc.setChosenTeam(chosenTeam);
+        }
     }
 
     @FXML
@@ -143,6 +155,22 @@ public class AddWindowController implements Initializable{
 
     public void setChosenCattle(Cattle chosenCattle) {
         this.chosenCattle = chosenCattle;
+    }
+
+    public Team getChosenTeam() {
+        return chosenTeam;
+    }
+
+    public void setChosenTeam(Team chosenTeam) {
+        this.chosenTeam = chosenTeam;
+    }
+
+    public Cowshed getChosenCowshed() {
+        return chosenCowshed;
+    }
+
+    public void setChosenCowshed(Cowshed chosenCowshed) {
+        this.chosenCowshed = chosenCowshed;
     }
 }
 

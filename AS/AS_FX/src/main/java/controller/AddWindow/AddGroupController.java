@@ -16,7 +16,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddGroupController implements Initializable {
-    
+
+    private Cowshed choenCowshed;
+
     @FXML
     private TextField name;
 
@@ -54,5 +56,15 @@ public class AddGroupController implements Initializable {
         }
 
         cowshed.setItems(cowsheds);
+    }
+
+    public Cowshed getChoenCowshed() {
+        return choenCowshed;
+    }
+
+    public void setChoenCowshed(Cowshed choenCowshed) {
+        this.choenCowshed = choenCowshed;
+
+        cowshed.getSelectionModel().select(choenCowshed.getName());
     }
 }
