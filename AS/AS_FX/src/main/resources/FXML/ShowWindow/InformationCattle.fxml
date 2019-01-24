@@ -20,7 +20,7 @@
                </font>
             </Label>
              <TextField fx:id="nameCattleText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                    GridPane.columnIndex="1" visible="false">
+                        visible="false" GridPane.columnIndex="1">
                  <font>
                      <Font size="18.0" />
                  </font>
@@ -59,8 +59,9 @@
                   <Font size="18.0" />
                </font>
             </Label>
-             <TextField fx:id="cowshedNumberCattleText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                    GridPane.columnIndex="1" GridPane.rowIndex="2" visible="false">
+             <TextField fx:id="cowshedNumberCattleText" maxHeight="1.7976931348623157E308"
+                        maxWidth="1.7976931348623157E308" visible="false" GridPane.columnIndex="1"
+                        GridPane.rowIndex="2">
                  <font>
                      <Font size="18.0" />
                  </font>
@@ -72,15 +73,15 @@
                </font>
             </Label>
              <ComboBox fx:id="sexCattleBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                    GridPane.columnIndex="1" GridPane.rowIndex="4" visible="false">
+                       visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
              </ComboBox>
             <Label fx:id="birthDateCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="6">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-             <DatePicker fx:id="birthDateCattleDate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                         GridPane.columnIndex="6" visible="false">
+             <DatePicker fx:id="birthDateCattleDate" maxHeight="1.7976931348623157E308"
+                         maxWidth="1.7976931348623157E308" visible="false" GridPane.columnIndex="6">
              </DatePicker>
             <Label fx:id="joinDateCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <font>
@@ -88,15 +89,16 @@
                </font>
             </Label>
              <DatePicker fx:id="joinDateCattleDate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                         GridPane.columnIndex="6" GridPane.rowIndex="2" visible="false">
+                         visible="false" GridPane.columnIndex="6" GridPane.rowIndex="2">
              </DatePicker>
             <Label fx:id="leaveDateCattle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="6" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-             <DatePicker fx:id="leaveDateCattleDate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                         GridPane.columnIndex="6" GridPane.rowIndex="4" visible="false">
+             <DatePicker fx:id="leaveDateCattleDate" maxHeight="1.7976931348623157E308"
+                         maxWidth="1.7976931348623157E308" visible="false" GridPane.columnIndex="6"
+                         GridPane.rowIndex="4">
              </DatePicker>
              <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Powód ubycia"
                     GridPane.columnIndex="5" GridPane.rowIndex="6">
@@ -109,8 +111,9 @@
                   <Font size="18.0" />
                </font>
             </Label>
-             <TextField fx:id="leaveReasonCattleText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        GridPane.columnIndex="6" GridPane.rowIndex="6" visible="false">
+             <TextField fx:id="leaveReasonCattleText" maxHeight="1.7976931348623157E308"
+                        maxWidth="1.7976931348623157E308" visible="false" GridPane.columnIndex="6"
+                        GridPane.rowIndex="6">
                  <font>
                      <Font size="18.0" />
                  </font>
@@ -191,6 +194,63 @@
                     </columns>
                   </TableView>
                </content>
+          </Tab>
+            <Tab text="Leczenie">
+                <content>
+                    <TableView fx:id="listTreatment" maxHeight="1.7976931348623157E308"
+                               maxWidth="1.7976931348623157E308">
+                        <columns>
+                            <TableColumn fx:id="numberTreatment" maxWidth="40.0" minWidth="40.0" prefWidth="40.0"
+                                         text="Nr."/>
+                            <TableColumn fx:id="startDateTreatment" maxWidth="1.7976931348623157E308" minWidth="200.0"
+                                         prefWidth="200.0" text="Data rozpoczęcia"/>
+                            <TableColumn fx:id="endDateTreatment" maxWidth="1.7976931348623157E308" minWidth="200.0"
+                                         prefWidth="200.0" text="Data zakończenia"/>
+                            <TableColumn fx:id="diseaseTreatment" maxWidth="1.7976931348623157E308" minWidth="200.0"
+                                         prefWidth="200.0" text="Choroba"/>
+                            <TableColumn fx:id="medicineTreatment" maxWidth="1.7976931348623157E308" minWidth="400.0"
+                                         prefWidth="400.0" text="Leki"/>
+                            <TableColumn fx:id="noteTreatment" maxWidth="1.7976931348623157E308" minWidth="320.0"
+                                         prefWidth="320.0" text="Opis"/>
+                        </columns>
+                    </TableView>
+                </content>
+            </Tab>
+            <Tab text="Statystyki dzienne">
+                <content>
+                    <TableView fx:id="listStatsDaily" maxHeight="1.7976931348623157E308"
+                               maxWidth="1.7976931348623157E308">
+                        <columns>
+                            <TableColumn fx:id="numberStatsDaily" maxWidth="40.0" minWidth="40.0" prefWidth="40.0"
+                                         text="Nr."/>
+                            <TableColumn fx:id="milkingDate" maxWidth="1.7976931348623157E308" minWidth="200.0"
+                                         prefWidth="200.0" text="Data"/>
+                            <TableColumn fx:id="milkingTime" maxWidth="1.7976931348623157E308" minWidth="200.0"
+                                         prefWidth="200.0" text="Pora"/>
+                            <TableColumn fx:id="milkAmount" maxWidth="1.7976931348623157E308" minWidth="200.0"
+                                         prefWidth="200.0" text="Ilość mleka"/>
+                        </columns>
+                    </TableView>
+                </content>
+            </Tab>
+            <Tab text="Statystyki miesięczne">
+                <content>
+                    <TableView fx:id="listStatsMonthly" maxHeight="1.7976931348623157E308"
+                               maxWidth="1.7976931348623157E308">
+                        <columns>
+                            <TableColumn fx:id="numberStatsMonthly" maxWidth="40.0" minWidth="40.0" prefWidth="40.0"
+                                         text="Nr."/>
+                            <TableColumn fx:id="dateStatsMonthly" maxWidth="1.7976931348623157E308" minWidth="200.0"
+                                         prefWidth="200.0" text="Data"/>
+                            <TableColumn fx:id="proteinStatsMonthly" maxWidth="1.7976931348623157E308" minWidth="300.0"
+                                         prefWidth="300.0" text="Białko"/>
+                            <TableColumn fx:id="fatStatsMonthly" maxWidth="1.7976931348623157E308" minWidth="300.0"
+                                         prefWidth="300.0" text="Tłuszcz"/>
+                            <TableColumn fx:id="bacteriaStatsMonthly" maxWidth="1.7976931348623157E308" minWidth="300.0"
+                                         prefWidth="300.0" text="Batkerie"/>
+                        </columns>
+                    </TableView>
+                </content>
             </Tab>
         </tabs>
       </TabPane>
@@ -218,7 +278,7 @@
                  </font>
              </Label>
              <TextField fx:id="noteCattleText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                    GridPane.columnIndex="1" visible="false">
+                        visible="false" GridPane.columnIndex="1">
                  <font>
                      <Font size="18.0"/>
                  </font>
@@ -231,10 +291,14 @@
            <columnConstraints>
                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity"/>
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="30.0"/>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="175.0" prefWidth="175.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="175.0" prefWidth="175.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="175.0" prefWidth="175.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="175.0" prefWidth="175.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0"/>
                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0"/>
            </columnConstraints>
            <rowConstraints>
@@ -248,19 +312,31 @@
                    </font>
                </Label>
                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteCattleActionListener"
-                       text="Usuń krowe" GridPane.columnIndex="6">
+                       text="Usuń krowe" GridPane.columnIndex="10">
                    <font>
                        <Font size="18.0"/>
                    </font>
                </Button>
                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addCalvingActionListener"
-                       text="Dodaj wycielenie" GridPane.columnIndex="4">
+                       text="Dodaj wycielenie" GridPane.columnIndex="8">
                    <font>
                        <Font size="18.0"/>
                    </font>
                </Button>
                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false"
-                       onAction="#addInseminationActionListener" text="Dodaj zacielenie" GridPane.columnIndex="2">
+                       onAction="#addInseminationActionListener" text="Dodaj zacielenie" GridPane.columnIndex="6">
+                   <font>
+                       <Font size="18.0"/>
+                   </font>
+               </Button>
+               <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addTreatmentActionListener"
+                       text="Dodaj leczenie" GridPane.columnIndex="4">
+                   <font>
+                       <Font size="18.0"/>
+                   </font>
+               </Button>
+               <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addStatsActionListener"
+                       text="Dodaj statystykę" GridPane.columnIndex="2">
                    <font>
                        <Font size="18.0"/>
                    </font>

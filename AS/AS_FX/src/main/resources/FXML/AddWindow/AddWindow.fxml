@@ -46,7 +46,7 @@
                 </font>
             </Button>
              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addTreatmentActionListener"
-                     prefHeight="50.0" text="Chorobę">
+                     prefHeight="50.0" text="Leczenie">
                  <font>
                      <Font size="18.0"/>
                  </font>

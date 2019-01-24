@@ -3,35 +3,30 @@ package controller.ShowWindow;
 import controller.AddWindow.AddWindowController;
 import controller.Main.MainController;
 import hibernate.HCattle;
-import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import models.Calving;
 import models.Cattle;
 import models.Insemination;
 
+import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 
 public class InformationController implements Initializable {
 
@@ -145,6 +140,60 @@ public class InformationController implements Initializable {
 
     @FXML
     private DatePicker leaveDateCattleDate;
+
+    @FXML
+    private TableView<?> listTreatment;
+
+    @FXML
+    private TableColumn<?, ?> numberTreatment;
+
+    @FXML
+    private TableColumn<?, ?> startDateTreatment;
+
+    @FXML
+    private TableColumn<?, ?> endDateTreatment;
+
+    @FXML
+    private TableColumn<?, ?> diseaseTreatment;
+
+    @FXML
+    private TableColumn<?, ?> medicineTreatment;
+
+    @FXML
+    private TableColumn<?, ?> noteTreatment;
+
+    @FXML
+    private TableView<?> listStatsDaily;
+
+    @FXML
+    private TableColumn<?, ?> numberStatsDaily;
+
+    @FXML
+    private TableColumn<?, ?> milkingDate;
+
+    @FXML
+    private TableColumn<?, ?> milkingTime;
+
+    @FXML
+    private TableColumn<?, ?> milkAmount;
+
+    @FXML
+    private TableView<?> listStatsMonthly;
+
+    @FXML
+    private TableColumn<?, ?> numberStatsMonthly;
+
+    @FXML
+    private TableColumn<?, ?> dateStatsMonthly;
+
+    @FXML
+    private TableColumn<?, ?> proteinStatsMonthly;
+
+    @FXML
+    private TableColumn<?, ?> fatStatsMonthly;
+
+    @FXML
+    private TableColumn<?, ?> bacteriaStatsMonthly;
 
     @FXML
     void addCalvingActionListener(ActionEvent event) {
@@ -424,6 +473,20 @@ public class InformationController implements Initializable {
         noteCalving.setCellValueFactory(new PropertyValueFactory<Calving, String>("notes"));
         listCalving.setItems(calvings);
     }
+
+
+    @FXML
+    void addStatsActionListener(ActionEvent event) {
+
+    }
+
+    @FXML
+    void addTreatmentActionListener(ActionEvent event) {
+
+    }
+
+
+
     
     public void setParentController(ListWindowController parentController) {
         this.parentController = parentController;

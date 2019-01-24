@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
 import models.Cattle;
 
@@ -62,27 +63,43 @@ public class AddWindowController implements Initializable{
     void addInseminationActionListener(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddInsemination.fxml"));
         showWindow(loader);
+        if (chosenCattle != null) {
+            AddInseminationController aic = loader.getController();
+            aic.setChosenCattle(chosenCattle);
+        }
     }
 
     @FXML
     void addCalvingActionListener(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddCalving.fxml"));
         showWindow(loader);
-    }
-
-    public int getChosen() {
-        return chosen;
-    }
-
-    @FXML
-    void addStatsActionListener(ActionEvent event) {
-
+        if (chosenCattle != null) {
+            AddCalvingController acc = loader.getController();
+            acc.setChosenCattle(chosenCattle);
+        }
     }
 
     @FXML
     void addTreatmentActionListener(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddTreatment.fxml"));
         showWindow(loader);
+    }
+
+    @FXML
+    void addStatsActionListener(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXML/AddWindow/AddStats.fxml"));
+        TabPane addStats = null;
+        try {
+            addStats = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        addWindow.setContent(addStats);
+    }
+
+    public int getChosen() {
+        return chosen;
     }
 
     public void setChosen(int chosen) {
