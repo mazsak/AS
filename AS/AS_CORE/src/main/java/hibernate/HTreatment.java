@@ -32,4 +32,13 @@ public class HTreatment {
         em.remove(treatment);
         em.getTransaction().commit();
     }
+
+    public static void deleteAll(List<Treatment> treatments) {
+        for (Treatment treatment : treatments) {
+            HMedicine.deleteConnection(treatment.getMedsUsedList(), treatment);
+            treatment.getMedsUsedList().clear();
+            em.merge(treatment);
+            em.remove(treatment);
+        }
+    }
 }

@@ -58,9 +58,9 @@ public class HCattle {
         HCalving.delete(calvings1);
         cattle.getCalvingList1().removeAll(calvings1);
         //treatment
-        //List<Insemination> inseminations = cattle.getInseminationList();
-        //HInsemination.delete(inseminations);
-        //cattle.getInseminationList().removeAll(inseminations);
+        List<Treatment> treatments = cattle.getTreatmentList();
+        HTreatment.deleteAll(treatments);
+        cattle.getTreatmentList().removeAll(treatments);
         
         //stats monthly
         List<StatsMonthly> statsMonthlies = cattle.getStatsMonthlyList();

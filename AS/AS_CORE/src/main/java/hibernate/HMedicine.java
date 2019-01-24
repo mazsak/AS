@@ -1,7 +1,7 @@
 package hibernate;
 
-import models.Bull;
 import models.Medicine;
+import models.Treatment;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -52,5 +52,12 @@ public class HMedicine {
         em.getTransaction().begin();
         em.merge(medicine);
         em.getTransaction().commit();
+    }
+
+    public static void deleteConnection(List<Medicine> medicines, Treatment treatment) {
+        for (Medicine medicine : medicines) {
+            medicine.getTreatments().remove(treatment);
+            em.merge(medicine);
+        }
     }
 }

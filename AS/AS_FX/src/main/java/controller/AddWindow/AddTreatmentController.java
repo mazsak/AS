@@ -135,7 +135,7 @@ public class AddTreatmentController implements Initializable {
 
         List<Medicine> medi = HMedicine.read();
         ObservableList<String> medicines = FXCollections.observableArrayList();
-        for (int i = 0; i < csh.size(); i++) {
+        for (int i = 0; i < medi.size(); i++) {
             medicines.add(medi.get(i).getName());
         }
         medicine.setItems(medicines);
