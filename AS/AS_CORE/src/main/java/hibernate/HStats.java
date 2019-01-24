@@ -29,6 +29,12 @@ public class HStats {
         em.getTransaction().commit();
     }
 
+    public static void deleteDaily(StatsDaily statsDaily) {
+        em.getTransaction().begin();
+        em.remove(statsDaily);
+        em.getTransaction().commit();
+    }
+
     public static List<StatsMonthly> readMonthly() {
         em.getTransaction().begin();
         List<StatsMonthly> result = em.createQuery("from Treatment", StatsMonthly.class).getResultList();
@@ -48,4 +54,21 @@ public class HStats {
         em.getTransaction().commit();
     }
 
+    public static void deleteMonthly(StatsMonthly statsMonthly) {
+        em.getTransaction().begin();
+        em.remove(statsMonthly);
+        em.getTransaction().commit();
+    }
+
+    public static void deleteDaily2(List<StatsDaily> statsDaily) {
+        for (StatsDaily stsd : statsDaily) {
+            em.remove(stsd);
+        }
+    }
+
+    public static void deleteMonthly2(List<StatsMonthly> statsMonthly) {
+        for (StatsMonthly stsm : statsMonthly) {
+            em.remove(stsm);
+        }
+    }
 }

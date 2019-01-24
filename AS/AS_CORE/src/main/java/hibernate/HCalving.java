@@ -27,4 +27,10 @@ public class HCalving {
             em.remove(cal);
         }
     }
+
+    public static void deleteOne(Calving calving) {
+        em.getTransaction().begin();
+        em.remove(calving);
+        em.getTransaction().commit();
+    }
 }

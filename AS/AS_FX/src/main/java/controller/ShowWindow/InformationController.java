@@ -1,12 +1,12 @@
 package controller.ShowWindow;
 
-import controller.AddWindow.AddStatsController;
 import controller.AddWindow.AddWindowController;
 import controller.Main.MainController;
-import hibernate.HCattle;
+import hibernate.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import models.*;
 
 import java.io.IOException;
@@ -429,6 +428,78 @@ public class InformationController implements Initializable {
     }
 
     public void setCattleInfo(Cattle cattle) throws ParseException {
+
+        ContextMenu inseminationMenu = new ContextMenu();
+        ContextMenu calvingMenu = new ContextMenu();
+        ContextMenu treatmentMenu = new ContextMenu();
+        ContextMenu statsDailyMenu = new ContextMenu();
+        ContextMenu statsMonthlyMenu = new ContextMenu();
+
+        MenuItem deleteInsemination = new MenuItem("Usuń");
+        deleteInsemination.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HInsemination.deleteOne(listInsemination.getSelectionModel().getSelectedItem());
+
+                cattle.getInseminationList().remove(listInsemination.getSelectionModel().getSelectedItem());
+                listInsemination.getItems().remove(listInsemination.getSelectionModel().getSelectedItem());
+                HCattle.update(cattle);
+            }
+        });
+        inseminationMenu.getItems().add(deleteInsemination);
+        listInsemination.setContextMenu(inseminationMenu);
+        MenuItem deleteCalving = new MenuItem("Usuń");
+        deleteCalving.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HCalving.deleteOne(listCalving.getSelectionModel().getSelectedItem());
+
+                cattle.getCalvingList().remove(listCalving.getSelectionModel().getSelectedItem());
+                listCalving.getItems().remove(listCalving.getSelectionModel().getSelectedItem());
+                HCattle.update(cattle);
+            }
+        });
+        calvingMenu.getItems().add(deleteCalving);
+        listCalving.setContextMenu(calvingMenu);
+        MenuItem deleteTreatment = new MenuItem("Usuń");
+        deleteTreatment.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HTreatment.delete(listTreatment.getSelectionModel().getSelectedItem());
+
+                cattle.getTreatmentList().remove(listTreatment.getSelectionModel().getSelectedItem());
+                listTreatment.getItems().remove(listTreatment.getSelectionModel().getSelectedItem());
+                HCattle.update(cattle);
+            }
+        });
+        treatmentMenu.getItems().add(deleteTreatment);
+        listTreatment.setContextMenu(treatmentMenu);
+        MenuItem deleteStatsDaily = new MenuItem("Usuń");
+        deleteStatsDaily.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HStats.deleteDaily(listStatsDaily.getSelectionModel().getSelectedItem());
+
+                cattle.getStatsDailyList().remove(listStatsDaily.getSelectionModel().getSelectedItem());
+                listStatsDaily.getItems().remove(listStatsDaily.getSelectionModel().getSelectedItem());
+                HCattle.update(cattle);
+            }
+        });
+        statsDailyMenu.getItems().add(deleteStatsDaily);
+        listStatsDaily.setContextMenu(statsDailyMenu);
+        MenuItem deleteStatsMonthly = new MenuItem("Usuń");
+        deleteStatsMonthly.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HStats.deleteMonthly(listStatsMonthly.getSelectionModel().getSelectedItem());
+
+                cattle.getStatsMonthlyList().remove(listStatsMonthly.getSelectionModel().getSelectedItem());
+                listStatsMonthly.getItems().remove(listStatsMonthly.getSelectionModel().getSelectedItem());
+                HCattle.update(cattle);
+            }
+        });
+        statsMonthlyMenu.getItems().add(deleteStatsMonthly);
+        listStatsMonthly.setContextMenu(statsMonthlyMenu);
 
         birthDateCattle.setText(cattle.getBirthDate());
         nameCattle.setText(cattle.getName());

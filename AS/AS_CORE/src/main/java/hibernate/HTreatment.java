@@ -26,4 +26,10 @@ public class HTreatment {
         em.merge(treatment);
         em.getTransaction().commit();
     }
+
+    public static void delete(Treatment treatment) {
+        em.getTransaction().begin();
+        em.remove(treatment);
+        em.getTransaction().commit();
+    }
 }
